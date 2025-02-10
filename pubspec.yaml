@@ -30,25 +30,25 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
   injectable:
   get_it:
-
-
   cupertino_icons: ^1.0.8
   flutter_localizations:
     sdk: flutter
   intl: any
+  retrofit: ^4.4.2
+  logger: ^2.4.0  # for logging purpose
+  json_annotation: ^4.9.0
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   injectable_generator:
   intl_utils: ^2.0.0 # Add this line
-
-
   build_runner:
+  retrofit_generator: '>=8.0.0 <10.0.0' # for Dart 3.3 use ^9.0.0
+  json_serializable: ^6.8.0
 
 
   # The "flutter_lints" package below contains a set of recommended lints to
