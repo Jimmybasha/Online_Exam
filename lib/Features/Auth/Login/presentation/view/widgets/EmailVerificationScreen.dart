@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/widgets/custom_app_bar.dart';
-import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/email_verification_view_body.dart';
+import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/EmailVerificationScreenBody.dart';
 
-class EmailVerificationView extends StatelessWidget {
-  const EmailVerificationView({super.key});
+class EmailVerificationScreen extends StatelessWidget {
+  const EmailVerificationScreen({super.key});
   static String id = 'EmailVerificationView';
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class EmailVerificationView extends StatelessWidget {
           leadingVisibility: true,
         ),
       ),
-      body: EmailVerificationViewBody(),
+      body: EmailVerificationScreenBody(),
     );
   }
 }

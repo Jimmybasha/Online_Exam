@@ -4,8 +4,8 @@ import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/CustomCodeBoxTextField.dart';
 import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/resend_code.dart';
 
-class EmailVerificationViewBody extends StatelessWidget {
-  const EmailVerificationViewBody({super.key});
+class EmailVerificationScreenBody extends StatelessWidget {
+  const EmailVerificationScreenBody({super.key});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,6 +41,3 @@ class EmailVerificationViewBody extends StatelessWidget {
     );
   }
 }
-
-
-

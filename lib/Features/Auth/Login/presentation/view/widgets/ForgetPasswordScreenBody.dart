@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Core/widgets/custom_button.dart';
 import 'package:online_exam/Core/widgets/custom_text_form_field.dart';
-import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/email_verification_view.dart';
+import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/EmailVerificationScreen.dart';
 
-class ForgetPasswordViewBody extends StatelessWidget {
-  const ForgetPasswordViewBody({super.key});
+class ForgetPasswordScreenBody extends StatelessWidget {
+  const ForgetPasswordScreenBody({super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,7 +42,7 @@ class ForgetPasswordViewBody extends StatelessWidget {
           SizedBox(height: 48.h),
           CustomButton(
               onPressed: () {
-                Navigator.pushNamed(context, EmailVerificationView.id);
+                Navigator.pushNamed(context, EmailVerificationScreen.id);
               },
               text: 'Continue'),
         ],

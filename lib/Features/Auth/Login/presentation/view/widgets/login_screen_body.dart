@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Core/widgets/custom_button.dart';
 import 'package:online_exam/Core/widgets/custom_text_form_field.dart';
-import 'package:online_exam/Features/Auth/Login/presentation/view/forget_password_view.dart';
+import 'package:online_exam/Features/Auth/Login/presentation/view/ForgetPasswordScreen.dart';
 import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/DoNotHaveAccountWidget.dart';
 import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/remember_me_widget.dart';
 
@@ -51,7 +51,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                   RememberMeWidget(),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, ForgetPasswordView.id);
+                      Navigator.pushNamed(context, ForgetPasswordScreen.id);
                     },
                     child: Text(
                       'Forget password?',
@@ -68,7 +68,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-                      Navigator.pushNamed(context, ForgetPasswordView.id);
+                      Navigator.pushNamed(context, ForgetPasswordScreen.id);
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
