@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
-import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/CustomCodeBoxTextField.dart';
-import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/resend_code.dart';
+import 'package:online_exam/Features/Auth/presentation/view/widgets/CustomCodeBoxTextField.dart';
+import 'package:online_exam/Features/Auth/presentation/view/widgets/resend_code.dart';
 
 class EmailVerificationScreenBody extends StatelessWidget {
   const EmailVerificationScreenBody({super.key});
