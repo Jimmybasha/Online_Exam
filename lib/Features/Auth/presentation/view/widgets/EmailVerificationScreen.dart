@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/widgets/custom_app_bar.dart';
-import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/ForgetPasswordScreenBody.dart';
+import 'package:online_exam/Features/Auth/presentation/view/widgets/EmailVerificationScreenBody.dart';
 
-class ForgetPasswordScreen extends StatelessWidget {
-  const ForgetPasswordScreen({super.key});
-  static const String id = 'ForgetPassword';
+class EmailVerificationScreen extends StatelessWidget {
+  const EmailVerificationScreen({super.key});
+  static const String id = 'EmailVerificationView';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +16,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           leadingVisibility: true,
         ),
       ),
-      body: ForgetPasswordScreenBody(),
+      body: EmailVerificationScreenBody(),
     );
   }
 }

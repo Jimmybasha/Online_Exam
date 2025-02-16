@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Core/widgets/custom_button.dart';
 import 'package:online_exam/Core/widgets/custom_text_form_field.dart';
-import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/EmailVerificationScreen.dart';
+import 'package:online_exam/Features/Auth/presentation/view/widgets/EmailVerificationScreen.dart';
 
 class ForgetPasswordScreenBody extends StatelessWidget {
   const ForgetPasswordScreenBody({super.key});
