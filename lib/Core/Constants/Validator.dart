@@ -29,7 +29,7 @@ class Validator{
     if (emptyValidationMessage != null) {
       return emptyValidationMessage; // Return the empty validation message
     }
-    final phoneRegex = RegExp(r'^\d+$');
+    final phoneRegex = RegExp(r'^01\d{9}$'); // Starts with 01 + 9 more digits (total 11)
     if (!phoneRegex.hasMatch(value!)) {
       return 'Please enter a valid phone number';
     }

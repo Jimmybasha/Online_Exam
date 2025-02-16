@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../Core/Constants/AppStyles.dart';
-import '../../../../../Core/Constants/Validator.dart';
-import '../../../../../Core/Reusable_Widgets/CustomTextField.dart';
+import 'package:online_exam/Features/Auth/Login/presentation/view/LoginScreen.dart';
+import 'package:online_exam/Features/Auth/Sign_Up/presentation/View/widgets/AlreadyHaveAccountWidget.dart';
+import 'package:online_exam/Features/Auth/Sign_Up/presentation/View_Model/states/SignUpStates.dart';
+import '../../../../../../Core/Constants/AppStyles.dart';
+import '../../../../../../Core/Constants/Validator.dart';
+import '../../../../../../Core/Reusable_Widgets/CustomTextField.dart';
+import '../../../../../../Core/di/di.dart';
+import '../../View_Model/cubits/SignUpViewModel.dart';
 
 class SignUpScreenBody extends StatefulWidget{
 
@@ -17,6 +23,7 @@ class SignUpScreenBody extends StatefulWidget{
 
 class _SignUpScreenBodyState extends State<SignUpScreenBody> {
 
+  SignUpViewModel signUpViewModel = getIt.get<SignUpViewModel>();
 
   late  TextEditingController _usernameController ;
   late  TextEditingController _firstNameController ;
@@ -51,9 +58,6 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
     _phoneNumberController.dispose();
     super.dispose();
   }
-
-
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -100,7 +104,6 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                   },
                   controller: _emailController
                   ,),
-
                 Row(
                   children: [
                     Expanded(
@@ -134,40 +137,68 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                   },
                   controller: _phoneNumberController,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 20.h
+                BlocBuilder<SignUpViewModel, SignUpState>(
+                  bloc: signUpViewModel,
+                  builder: (context, state) {
+                    if (state is SignUpFailureState) {
+                      return Padding(
+                        padding: EdgeInsets.only(top: 10.h),
+                        child: Text(
+                          state.err,
+                          // Display error message
+                          style: TextStyle(color: Colors.red, fontSize: 16.sp),
+                        ),
+                      );
+                    }
+                    if (state is SignUpSuccessState) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Sign up Successfully"),
+                            backgroundColor: Colors.green,
+                            duration: Duration(seconds: 3),
+                          ),
+                        );
+                    Navigator.of(context).pushNamed(LoginScreen.id);
+                      });
+                    }
+                      return SizedBox.shrink();
+                  }
                   ),
-                  child: ElevatedButton(
-                    onPressed: (){
-                      if (_formKey.currentState?.validate() ?? false) {
-                      }
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.h),
+                  child: BlocBuilder<SignUpViewModel, SignUpState>(
+                    bloc: signUpViewModel,
+                    builder: (context, state) {
+                      bool isLoading = state is SignUpLoadingState;
+                      return ElevatedButton(
+                        onPressed: isLoading
+                            ? null
+                            : () async {
+                          if (_formKey.currentState?.validate() ?? false) {
+                             await signUpViewModel.signUpUser( _usernameController.text.trim(),
+                              _firstNameController.text.trim(),
+                              _lastNameController.text.trim(),
+                              _emailController.text.trim(),
+                              _passwordController.text.trim(),
+                              _phoneNumberController.text.trim(),
+                              _confirmPasswordController.text.trim()
+                            );
+                          }
+                        },
+                        style: AppStyles.buttonStyle,
+                        child: isLoading
+                            ? SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                        )
+                            : const Text("Sign Up", style: TextStyle(color: Colors.white)),
+                      );
                     },
-                    style:AppStyles.buttonStyle ,
-                    child: const Text(
-                      "Sign Up",
-                      style: TextStyle(
-                          color: Colors.white
-                      ),
-                    ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Already have an account?"),
-                    TextButton(
-                      onPressed: (){
-
-                      },
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                            decoration: TextDecoration.underline
-                        ),),
-                    ),
-                  ],
-                )
+               AlreadyHaveAccountWidget(),
               ],
             ),
           ),
