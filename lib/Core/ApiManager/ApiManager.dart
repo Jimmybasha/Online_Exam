@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam/Core/Errors/Failure.dart';
+
 @Singleton()
 @injectable
 class ApiManager {

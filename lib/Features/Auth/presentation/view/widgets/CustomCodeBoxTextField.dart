@@ -19,7 +19,6 @@ class CustomCodeBoxTextFiled extends StatelessWidget {
         child: TextField(
           decoration: InputDecoration(
             border: InputBorder.none,
-         
           ),
         ),
       ),
