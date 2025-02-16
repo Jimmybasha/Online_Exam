@@ -8,7 +8,8 @@ class ApiManager{
 
   final Dio dio = Dio(
     BaseOptions(
-    baseUrl: BASE_URL
+    baseUrl: BASE_URL,
+      headers: {'Content-Type': 'application/json'},
     )
   );
 
@@ -20,5 +21,14 @@ class ApiManager{
     var response = dio.post(endPoint,data: data );
     return response;
   }
+  Future<Response> putRequest(
+      String endpoint, Map<String, dynamic> data) async {
+    final response = await dio.put(endpoint, data: data);
+    return response;
+  }
 
+  Future<Response> deleteRequest(String endpoint) async {
+    final response = await dio.delete(endpoint);
+    return response.data;
+  }
 }
