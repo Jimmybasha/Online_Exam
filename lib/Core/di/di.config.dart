@@ -37,11 +37,11 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i211.ApiManager>(() => _i211.ApiManager());
-    gh.factory<_i235.SignUpDataSource>(
+    gh.singleton<_i211.ApiManager>(() => _i211.ApiManager());
+    gh.factory<_i235.ISignUpDataSource>(
         () => _i1072.AuthRemoteDataSourceImpl(gh<_i211.ApiManager>()));
     gh.factory<_i462.SignUpRepo>(
-        () => _i737.SignUpRepoImpl(gh<_i235.SignUpDataSource>()));
+        () => _i737.SignUpRepoImpl(gh<_i235.ISignUpDataSource>()));
     gh.factory<_i224.SignUpUseCase>(
         () => _i224.SignUpUseCase(gh<_i462.SignUpRepo>()));
     gh.factory<_i138.SignUpViewModel>(

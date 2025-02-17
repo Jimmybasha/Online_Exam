@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Features/Auth/Login/presentation/view/LoginScreen.dart';
 import 'package:online_exam/Features/Auth/Sign_Up/presentation/View/widgets/AlreadyHaveAccountWidget.dart';
 import 'package:online_exam/Features/Auth/Sign_Up/presentation/View_Model/states/SignUpStates.dart';
@@ -12,7 +13,11 @@ import '../../View_Model/cubits/SignUpViewModel.dart';
 
 class SignUpScreenBody extends StatefulWidget{
 
-  const SignUpScreenBody({super.key});
+
+  const SignUpScreenBody({
+    super.key,
+
+  });
 
 
 
@@ -122,7 +127,7 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                         (label: "Confirm Password",
                         isPassword: true,hint: "Confirm Password",
                         validator: (value) {
-                          return Validator.isEmptyValidation(value,"Password Confirmation");
+                          return Validator.confirmPasswordValidation(value, _passwordController.text.trim(),_confirmPasswordController.text.trim());
                         },
                         controller: _confirmPasswordController,
                       ),
@@ -154,12 +159,12 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                       WidgetsBinding.instance.addPostFrameCallback((_) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("Sign up Successfully"),
+                            content: Text(SIGNUP_SUCCESS_MESSAGE),
                             backgroundColor: Colors.green,
                             duration: Duration(seconds: 3),
                           ),
                         );
-                    Navigator.of(context).pushNamed(LoginScreen.id);
+                        Navigator.pushNamed(context, LoginScreen.id);
                       });
                     }
                       return SizedBox.shrink();
@@ -193,12 +198,14 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                           height: 24,
                           child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
                         )
-                            : const Text("Sign Up", style: TextStyle(color: Colors.white)),
+                            : const Text(SIGNUP_MESSAGE, style: TextStyle(color: Colors.white)),
                       );
                     },
                   ),
                 ),
-               AlreadyHaveAccountWidget(),
+               AlreadyHaveAccountWidget(onLoginPressed:() {
+                 signUpViewModel.navigateToLogin();
+               } ,),
               ],
             ),
           ),

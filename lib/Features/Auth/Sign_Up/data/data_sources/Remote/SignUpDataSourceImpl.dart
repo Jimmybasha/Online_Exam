@@ -6,8 +6,8 @@ import 'package:online_exam/Core/ApiManager/ApiResult.dart';
 import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Features/Auth/Sign_Up/data/data_sources/Remote/SignUpDataSource.dart';
 import 'package:online_exam/Features/Auth/Sign_Up/data/models/UserSignUpModel.dart';
-@Injectable(as: SignUpDataSource)
-class AuthRemoteDataSourceImpl extends SignUpDataSource{
+@Injectable(as: ISignUpDataSource)
+class AuthRemoteDataSourceImpl implements ISignUpDataSource{
 
   ApiManager apiManager;
   AuthRemoteDataSourceImpl(this.apiManager);

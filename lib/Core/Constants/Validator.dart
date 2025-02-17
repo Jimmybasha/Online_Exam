@@ -36,7 +36,16 @@ class Validator{
     return null;
   }
 
-
+  static String? confirmPasswordValidation(String? value,String? password1,String password2){
+    String? emptyValidationMessage = isEmptyValidation(value,"Password Confirmation");
+    if (emptyValidationMessage != null) {
+      return emptyValidationMessage; // Return the empty validation message
+    }
+    if(password1!=password2){
+      return "Password doesn't match";
+    }
+    return null;
+  }
 
 
   }

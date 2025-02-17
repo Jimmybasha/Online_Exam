@@ -1,11 +1,15 @@
 
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam/Core/ApiManager/ApiResult.dart';
 import 'package:online_exam/Features/Auth/Sign_Up/domain/use_cases/SignUpUseCase.dart';
+import 'package:online_exam/main.dart';
 
 import '../../../../../../Core/Errors/Failure.dart';
+import '../../../../Login/presentation/view/LoginScreen.dart';
 import '../states/SignUpStates.dart';
 @injectable
 class SignUpViewModel extends Cubit<SignUpState>{
@@ -23,17 +27,18 @@ class SignUpViewModel extends Cubit<SignUpState>{
       )async{
     emit(SignUpLoadingState());
     var apiResult = await signUpUseCase.call(username, firstName, lastName, email, password, phone, rePassword);
-    print("APi Result in the signUpLoadingState apiResult : ${apiResult}");
+    log("APi Result in the signUpLoadingState apiResult : $apiResult");
 
     switch(apiResult){
       case SuccessApiResult():
-        print(" apiResult.Data in the SuccessApiResult :  ${apiResult.data?.user?.message??"Nothing appeared"}");
+        log(" apiResult.Data in the SuccessApiResult :  ${apiResult.data?.user?.message??"Nothing appeared"}");
         emit(
           SignUpSuccessState(apiResult.data?.user?.message??"")
         );
+
       case ErrorApiResult():
         final error = apiResult.exception; // Extract error
-        print(error.toString());
+        log(error.toString());
         String errorMessage;
 
         if (error is DioException) {
@@ -42,13 +47,18 @@ class SignUpViewModel extends Cubit<SignUpState>{
           errorMessage = "Unexpected error. Please try again.";
         }
 
-        print("Failure: $errorMessage");
+        log("Failure: $errorMessage");
         emit(
             SignUpFailureState(errorMessage)
         );
         break;
     }
 
+  }
+
+  void navigateToLogin(){
+    log("Navigating to LoginScreen..."); // Debugging line
+    navigatorKey.currentState?.pushNamed(LoginScreen.id);
   }
 
 

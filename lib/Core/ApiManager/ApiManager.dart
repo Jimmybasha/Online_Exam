@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import '../Constants/Constants.dart';
-@injectable
-class ApiManager{
 
+@singleton // Resolved to be singleton
+class ApiManager{
 
   final Dio dio = Dio(
     BaseOptions(

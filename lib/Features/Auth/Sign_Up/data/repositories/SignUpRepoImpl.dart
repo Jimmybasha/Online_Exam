@@ -10,7 +10,7 @@ import '../models/UserSignUpModel.dart';
 class SignUpRepoImpl implements SignUpRepo{
   @override
 
-  SignUpDataSource signUpDataSource;
+  ISignUpDataSource signUpDataSource;
   SignUpRepoImpl(this.signUpDataSource);
 
   Future<ApiResult<UserSignUpModel>> signUp(

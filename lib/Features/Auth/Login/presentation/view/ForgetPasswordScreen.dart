@@ -5,7 +5,7 @@ import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/Forget
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({super.key});
-  static String id = 'ForgetPassword';
+  static const String id = 'ForgetPassword';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

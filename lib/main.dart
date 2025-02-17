@@ -11,6 +11,8 @@ void main() {
   runApp(const MyApp());
 }
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           ScreenUtil.init(context);
           return MaterialApp(
+            navigatorKey: navigatorKey,
             theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
@@ -36,8 +39,8 @@ class MyApp extends StatelessWidget {
               Locale('ar'),
             ],
             debugShowCheckedModeBanner: false,
-            routes: appRoutes,
-            home: LoginScreen(),
+            initialRoute: LoginScreen.id,
+            onGenerateRoute: AppRoutes.generateRoute,
           );
         });
   }
