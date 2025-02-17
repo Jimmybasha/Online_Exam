@@ -35,18 +35,22 @@ class ServerFailure extends Failure {
     }
   }
   factory ServerFailure.fromResponse(int statusCode, jsonData) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(errorMessage: jsonData[ "message"]);
-    } else if (statusCode == 500) {
-      return ServerFailure(
-          errorMessage: ' Internal Server Error , Please try later');
-    } else if (statusCode == 404) {
-      return ServerFailure(
-          errorMessage: ' Your request not found , Please try later');
-      //in this case i don't receive response aslan
-    } else {
-      return ServerFailure(
-          errorMessage: 'Oops there is an error , Please try later');
+    switch (statusCode) {
+      case 400:
+      case 401:
+      case 403:
+      if (jsonData["message"] != null && jsonData["message"].toString().contains("fails to match the required pattern")) {
+        return ServerFailure(errorMessage: "Password must contain at least:\n - 8 characters\n - One uppercase letter\n - One lowercase letter\n - One number\n - One special character.");
+      }
+      return ServerFailure(errorMessage: jsonData["message"]);
+      case 404:
+        return ServerFailure(errorMessage: 'Requested resource not found.');
+      case 409:
+        return ServerFailure(errorMessage: 'Account Already Exists.');
+      case 500:
+        return ServerFailure(errorMessage: 'Internal server error. Please try again later.');
+      default:
+        return ServerFailure(errorMessage: 'Unexpected error. Status Code: $statusCode');
     }
   }
 }

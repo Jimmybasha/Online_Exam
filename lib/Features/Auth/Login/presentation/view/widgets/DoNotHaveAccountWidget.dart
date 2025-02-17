@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 
+import '../../../../Sign_Up/presentation/View/widgets/SignUpPage.dart';
+
 class DoNotHaveAccountWidget extends StatelessWidget {
   const DoNotHaveAccountWidget({
     super.key,
@@ -18,14 +20,19 @@ class DoNotHaveAccountWidget extends StatelessWidget {
               .copyWith(fontWeight: FontWeight.w400),
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, SignUpPage.id);
+          },
+
           child: Text("Sign up",
               style: TextStyle(
                 color: AppColors.kPrimaryColor,
                 fontSize: AppTextStyles.instance.textStyle16.fontSize,
                 decoration: TextDecoration.underline,
                 decorationColor: AppColors.kPrimaryColor,
-              )),
+              ),
+
+          ),
         )
       ],
     );

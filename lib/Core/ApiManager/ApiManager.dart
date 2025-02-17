@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
 import '../Constants/Constants.dart';
 
+@singleton // Resolved to be singleton
 class ApiManager{
-
 
   final Dio dio = Dio(
     BaseOptions(
@@ -13,6 +14,10 @@ class ApiManager{
 
   Future<Response>? getData({required String endPoint})async{
     var response = dio.get(endPoint);
+    return response;
+  }
+  Future<Response>? postData({required String endPoint,required Map<String, dynamic> data})async{
+    var response = dio.post(endPoint,data: data );
     return response;
   }
 
