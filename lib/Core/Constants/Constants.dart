@@ -1,1 +1,1 @@
-
+const kLoginUserEndPoint = 'auth/signin';

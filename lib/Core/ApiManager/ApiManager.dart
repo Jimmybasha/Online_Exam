@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam/Core/Errors/Failure.dart';
 
-@Singleton()
+@singleton
 @injectable
 class ApiManager {
   final Dio dio = Dio(
@@ -13,41 +11,27 @@ class ApiManager {
     ),
   );
 
-  Future<Either<Failure, Response>> getRequest(String endpoint) async {
-    try {
-      final response = await dio.get(endpoint);
-      return Right(response.data);
-    } catch (e) {
-      return Left(ServerFailure(errorMessage: e.toString()));
-    }
+  Future<Response> getRequest(String endpoint) async {
+    Response response = await dio.get(endpoint);
+    return response;
   }
 
-  Future<Either<Failure, Response>> postRequest(
+  Future<Response> postRequest(
       String endpoint, Map<String, dynamic> data) async {
-    try {
-      final response = await dio.post(endpoint, data: data);
-      return Right(response.data);
-    } catch (e) {
-      return Left(ServerFailure(errorMessage: e.toString()));
-    }
+    final response = await dio.post(endpoint, data: data);
+    return response;
   }
 
-  Future<Either<Failure, Response>> putRequest(
+  Future<Response> putRequest(
       String endpoint, Map<String, dynamic> data) async {
-    try {
-      final response = await dio.put(endpoint, data: data);
-      return Right(response.data);
-    } catch (e) {
-      return Left(ServerFailure(errorMessage: e.toString()));
-    }
+    final response = await dio.put(endpoint, data: data);
+    return response;
   }
 
-  Future<Either<Failure, dynamic>> deleteRequest(String endpoint) async {
-    try {
+  Future<Response> deleteRequest(String endpoint) async {
+   
       final response = await dio.delete(endpoint);
-      return Right(response.data);
-    } catch (e) {
-      return Left(ServerFailure(errorMessage: e.toString()));
-    }
+      return response.data;
+    
   }
 }
