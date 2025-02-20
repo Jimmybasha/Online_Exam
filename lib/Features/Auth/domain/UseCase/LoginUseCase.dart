@@ -9,6 +9,6 @@ class LoginUseCase {
   LoginUseCase({required this.authRepo});
   Future<Either<Failure, UserModel>> call(
       {required String email, required String password}) async {
-    return await authRepo.login(email: email, password: password);
+    return await authRepo.loginUser(email: email, password: password);
   }
 }
