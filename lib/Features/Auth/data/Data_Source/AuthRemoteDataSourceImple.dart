@@ -6,7 +6,7 @@ import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Features/Auth/data/Data_Source/AuthRemoteDataSource.dart';
 import 'package:online_exam/Features/Auth/data/Models/user_model.dart';
 
-@Injectable(as: AuthRemoteDataSourceImpl)
+@Injectable(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final ApiManager apiManager;
 
