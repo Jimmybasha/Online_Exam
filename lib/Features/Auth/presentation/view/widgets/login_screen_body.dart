@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Core/widgets/custom_button.dart';
 import 'package:online_exam/Core/widgets/custom_text_form_field.dart';
+import 'package:online_exam/Core/widgets/show_snack_bar.dart';
+import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/login_cubit.dart';
 import 'package:online_exam/Features/Auth/presentation/view/ForgetPasswordScreen.dart';
 import 'package:online_exam/Features/Auth/presentation/view/widgets/DoNotHaveAccountWidget.dart';
 import 'package:online_exam/Features/Auth/presentation/view/widgets/remember_me_widget.dart';
@@ -18,6 +21,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String email, password;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -65,16 +69,41 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
               ),
               SizedBox(height: 48.h),
               CustomButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      Navigator.pushNamed(context, ForgetPasswordScreen.id);
-                    } else {
-                      autovalidateMode = AutovalidateMode.always;
-                      setState(() {});
+                onPressed: () async {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    await context
+                        .read<LoginCubit>()
+                        .loginUser(email: email, password: password);
+                    autovalidateMode = AutovalidateMode.disabled;
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+                child: BlocConsumer<LoginCubit, LoginState>(
+                  listener: (context, state) {
+                    if (state is LoginFailure) {
+                      showErrorSnackBar(context, state.errorMessage);
+                    }
+                    if (state is LoginSuccess) {
+                      showSnackBar(context, 'Login Successfully');
                     }
                   },
-                  text: 'Login'),
+                  builder: (context, state) {
+                    if (state is LoginLoading) {
+                      return CircularProgressIndicator(
+                          color: Colors.white, strokeWidth: 2);
+                    } else {
+                      return Text(
+                        'Login',
+                        style: AppTextStyles.instance.textStyle16.copyWith(
+                            fontWeight: FontWeight.w500, color: Colors.white),
+                      );
+                    }
+                  },
+                ),
+              ),
               SizedBox(height: 16.h),
               DoNotHaveAccountWidget()
             ],

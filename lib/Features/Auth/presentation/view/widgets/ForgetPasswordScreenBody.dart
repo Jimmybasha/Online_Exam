@@ -44,7 +44,11 @@ class ForgetPasswordScreenBody extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, EmailVerificationScreen.id);
               },
-              text: 'Continue'),
+             child: Text(
+                  'Continue',
+                  style: AppTextStyles.instance.textStyle16.copyWith(
+                      fontWeight: FontWeight.w500, color: Colors.white),
+                ),),
         ],
       ),
     );
