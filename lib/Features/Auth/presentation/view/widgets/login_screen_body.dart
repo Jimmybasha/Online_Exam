@@ -34,6 +34,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
             children: [
               SizedBox(height: 24.h),
               CustomTextFormField(
+                onChanged: onChanged,
                 hintText: 'Enter you email',
                 label: 'Email',
                 onSaved: (value) {
@@ -42,6 +43,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
               ),
               SizedBox(height: 24.h),
               CustomTextFormField(
+                onChanged: onChanged,
                 obscureText: true,
                 hintText: 'Enter you password ',
                 label: 'Password',
@@ -96,6 +98,16 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
       ),
     );
   }
+
+  onChanged(value) {
+                if (formKey.currentState!.validate()) {
+                  autovalidateMode = AutovalidateMode.disabled;
+                  setState(() {});
+                } else {
+                  autovalidateMode = AutovalidateMode.always;
+                  setState(() {});
+                }
+              }
 }
 
 class LoginButtonBlocConsumer extends StatelessWidget {
@@ -116,13 +128,12 @@ class LoginButtonBlocConsumer extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is LoginLoading) {
-          return CircularProgressIndicator(
-              color: Colors.white, strokeWidth: 2);
+          return CircularProgressIndicator(color: Colors.white, strokeWidth: 2);
         } else {
           return Text(
             'Login',
-            style: AppTextStyles.instance.textStyle16.copyWith(
-                fontWeight: FontWeight.w500, color: Colors.white),
+            style: AppTextStyles.instance.textStyle16
+                .copyWith(fontWeight: FontWeight.w500, color: Colors.white),
           );
         }
       },
