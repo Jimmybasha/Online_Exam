@@ -36,8 +36,10 @@ class ServerFailure extends Failure {
     }
   }
   factory ServerFailure.fromResponse(int statusCode, jsonData) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+    if (statusCode == 400 || statusCode == 403) {
       return ServerFailure(errorMessage: jsonData["message"]);
+    } else if (statusCode == 401) {
+      return ServerFailure(errorMessage: 'incorrect email or password');
     } else if (statusCode == 500) {
       return ServerFailure(
           errorMessage: ' Internal Server Error , Please try later');
