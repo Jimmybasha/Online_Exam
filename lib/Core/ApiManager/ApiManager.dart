@@ -29,9 +29,7 @@ class ApiManager {
   }
 
   Future<Response> deleteRequest(String endpoint) async {
-   
-      final response = await dio.delete(endpoint);
-      return response.data;
-    
+    final response = await dio.delete(endpoint);
+    return response.data;
   }
 }

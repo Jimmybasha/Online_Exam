@@ -2,9 +2,9 @@ import 'package:injectable/injectable.dart';
 import 'package:online_exam/Core/ApiManager/ApiManager.dart';
 import 'package:online_exam/Core/Constants/Constants.dart';
 
-
 import 'package:online_exam/Features/Auth/data/Data_Source/AuthRemoteDataSource.dart';
-import 'package:online_exam/Features/Auth/data/Models/user_model.dart';
+
+import 'package:online_exam/Features/Auth/data/Models/user_model/user_model.dart';
 
 @Injectable(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {

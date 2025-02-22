@@ -1,54 +1,66 @@
 import 'package:equatable/equatable.dart';
 
-class UserModel extends Equatable {
+class User extends Equatable {
+  final String? id;
   final String? username;
   final String? firstName;
   final String? lastName;
   final String? email;
-  final String? password;
-  final String? rePassword;
   final String? phone;
+  final String? role;
+  final bool? isVerified;
+  final DateTime? createdAt;
 
-  const UserModel({
+  const User({
+    this.id,
     this.username,
     this.firstName,
     this.lastName,
     this.email,
-    this.password,
-    this.rePassword,
     this.phone,
+    this.role,
+    this.isVerified,
+    this.createdAt,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json['_id'] as String?,
         username: json['username'] as String?,
         firstName: json['firstName'] as String?,
         lastName: json['lastName'] as String?,
         email: json['email'] as String?,
-        password: json['password'] as String?,
-        rePassword: json['rePassword'] as String?,
         phone: json['phone'] as String?,
+        role: json['role'] as String?,
+        isVerified: json['isVerified'] as bool?,
+        createdAt: json['createdAt'] == null
+            ? null
+            : DateTime.parse(json['createdAt'] as String),
       );
 
   Map<String, dynamic> toJson() => {
+        '_id': id,
         'username': username,
         'firstName': firstName,
         'lastName': lastName,
         'email': email,
-        'password': password,
-        'rePassword': rePassword,
         'phone': phone,
+        'role': role,
+        'isVerified': isVerified,
+        'createdAt': createdAt?.toIso8601String(),
       };
 
   @override
   List<Object?> get props {
     return [
+      id,
       username,
       firstName,
       lastName,
       email,
-      password,
-      rePassword,
       phone,
+      role,
+      isVerified,
+      createdAt,
     ];
   }
 }
