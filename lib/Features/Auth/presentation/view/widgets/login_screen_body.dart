@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
+import 'package:online_exam/Core/utils/Services/secure_storage.dart';
 import 'package:online_exam/Core/widgets/custom_button.dart';
 import 'package:online_exam/Core/widgets/custom_text_form_field.dart';
 import 'package:online_exam/Core/widgets/show_snack_bar.dart';
@@ -22,6 +24,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String email, password;
+  bool rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,13 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  RememberMeWidget(),
+                  RememberMeWidget(
+                    value: rememberMe,
+                    onChanged: (newValue) {
+                      rememberMe = newValue!;
+                      setState(() {});
+                    },
+                  ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, ForgetPasswordScreen.id);
@@ -79,16 +88,15 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    await context
-                        .read<LoginCubit>()
-                        .loginUser(email: email, password: password);
+                    await triggerLoginCubit(context);
+
                     autovalidateMode = AutovalidateMode.disabled;
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
                   }
                 },
-                child: LoginButtonBlocConsumer(),
+                child: LoginButtonBlocConsumer(rememberMe: rememberMe),
               ),
               SizedBox(height: 16.h),
               DoNotHaveAccountWidget()
@@ -99,22 +107,29 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
     );
   }
 
+  triggerLoginCubit(BuildContext context) async {
+    await context
+        .read<LoginCubit>()
+        .loginUser(email: email, password: password);
+  }
+
   onChanged(value) {
-                if (formKey.currentState!.validate()) {
-                  autovalidateMode = AutovalidateMode.disabled;
-                  setState(() {});
-                } else {
-                  autovalidateMode = AutovalidateMode.always;
-                  setState(() {});
-                }
-              }
+    if (formKey.currentState!.validate()) {
+      autovalidateMode = AutovalidateMode.disabled;
+      setState(() {});
+    } else {
+      autovalidateMode = AutovalidateMode.always;
+      setState(() {});
+    }
+  }
 }
 
 class LoginButtonBlocConsumer extends StatelessWidget {
   const LoginButtonBlocConsumer({
     super.key,
+    required this.rememberMe,
   });
-
+  final bool rememberMe;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
@@ -124,6 +139,10 @@ class LoginButtonBlocConsumer extends StatelessWidget {
         }
         if (state is LoginSuccess) {
           showSnackBar(context, 'Login Successfully');
+          if (rememberMe) {
+            SecureStorageService()
+                .writeSecureData(kUserToken, state.userModel.token??'');
+          }
         }
       },
       builder: (context, state) {

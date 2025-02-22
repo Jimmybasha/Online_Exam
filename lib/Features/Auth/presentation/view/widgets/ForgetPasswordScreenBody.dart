@@ -41,14 +41,15 @@ class ForgetPasswordScreenBody extends StatelessWidget {
           ),
           SizedBox(height: 48.h),
           CustomButton(
-              onPressed: () {
-                Navigator.pushNamed(context, EmailVerificationScreen.id);
-              },
-             child: Text(
-                  'Continue',
-                  style: AppTextStyles.instance.textStyle16.copyWith(
-                      fontWeight: FontWeight.w500, color: Colors.white),
-                ),),
+            onPressed: () {
+              Navigator.pushNamed(context, EmailVerificationScreen.id);
+            },
+            child: Text(
+              'Continue',
+              style: AppTextStyles.instance.textStyle16
+                  .copyWith(fontWeight: FontWeight.w500, color: Colors.white),
+            ),
+          ),
         ],
       ),
     );

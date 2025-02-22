@@ -1,4 +1,5 @@
 const kLoginUserEndPoint = 'auth/signin';
+const kUserToken = 'userToken';
 
 const String BASE_URL= "https://exam.elevateegy.com/api/v1/";
 const String SIGNUP_URL="auth/signup";
