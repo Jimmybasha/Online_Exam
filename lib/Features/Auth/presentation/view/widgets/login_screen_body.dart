@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Core/widgets/custom_button.dart';
 import 'package:online_exam/Core/widgets/custom_text_form_field.dart';
@@ -69,6 +70,10 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
               ),
               SizedBox(height: 48.h),
               CustomButton(
+                backgroundColor: WidgetStateProperty.all(
+                    context.watch<LoginCubit>().state is LoginFailure
+                        ? Colors.grey
+                        : AppColors.kPrimaryColor),
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
@@ -81,28 +86,7 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                     setState(() {});
                   }
                 },
-                child: BlocConsumer<LoginCubit, LoginState>(
-                  listener: (context, state) {
-                    if (state is LoginFailure) {
-                      showErrorSnackBar(context, state.errorMessage);
-                    }
-                    if (state is LoginSuccess) {
-                      showSnackBar(context, 'Login Successfully');
-                    }
-                  },
-                  builder: (context, state) {
-                    if (state is LoginLoading) {
-                      return CircularProgressIndicator(
-                          color: Colors.white, strokeWidth: 2);
-                    } else {
-                      return Text(
-                        'Login',
-                        style: AppTextStyles.instance.textStyle16.copyWith(
-                            fontWeight: FontWeight.w500, color: Colors.white),
-                      );
-                    }
-                  },
-                ),
+                child: LoginButtonBlocConsumer(),
               ),
               SizedBox(height: 16.h),
               DoNotHaveAccountWidget()
@@ -110,6 +94,38 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class LoginButtonBlocConsumer extends StatelessWidget {
+  const LoginButtonBlocConsumer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {
+        if (state is LoginFailure) {
+          showErrorSnackBar(context, state.errorMessage);
+        }
+        if (state is LoginSuccess) {
+          showSnackBar(context, 'Login Successfully');
+        }
+      },
+      builder: (context, state) {
+        if (state is LoginLoading) {
+          return CircularProgressIndicator(
+              color: Colors.white, strokeWidth: 2);
+        } else {
+          return Text(
+            'Login',
+            style: AppTextStyles.instance.textStyle16.copyWith(
+                fontWeight: FontWeight.w500, color: Colors.white),
+          );
+        }
+      },
     );
   }
 }

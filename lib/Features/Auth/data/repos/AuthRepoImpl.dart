@@ -24,9 +24,7 @@ class AuthRepoImpl implements AuthRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        if (e.toString().contains('fails to match the required pattern')) {
-          return left(ServerFailure(errorMessage: 'Invalid Password format'));
-        } else if (e.toString() == "incorrect email or password"){
+        if (e.toString() == "incorrect email or password"){
           return left(ServerFailure(errorMessage: "incorrect email or password"));
         } else if (e.toString() ==  "\"email\" must be a valid email"){
             return left(ServerFailure(errorMessage: 'Invalid Email format'));
