@@ -12,7 +12,6 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-<<<<<<< HEAD
 import '../../Features/Auth/Sign_Up/data/data_sources/Remote/SignUpDataSource.dart'
     as _i235;
 import '../../Features/Auth/Sign_Up/data/data_sources/Remote/SignUpDataSourceImpl.dart'
@@ -25,8 +24,6 @@ import '../../Features/Auth/Sign_Up/domain/use_cases/SignUpUseCase.dart'
     as _i224;
 import '../../Features/Auth/Sign_Up/presentation/View_Model/cubits/SignUpViewModel.dart'
     as _i138;
-=======
->>>>>>> c4a13b224fec080ecdd9692b03dd4ea4328f5e3c
 import '../../Features/Auth/data/Data_Source/AuthRemoteDataSource.dart'
     as _i504;
 import '../../Features/Auth/data/Data_Source/AuthRemoteDataSourceImple.dart'
@@ -48,7 +45,6 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.singleton<_i211.ApiManager>(() => _i211.ApiManager());
-<<<<<<< HEAD
     gh.factory<_i235.ISignUpDataSource>(
         () => _i1072.AuthRemoteDataSourceImpl(gh<_i211.ApiManager>()));
     gh.factory<_i462.SignUpRepo>(
@@ -57,8 +53,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i224.SignUpUseCase(gh<_i462.SignUpRepo>()));
     gh.factory<_i138.SignUpViewModel>(
         () => _i138.SignUpViewModel(gh<_i224.SignUpUseCase>()));
-=======
->>>>>>> c4a13b224fec080ecdd9692b03dd4ea4328f5e3c
     gh.factory<_i504.AuthRemoteDataSource>(() =>
         _i920.AuthRemoteDataSourceImpl(apiManager: gh<_i211.ApiManager>()));
     gh.factory<_i347.AuthRepo>(() => _i475.AuthRepoImpl(
