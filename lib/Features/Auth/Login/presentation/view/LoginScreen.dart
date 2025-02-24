@@ -5,6 +5,7 @@ import 'package:online_exam/Core/widgets/custom_app_bar.dart';
 import 'widgets/login_screen_body.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const String id = "loginScreenPage";
   const LoginScreen({super.key});
   @override
   Widget build(BuildContext context) {

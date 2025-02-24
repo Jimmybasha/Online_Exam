@@ -5,7 +5,7 @@ import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/EmailV
 
 class EmailVerificationScreen extends StatelessWidget {
   const EmailVerificationScreen({super.key});
-  static String id = 'EmailVerificationView';
+  static const String id = 'EmailVerificationView';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

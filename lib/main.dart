@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/di/di.dart';
 import 'package:online_exam/Core/utils/app_routes.dart';
 import 'package:online_exam/Features/Auth/Login/presentation/view/LoginScreen.dart';
@@ -11,6 +10,8 @@ void main() {
   configureDependencies();
   runApp(const MyApp());
 }
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           ScreenUtil.init(context);
           return MaterialApp(
+            navigatorKey: navigatorKey,
             theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
@@ -37,8 +39,8 @@ class MyApp extends StatelessWidget {
               Locale('ar'),
             ],
             debugShowCheckedModeBanner: false,
-            routes: appRoutes,
-            home: LoginScreen(),
+            initialRoute: LoginScreen.id,
+            onGenerateRoute: AppRoutes.generateRoute,
           );
         });
   }

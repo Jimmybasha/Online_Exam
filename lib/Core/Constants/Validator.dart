@@ -29,14 +29,23 @@ class Validator{
     if (emptyValidationMessage != null) {
       return emptyValidationMessage; // Return the empty validation message
     }
-    final phoneRegex = RegExp(r'^\d+$');
+    final phoneRegex = RegExp(r'^01\d{9}$'); // Starts with 01 + 9 more digits (total 11)
     if (!phoneRegex.hasMatch(value!)) {
       return 'Please enter a valid phone number';
     }
     return null;
   }
 
-
+  static String? confirmPasswordValidation(String? value,String? password1,String password2){
+    String? emptyValidationMessage = isEmptyValidation(value,"Password Confirmation");
+    if (emptyValidationMessage != null) {
+      return emptyValidationMessage; // Return the empty validation message
+    }
+    if(password1!=password2){
+      return "Password doesn't match";
+    }
+    return null;
+  }
 
 
   }
