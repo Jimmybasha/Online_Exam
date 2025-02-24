@@ -5,6 +5,7 @@ abstract class Failure {
 
   const Failure({required this.errorMessage});
 }
+
 class ServerFailure extends Failure {
   ServerFailure({required super.errorMessage});
 
@@ -19,7 +20,7 @@ class ServerFailure extends Failure {
       case DioExceptionType.badCertificate:
         return ServerFailure(errorMessage: 'Bad SSL certificate error');
       case DioExceptionType.badResponse:
-            // here i need to check on response and statuscode 
+            // here i need to check on response and statuscode
         return ServerFailure.fromResponse(
             dioExcep.response!.statusCode!, dioExcep.response!.data);
       case DioExceptionType.cancel:

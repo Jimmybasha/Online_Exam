@@ -24,6 +24,13 @@ import '../../Features/Auth/Sign_Up/domain/use_cases/SignUpUseCase.dart'
     as _i224;
 import '../../Features/Auth/Sign_Up/presentation/View_Model/cubits/SignUpViewModel.dart'
     as _i138;
+import '../../Features/Auth/data/Data_Source/AuthRemoteDataSource.dart'
+    as _i504;
+import '../../Features/Auth/data/Data_Source/AuthRemoteDataSourceImple.dart'
+    as _i920;
+import '../../Features/Auth/data/repos/AuthRepoImpl.dart' as _i475;
+import '../../Features/Auth/domain/repos/AuthRepo.dart' as _i347;
+import '../../Features/Auth/domain/UseCase/LoginUseCase.dart' as _i238;
 import '../ApiManager/ApiManager.dart' as _i211;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -46,6 +53,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i224.SignUpUseCase(gh<_i462.SignUpRepo>()));
     gh.factory<_i138.SignUpViewModel>(
         () => _i138.SignUpViewModel(gh<_i224.SignUpUseCase>()));
+    gh.factory<_i504.AuthRemoteDataSource>(() =>
+        _i920.AuthRemoteDataSourceImpl(apiManager: gh<_i211.ApiManager>()));
+    gh.factory<_i347.AuthRepo>(() => _i475.AuthRepoImpl(
+        authRemoteDataSource: gh<_i504.AuthRemoteDataSource>()));
+    gh.factory<_i238.LoginUseCase>(
+        () => _i238.LoginUseCase(authRepo: gh<_i347.AuthRepo>()));
     return this;
   }
 }

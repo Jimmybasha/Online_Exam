@@ -5,18 +5,18 @@ import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField(
-      {super.key,
-      @required this.hintText,
-      this.onChanged,
-      this.textColor,
-      this.onSaved,
-      this.keyboardType,
-      this.suffixIcon,
-      this.obscureText,
-      this.label
-      //  this.contentPadding,
-      });
+  const CustomTextFormField({
+    super.key,
+    @required this.hintText,
+    this.onChanged,
+    this.textColor,
+    this.onSaved,
+    this.keyboardType,
+    this.suffixIcon,
+    this.obscureText,
+    this.label,
+    //  this.contentPadding,
+  });
   final String? hintText;
   final Function(String)? onChanged;
   final Color? textColor;
@@ -25,6 +25,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool? obscureText;
   final String? label;
+
   //final EdgeInsetsGeometry? contentPadding;
   @override
   Widget build(BuildContext context) {
