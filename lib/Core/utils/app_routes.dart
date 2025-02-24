@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:online_exam/Features/Auth/Login/presentation/view/ForgetPasswordScreen.dart';
-import 'package:online_exam/Features/Auth/Login/presentation/view/LoginScreen.dart';
-import 'package:online_exam/Features/Auth/Login/presentation/view/widgets/EmailVerificationScreen.dart';
+import 'package:online_exam/Features/Auth/presentation/view/ForgetPasswordScreen.dart';
+import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
+import 'package:online_exam/Features/Auth/presentation/view/widgets/EmailVerificationScreen.dart';
+
 
 import '../../Features/Auth/Sign_Up/presentation/View/widgets/SignUpPage.dart';
 

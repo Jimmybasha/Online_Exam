@@ -6,10 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam/Core/ApiManager/ApiResult.dart';
 import 'package:online_exam/Features/Auth/Sign_Up/domain/use_cases/SignUpUseCase.dart';
+import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 import 'package:online_exam/main.dart';
 
 import '../../../../../../Core/Errors/Failure.dart';
-import '../../../../Login/presentation/view/LoginScreen.dart';
+
 import '../states/SignUpStates.dart';
 @injectable
 class SignUpViewModel extends Cubit<SignUpState>{

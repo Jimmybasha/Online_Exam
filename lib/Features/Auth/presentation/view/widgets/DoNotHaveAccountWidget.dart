@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
+import 'package:online_exam/Features/Auth/Sign_Up/presentation/View/widgets/SignUpPage.dart';
 
-import '../../../../Sign_Up/presentation/View/widgets/SignUpPage.dart';
+
 
 class DoNotHaveAccountWidget extends StatelessWidget {
   const DoNotHaveAccountWidget({

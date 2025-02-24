@@ -14,8 +14,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<UserModel> loginUser(
       {required String email, required String password}) async {
-    var response = await apiManager.postRequest(
-        kLoginUserEndPoint, {"email": email, "password": password});
+    var response = await apiManager.postData(endPoint:  kLoginUserEndPoint,
+       data: {"email": email, "password": password}, );
     UserModel userModel = UserModel.fromJson(response.data);
     return userModel;
   }
