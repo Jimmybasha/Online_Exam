@@ -5,6 +5,7 @@ abstract class Failure {
 
   const Failure({required this.errorMessage});
 }
+
 class ServerFailure extends Failure {
   ServerFailure({required super.errorMessage});
 
@@ -19,7 +20,11 @@ class ServerFailure extends Failure {
       case DioExceptionType.badCertificate:
         return ServerFailure(errorMessage: 'Bad SSL certificate error');
       case DioExceptionType.badResponse:
+<<<<<<< HEAD
             // here i need to check on response and statuscode
+=======
+        // here i need to check on response and statuscode
+>>>>>>> c4a13b224fec080ecdd9692b03dd4ea4328f5e3c
         return ServerFailure.fromResponse(
             dioExcep.response!.statusCode!, dioExcep.response!.data);
       case DioExceptionType.cancel:
@@ -35,6 +40,7 @@ class ServerFailure extends Failure {
     }
   }
   factory ServerFailure.fromResponse(int statusCode, jsonData) {
+<<<<<<< HEAD
     switch (statusCode) {
       case 400:
       case 401:
@@ -51,6 +57,22 @@ class ServerFailure extends Failure {
         return ServerFailure(errorMessage: 'Internal server error. Please try again later.');
       default:
         return ServerFailure(errorMessage: 'Unexpected error. Status Code: $statusCode');
+=======
+    if (statusCode == 400 || statusCode == 403) {
+      return ServerFailure(errorMessage: jsonData["message"]);
+    } else if (statusCode == 401) {
+      return ServerFailure(errorMessage: 'incorrect email or password');
+    } else if (statusCode == 500) {
+      return ServerFailure(
+          errorMessage: ' Internal Server Error , Please try later');
+    } else if (statusCode == 404) {
+      return ServerFailure(
+          errorMessage: ' Your request not found , Please try later');
+      //in this case i don't receive response aslan
+    } else {
+      return ServerFailure(
+          errorMessage: 'Oops there is an error , Please try later');
+>>>>>>> c4a13b224fec080ecdd9692b03dd4ea4328f5e3c
     }
   }
 }

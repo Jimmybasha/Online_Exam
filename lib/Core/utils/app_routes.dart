@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam/Features/Auth/presentation/view/ForgetPasswordScreen.dart';
+<<<<<<< HEAD
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
+=======
+>>>>>>> c4a13b224fec080ecdd9692b03dd4ea4328f5e3c
 import 'package:online_exam/Features/Auth/presentation/view/widgets/EmailVerificationScreen.dart';
 
 
