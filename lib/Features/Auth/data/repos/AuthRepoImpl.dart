@@ -36,4 +36,20 @@ class AuthRepoImpl implements AuthRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> forgetPassword(
+      {required String email}) async {
+    try {
+      var data = await authRemoteDataSource.forgetPassword(email: email);
+      return right(data);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        log("error in AuthRepoImpl: ${e.toString()}");
+        return left(ServerFailure(errorMessage: 'Something went wrong'));
+      }
+    }
+  }
 }
