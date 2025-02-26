@@ -51,9 +51,7 @@ class ServerFailure extends Failure {
         return ServerFailure(errorMessage: jsonData["message"]);
       case 404:
         if (jsonData["message"] != null &&
-            jsonData["message"]
-                .toString()
-                .contains('"There is no account with this email address')) {
+            jsonData["message"].contains('"There is no account with this email address')) {
           return ServerFailure(errorMessage: jsonData["message"]);
         } else {
           return ServerFailure(errorMessage: 'Requested resource not found.');

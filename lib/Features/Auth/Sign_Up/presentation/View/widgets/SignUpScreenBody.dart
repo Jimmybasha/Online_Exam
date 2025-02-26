@@ -127,7 +127,8 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                         (label: "Confirm Password",
                         isPassword: true,hint: "Confirm Password",
                         validator: (value) {
-                          return Validator.confirmPasswordValidation(value, _passwordController.text.trim(),_confirmPasswordController.text.trim());
+                          return Validator.confirmPasswordValidation(
+                              value, _passwordController.text.trim(),_confirmPasswordController.text.trim());
                         },
                         controller: _confirmPasswordController,
                       ),
@@ -165,7 +166,8 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                           ),
                         );
                         Navigator.pushNamed(context, LoginScreen.id);
-                      });
+                      }
+                      );
                     }
                       return SizedBox.shrink();
                   }

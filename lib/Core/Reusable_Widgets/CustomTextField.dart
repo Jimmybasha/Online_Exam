@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   bool isPassword;
   final String? Function(String?)? validator;
   final TextEditingController controller;
+  Widget? suffixIcon;
 
 
   CustomTextField({
@@ -16,7 +17,8 @@ class CustomTextField extends StatelessWidget {
     required this.label,
     this.isPassword=false,
     this.validator,
-    required this.controller
+    required this.controller,
+    this.suffixIcon
 
   });
 
@@ -35,6 +37,7 @@ class CustomTextField extends StatelessWidget {
       floatingLabelBehavior: FloatingLabelBehavior.always,
       labelStyle: AppStyles.labelStyle,
       hintText: hint,
+      suffixIcon: suffixIcon,
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0.r),borderSide: BorderSide(
         width: 5.w
       )),
