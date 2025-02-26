@@ -20,7 +20,7 @@ class ServerFailure extends Failure {
       case DioExceptionType.badCertificate:
         return ServerFailure(errorMessage: 'Bad SSL certificate error');
       case DioExceptionType.badResponse:
-            // here i need to check on response and statuscode
+        // here i need to check on response and statuscode
         return ServerFailure.fromResponse(
             dioExcep.response!.statusCode!, dioExcep.response!.data);
       case DioExceptionType.cancel:
@@ -40,18 +40,32 @@ class ServerFailure extends Failure {
       case 400:
       case 401:
       case 403:
-      if (jsonData["message"] != null && jsonData["message"].toString().contains("fails to match the required pattern")) {
-        return ServerFailure(errorMessage: "Password must contain at least:\n - 8 characters\n - One uppercase letter\n - One lowercase letter\n - One number\n - One special character.");
-      }
-      return ServerFailure(errorMessage: jsonData["message"]);
+        if (jsonData["message"] != null &&
+            jsonData["message"]
+                .toString()
+                .contains("fails to match the required pattern")) {
+          return ServerFailure(
+              errorMessage:
+                  "Password must contain at least:\n - 8 characters\n - One uppercase letter\n - One lowercase letter\n - One number\n - One special character.");
+        }
+        return ServerFailure(errorMessage: jsonData["message"]);
       case 404:
-        return ServerFailure(errorMessage: 'Requested resource not found.');
+        if (jsonData["message"] != null &&
+            jsonData["message"]
+                .toString()
+                .contains('"There is no account with this email address')) {
+          return ServerFailure(errorMessage: jsonData["message"]);
+        } else {
+          return ServerFailure(errorMessage: 'Requested resource not found.');
+        }
       case 409:
         return ServerFailure(errorMessage: 'Account Already Exists.');
       case 500:
-        return ServerFailure(errorMessage: 'Internal server error. Please try again later.');
+        return ServerFailure(
+            errorMessage: 'Internal server error. Please try again later.');
       default:
-        return ServerFailure(errorMessage: 'Unexpected error. Status Code: $statusCode');
+        return ServerFailure(
+            errorMessage: 'Unexpected error. Status Code: $statusCode');
     }
   }
 }
