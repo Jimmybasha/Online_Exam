@@ -20,9 +20,8 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function>{
-        "hello": MessageLookupByLibrary.simpleMessage("مرحبا"),
-        "welcome": MessageLookupByLibrary.simpleMessage(
-            "مرحبا بكم في الامتحان عبر الإنترنت")
-      };
+  static _notInlinedMessages(_) => <String, Function> {
+    "hello" : MessageLookupByLibrary.simpleMessage("مرحبا"),
+    "welcome" : MessageLookupByLibrary.simpleMessage("مرحبا بكم في الامتحان عبر الإنترنت")
+  };
 }
