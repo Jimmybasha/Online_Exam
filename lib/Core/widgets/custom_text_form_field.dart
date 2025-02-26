@@ -15,6 +15,7 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.obscureText,
     this.label,
+    this.validator
     //  this.contentPadding,
   });
   final String? hintText;
@@ -25,12 +26,13 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool? obscureText;
   final String? label;
+  final String? Function(String?)? validator;
 
   //final EdgeInsetsGeometry? contentPadding;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        validator: (value) {
+        validator: validator ?? (value) {
           if (value == null || value.isEmpty) {
             return 'This field is required';
           }

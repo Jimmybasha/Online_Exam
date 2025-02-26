@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:online_exam/Core/BlocObserver.dart';
 import 'package:online_exam/Core/di/di.dart';
 import 'package:online_exam/Core/utils/app_routes.dart';
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 
 void main() {
   configureDependencies();
+  Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
 

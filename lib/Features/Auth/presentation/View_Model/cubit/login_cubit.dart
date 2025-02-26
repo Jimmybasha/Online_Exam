@@ -1,11 +1,10 @@
 
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_exam/Features/Auth/data/Models/user_model/user_model.dart';
 
 import 'package:online_exam/Features/Auth/domain/UseCase/LoginUseCase.dart';
+import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/login_state.dart';
 
-part 'login_state.dart';
+
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this.loginUseCase) : super(LoginInitial());

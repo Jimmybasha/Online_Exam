@@ -1,6 +1,5 @@
 
 
-import 'package:online_exam/Core/ApiManager/ApiResult.dart';
 
 sealed class SignUpState{}
 

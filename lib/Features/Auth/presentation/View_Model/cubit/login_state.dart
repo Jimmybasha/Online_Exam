@@ -1,4 +1,9 @@
-part of 'login_cubit.dart';
+import 'package:equatable/equatable.dart';
+
+import '../../../data/Models/user_model/user_model.dart';
+
+
+
 
 sealed class LoginState extends Equatable {
   const LoginState();
@@ -6,6 +11,7 @@ sealed class LoginState extends Equatable {
   @override
   List<Object> get props => [];
 }
+
 
 final class LoginInitial extends LoginState {}
 

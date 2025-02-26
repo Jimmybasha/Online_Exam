@@ -5,6 +5,8 @@ import 'package:online_exam/Features/Auth/presentation/view/widgets/EmailVerific
 
 
 import '../../Features/Auth/Sign_Up/presentation/View/widgets/SignUpPage.dart';
+import '../../Features/Profile/Profile/presentation/View/widgets/ProfilePage.dart';
+import '../../Features/Profile/Profile/presentation/View/widgets/ResetPasswordPage.dart';
 
 
 class AppRoutes {
@@ -18,6 +20,10 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const SignUpPage());
       case LoginScreen.id:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case ProfilePage.id:
+        return MaterialPageRoute(builder: (_) => const ProfilePage());
+      case ResetPasswordPage.id:
+        return MaterialPageRoute(builder: (_) => const ResetPasswordPage());
       default:
         return _errorRoute();
     }
