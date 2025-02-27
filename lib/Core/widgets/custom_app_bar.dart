@@ -5,10 +5,11 @@ class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
     required this.title,
-    required this.leadingVisibility,
+    required this.leadingVisibility, this.color,
   });
   final String title;
   final bool leadingVisibility;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class CustomAppBar extends StatelessWidget {
           Text(
             title,
             style: AppTextStyles.instance.textStyle20
-                .copyWith(fontWeight: FontWeight.w500),
+                .copyWith(fontWeight: FontWeight.w500 ,color: color ?? Colors.black ),
           )
         ],
       ),
