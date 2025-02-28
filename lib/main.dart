@@ -7,7 +7,6 @@ import 'package:online_exam/Core/BlocObserver.dart';
 import 'package:online_exam/Core/di/di.dart';
 import 'package:online_exam/Core/utils/app_routes.dart';
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
-import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
 
 void main() {
   configureDependencies();
@@ -43,7 +42,7 @@ class MyApp extends StatelessWidget {
               Locale('ar'),
             ],
             debugShowCheckedModeBanner: false,
-            initialRoute: HomeScreen.id,
+            initialRoute: LoginScreen.id,
             onGenerateRoute: AppRoutes.generateRoute,
           );
         });

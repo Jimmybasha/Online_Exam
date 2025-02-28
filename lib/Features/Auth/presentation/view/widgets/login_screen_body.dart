@@ -13,6 +13,7 @@ import 'package:online_exam/Features/Auth/presentation/view/ForgetPasswordScreen
 import 'package:online_exam/Features/Auth/presentation/view/widgets/DoNotHaveAccountWidget.dart';
 import 'package:online_exam/Features/Auth/presentation/view/widgets/remember_me_widget.dart';
 import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
+import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
 
 import '../../View_Model/cubit/login_state.dart';
 
@@ -142,7 +143,7 @@ class LoginButtonBlocConsumer extends StatelessWidget {
         }
         if (state is LoginSuccess) {
           showSnackBar(context, 'Login Successfully');
-          Navigator.pushNamed(context, HomeScreen.id);
+          Navigator.pushNamed(context, MainScreen.id);
           if (rememberMe) {
             SecureStorageService()
                 .writeSecureData(kUserToken, state.userModel.token ?? '');
