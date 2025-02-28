@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Survey',
           style: AppTextStyles.instance.textStyle20.copyWith(
@@ -24,6 +25,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
-
