@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,8 +8,8 @@ class AlreadyHaveAccountWidget extends StatelessWidget{
   final String loginText;
 
 
-  AlreadyHaveAccountWidget({
-  Key? key,
+  const AlreadyHaveAccountWidget({super.key, 
+ 
   required this.onLoginPressed,
   this.message = "Already have an account?",
   this.loginText = "Login"

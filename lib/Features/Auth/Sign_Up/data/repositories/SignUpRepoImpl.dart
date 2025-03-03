@@ -13,6 +13,7 @@ class SignUpRepoImpl implements SignUpRepo{
   ISignUpDataSource signUpDataSource;
   SignUpRepoImpl(this.signUpDataSource);
 
+  @override
   Future<ApiResult<UserSignUpModel>> signUp(
        String username,
        String firstName,

@@ -4,7 +4,7 @@ class Validator{
 
   static String? isEmptyValidation(String? value,String label){
     if (value == null || value.isEmpty) {
-      return 'Please enter your ${label}';
+      return 'Please enter your $label';
     }
     return null;
   }
