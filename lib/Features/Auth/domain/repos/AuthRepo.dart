@@ -6,4 +6,6 @@ abstract class AuthRepo {
   Future<Either<Failure, UserModel>> loginUser(
       {required String email, required String password});
       Future<Either<Failure, Map<String,dynamic>>> forgetPassword({required String email});
+      Future<Either<Failure, Map<String,dynamic>>> verifyCode({required String resetCode});
+
 }
