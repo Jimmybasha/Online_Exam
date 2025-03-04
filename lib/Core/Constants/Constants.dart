@@ -12,3 +12,4 @@ const String kExploreActive = "assets/images/explore_active.png";
 const String kExploreInActive = 'assets/images/explore_inactive.png';
 const String kProfileInActive = 'assets/images/profile_inactive.png';
 const String kProfileActive = 'assets/images/profile_active.png';
+const String kVerifyCodeEndPoint = 'auth/verifyResetCode';
