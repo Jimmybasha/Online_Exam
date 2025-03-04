@@ -8,5 +8,6 @@ abstract class AuthRemoteDataSource {
   Future<Map<String,dynamic>> forgetPassword(
       {required String email});
 
-
+Future<Map<String,dynamic>> verifyCode(
+      {required String resetCode});
 }
