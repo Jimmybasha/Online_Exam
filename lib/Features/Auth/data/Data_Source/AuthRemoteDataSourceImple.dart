@@ -31,7 +31,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<Map<String, dynamic>> verifyCode({required String resetCode})async {
-  var response = await  apiManager.postData(endPoint: kVerifyCode, data: {
+  var response = await  apiManager.postData(endPoint: kVerifyCodeEndPoint, data: {
        "resetCode" : resetCode});
         return response.data;
 
