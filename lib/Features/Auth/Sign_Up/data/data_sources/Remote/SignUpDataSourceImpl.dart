@@ -34,7 +34,7 @@ class AuthRemoteDataSourceImpl implements ISignUpDataSource{
        "rePassword":rePassword,
        "phone": phone,
      });
-     return SuccessApiResult(UserSignUpModel.fromJson(response?.data));
+     return SuccessApiResult(UserSignUpModel.fromJson(response.data));
 
    }on DioException catch(exc){
      return ErrorApiResult(exc);

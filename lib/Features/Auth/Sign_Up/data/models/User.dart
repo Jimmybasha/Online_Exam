@@ -7,6 +7,7 @@
 /// isVerified : false
 /// _id : "67b1fb5586a024f06ea273ee"
 /// createdAt : "2025-02-16T14:51:01.414Z"
+library;
 
 class User {
   User({

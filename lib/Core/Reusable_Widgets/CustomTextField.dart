@@ -12,7 +12,7 @@ class CustomTextField extends StatelessWidget {
   Widget? suffixIcon;
 
 
-  CustomTextField({
+  CustomTextField({super.key, 
     required this.hint,
     required this.label,
     this.isPassword=false,

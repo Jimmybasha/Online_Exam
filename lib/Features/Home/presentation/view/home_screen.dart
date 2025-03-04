@@ -1,0 +1,26 @@
+import 'package:flutter/material.dart';
+import 'package:online_exam/Core/Constants/app_colors.dart';
+import 'package:online_exam/Core/Constants/app_text_style.dart';
+import 'package:online_exam/Features/Home/presentation/view/widgets/home_screen_body.dart';
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+  static const String id = 'HomeScreen';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Survey',
+          style: AppTextStyles.instance.textStyle20.copyWith(
+            fontWeight: FontWeight.w500,
+            color: AppColors.kPrimaryColor,
+          ),
+        ),
+      ),
+      body: HomeScreenBody(),
+    );
+  }
+}
