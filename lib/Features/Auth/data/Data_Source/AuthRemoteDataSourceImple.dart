@@ -23,9 +23,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Map<String,dynamic>> forgetPassword({required String email}) async {
+  Future<Map<String, dynamic>> forgetPassword({required String email}) async {
     var response = await apiManager
         .postData(endPoint: kForgetPasswordEndPoint, data: {"email": email});
-  return response.data;
+    return response.data;
+  }
+
+  @override
+  Future<Map<String, dynamic>> verifyCode({required String resetCode})async {
+  var response = await  apiManager.postData(endPoint: kVerifyCodeEndPoint, data: {
+       "resetCode" : resetCode});
+        return response.data;
+
   }
 }
