@@ -20,6 +20,7 @@ import '../../Features/Auth/data/repos/AuthRepoImpl.dart' as _i475;
 import '../../Features/Auth/domain/repos/AuthRepo.dart' as _i347;
 import '../../Features/Auth/domain/UseCase/ForgetPasswordUseCase.dart' as _i169;
 import '../../Features/Auth/domain/UseCase/LoginUseCase.dart' as _i238;
+import '../../Features/Auth/domain/UseCase/VerifyCodeUseCase.dart' as _i250;
 import '../../Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordViewModel.dart'
     as _i1041;
 import '../../Features/Auth/Sign_Up/data/data_sources/Remote/SignUpDataSource.dart'
@@ -64,6 +65,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i169.ForgetPasswordUseCase(authRepo: gh<_i347.AuthRepo>()));
     gh.factory<_i238.LoginUseCase>(
         () => _i238.LoginUseCase(authRepo: gh<_i347.AuthRepo>()));
+    gh.factory<_i250.VerifyCodeUseCase>(
+        () => _i250.VerifyCodeUseCase(authRepo: gh<_i347.AuthRepo>()));
     gh.factory<_i1041.ForgetPasswordViewModel>(() =>
         _i1041.ForgetPasswordViewModel(gh<_i169.ForgetPasswordUseCase>()));
     return this;

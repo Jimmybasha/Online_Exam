@@ -8,8 +8,7 @@ class VerifyCodeUseCase {
   final AuthRepo authRepo;
 
   VerifyCodeUseCase({required this.authRepo});
-  Future<Either<Failure, Map<String,dynamic>>> call({required String email}) async {
-    return await authRepo.forgetPassword(email: email);
-    //llflkf
+  Future<Either<Failure, Map<String,dynamic>>> call({required String passCode}) async {
+    return await authRepo.verifyCode(resetCode: passCode);
   }
 }
