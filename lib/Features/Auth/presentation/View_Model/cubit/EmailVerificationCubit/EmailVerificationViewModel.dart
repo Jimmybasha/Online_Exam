@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam/Features/Auth/domain/UseCase/VerifyCodeUseCase.dart';
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/EmailVerificationCubit/EmailVerificationState.dart';
@@ -30,5 +31,18 @@ class EmailVerificationViewModel extends Cubit<EmailVerificationState>{
 
     }
 
+   static void onOtpChange(String value, int index,BuildContext context,String otpCode,List<FocusNode> focusNodes) {
+
+      if (value.isNotEmpty && index < 5) {
+        FocusScope.of(context).requestFocus(focusNodes[index + 1]);
+      } else if (value.isEmpty && index > 0) {
+        FocusScope.of(context).requestFocus(focusNodes[index - 1]);
+      }
+
+      if (otpCode.length == 6) {
+        print("OTP Entered: $otpCode"); // Debugging print statement
+        context.read<EmailVerificationViewModel>().verifyPassword(otpCode);
+      }
+    }
 
 }
