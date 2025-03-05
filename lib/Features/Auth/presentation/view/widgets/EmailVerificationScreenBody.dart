@@ -8,16 +8,26 @@ import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/EmailVer
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/EmailVerificationCubit/EmailVerificationState.dart';
 
 class EmailVerificationScreenBody extends StatefulWidget {
-  const EmailVerificationScreenBody({super.key});
+
+  final String email;
+   const EmailVerificationScreenBody({super.key,required this.email});
 
   @override
   State<EmailVerificationScreenBody> createState() => _EmailVerificationScreenBodyState();
 }
+
 class _EmailVerificationScreenBodyState extends State<EmailVerificationScreenBody> {
-  final List<TextEditingController> _controllers = List.generate(6, (_) => TextEditingController());
+
+  final List<TextEditingController> controllers = List.generate(6, (_) => TextEditingController());
   final List<FocusNode> focusNodes = List.generate(6, (_) => FocusNode());
 
-  String get otpCode => _controllers.map((c) => c.text).join();
+  String get otpCode => controllers.map((c) => c.text).join();
+  //1
+  //2
+  //3
+
+  // 1 2 3
+  //123
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +73,7 @@ class _EmailVerificationScreenBodyState extends State<EmailVerificationScreenBod
                     width: 45.w,
                     height: 70.h,
                     child: TextField(
-                      controller: _controllers[index],
+                      controller: controllers[index],
                       focusNode: focusNodes[index],
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
@@ -79,6 +89,7 @@ class _EmailVerificationScreenBodyState extends State<EmailVerificationScreenBod
                         ),
                       ),
                       onChanged: (value) {
+                        print("from the EmailVerificationScreenBody ${widget.email}");
                         return EmailVerificationViewModel.onOtpChange(value,index,context,otpCode,focusNodes);
                       } ,
                     ),
@@ -92,7 +103,9 @@ class _EmailVerificationScreenBodyState extends State<EmailVerificationScreenBod
                 child: Center(child: CircularProgressIndicator()),
               ),
             SizedBox(height: 24.h),
-            const ResendCode(),
+             ResendCode(
+              email: widget.email,
+            ),
           ],
         );
       },

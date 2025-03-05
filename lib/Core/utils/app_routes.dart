@@ -17,7 +17,7 @@ class AppRoutes {
       case ForgetPasswordScreen.id:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case EmailVerificationScreen.id:
-        return MaterialPageRoute(builder: (_) => const EmailVerificationScreen());
+        return MaterialPageRoute(builder: (_) => const EmailVerificationScreen(),settings: settings);
       case SignUpPage.id:
         return MaterialPageRoute(builder: (_) => const SignUpPage());
       case LoginScreen.id:

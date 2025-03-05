@@ -91,9 +91,12 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                   if(state is ForgetPasswordSuccessState) {
                     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                       showSnackBar(context, state.res['message']);
-                      Navigator.pushNamed(context, EmailVerificationScreen.id);
+                      Navigator.pushNamed(context, EmailVerificationScreen.id,arguments:{
+                        "email":emailController.text
+                      });
                     },
                     );
+                  print("🚀 Navigating to EmailVerificationScreen with email: ${emailController.text.trim()}");
                   }
                 } ,
                 builder: (context, state) {

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam/Features/Auth/domain/UseCase/VerifyCodeUseCase.dart';
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/EmailVerificationCubit/EmailVerificationState.dart';
 
+
 class EmailVerificationViewModel extends Cubit<EmailVerificationState>{
 
     VerifyCodeUseCase verifyCodeUseCase;

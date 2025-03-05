@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:online_exam/Core/BlocObserver.dart';
 import 'package:online_exam/Core/di/di.dart';
 import 'package:online_exam/Core/utils/app_routes.dart';
+import 'package:online_exam/Features/Auth/domain/UseCase/ForgetPasswordUseCase.dart';
+import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordViewModel.dart';
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 
 void main() {
@@ -29,21 +31,24 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           ScreenUtil.init(context);
-          return MaterialApp(
-            navigatorKey: navigatorKey,
-            theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),
-            localizationsDelegates: [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: [
-              Locale('en'), // English
-              Locale('ar'),
-            ],
-            debugShowCheckedModeBanner: false,
-            initialRoute: LoginScreen.id,
-            onGenerateRoute: AppRoutes.generateRoute,
+          return BlocProvider(
+            create:(context) => ForgetPasswordViewModel(getIt.get<ForgetPasswordUseCase>()) ,
+            child: MaterialApp(
+              navigatorKey: navigatorKey,
+              theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: [
+                Locale('en'), // English
+                Locale('ar'),
+              ],
+              debugShowCheckedModeBanner: false,
+              initialRoute: LoginScreen.id,
+              onGenerateRoute: AppRoutes.generateRoute,
+            ),
           );
         });
   }
