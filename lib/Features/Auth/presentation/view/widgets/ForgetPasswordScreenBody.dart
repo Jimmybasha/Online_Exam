@@ -6,7 +6,7 @@ import 'package:online_exam/Core/Reusable_Widgets/CustomTextField.dart';
 import 'package:online_exam/Core/widgets/custom_button.dart';
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordState.dart';
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordViewModel.dart';
-import 'package:online_exam/Features/Auth/presentation/view/widgets/EmailVerificationScreen.dart';
+import 'package:online_exam/Features/Auth/presentation/view/EmailVerificationScreen.dart';
 import '../../../../../Core/widgets/show_snack_bar.dart';
 
 class ForgetPasswordScreenBody extends StatefulWidget {
@@ -79,7 +79,6 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
             SizedBox(height: 48.h),
             CustomButton(
               onPressed: ()async {
-                print("The email is !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ${emailController.text.trim()}");
                 if(_formKey.currentState!.validate()){
                 await context.read<ForgetPasswordViewModel>().forgetPassword(emailController.text.trim());
                 }
@@ -92,9 +91,12 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                   if(state is ForgetPasswordSuccessState) {
                     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                       showSnackBar(context, state.res['message']);
-                      Navigator.pushNamed(context, EmailVerificationScreen.id);
+                      Navigator.pushNamed(context, EmailVerificationScreen.id,arguments:{
+                        "email":emailController.text
+                      });
                     },
                     );
+                  print("🚀 Navigating to EmailVerificationScreen with email: ${emailController.text.trim()}");
                   }
                 } ,
                 builder: (context, state) {

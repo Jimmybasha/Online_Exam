@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam/Features/Auth/presentation/view/ForgetPasswordScreen.dart';
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
-import 'package:online_exam/Features/Auth/presentation/view/widgets/EmailVerificationScreen.dart';
+import 'package:online_exam/Features/Auth/presentation/view/EmailVerificationScreen.dart';
 import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
 import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
 
@@ -17,7 +17,7 @@ class AppRoutes {
       case ForgetPasswordScreen.id:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case EmailVerificationScreen.id:
-        return MaterialPageRoute(builder: (_) => const EmailVerificationScreen());
+        return MaterialPageRoute(builder: (_) => const EmailVerificationScreen(),settings: settings);
       case SignUpPage.id:
         return MaterialPageRoute(builder: (_) => const SignUpPage());
       case LoginScreen.id:
