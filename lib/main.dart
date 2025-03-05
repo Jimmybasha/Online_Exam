@@ -8,6 +8,7 @@ import 'package:online_exam/Core/di/di.dart';
 import 'package:online_exam/Core/utils/app_routes.dart';
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 
+
 void main() {
   configureDependencies();
   Bloc.observer = SimpleBlocObserver();
@@ -48,4 +49,3 @@ class MyApp extends StatelessWidget {
         });
   }
 }
-
