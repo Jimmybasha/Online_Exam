@@ -8,7 +8,8 @@ class VerifyCodeUseCase {
   final AuthRepo authRepo;
 
   VerifyCodeUseCase({required this.authRepo});
-  Future<Either<Failure, Map<String,dynamic>>> call({required String passCode}) async {
+  Future<Either<Failure, Map<String, dynamic>>> call(
+      {required String passCode}) async {
     return await authRepo.verifyCode(resetCode: passCode);
   }
 }

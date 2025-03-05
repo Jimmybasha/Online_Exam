@@ -10,6 +10,7 @@ import 'package:online_exam/Features/Auth/domain/UseCase/ForgetPasswordUseCase.d
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordViewModel.dart';
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 
+
 void main() {
   configureDependencies();
   Bloc.observer = SimpleBlocObserver();
@@ -53,4 +54,3 @@ class MyApp extends StatelessWidget {
         });
   }
 }
-
