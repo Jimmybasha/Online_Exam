@@ -1,8 +1,7 @@
 import '../../../../../../Core/ApiManager/ApiResult.dart';
 import '../../models/UserSignUpModel.dart';
 
-abstract  class ISignUpDataSource{
-
+abstract class ISignUpDataSource {
   Future<ApiResult<UserSignUpModel>> signUp({
     required String username,
     required String firstName,
@@ -10,5 +9,6 @@ abstract  class ISignUpDataSource{
     required String email,
     required String password,
     required String rePassword,
-    required String phone,});
+    required String phone,
+  });
 }

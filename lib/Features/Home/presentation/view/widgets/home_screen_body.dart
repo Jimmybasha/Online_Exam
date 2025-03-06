@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
+import 'package:online_exam/Features/Home/data/models/subjects_model/subjects_model.dart';
+
 import 'package:online_exam/Features/Home/presentation/view/widgets/search_field.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/subject_card.dart';
 
@@ -9,6 +13,8 @@ class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
   @override
   Widget build(BuildContext context) {
+    
+    
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: SingleChildScrollView(
@@ -28,8 +34,8 @@ class HomeScreenBody extends StatelessWidget {
             SizedBox(
               height: 24.h,
             ),
-            SubjectCard(
-                image: 'assets/images/language_image.png', name: 'Language'),
+            // SubjectCard(
+            //     image:, name: ),
             SubjectCard(image: 'assets/images/math_image.png', name: 'Math'),
             SubjectCard(image: 'assets/images/art_image.png', name: 'Art'),
             SubjectCard(

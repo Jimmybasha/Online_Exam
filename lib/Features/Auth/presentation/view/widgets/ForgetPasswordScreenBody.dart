@@ -10,11 +10,11 @@ import 'package:online_exam/Features/Auth/presentation/view/widgets/EmailVerific
 import '../../../../../Core/widgets/show_snack_bar.dart';
 
 class ForgetPasswordScreenBody extends StatefulWidget {
-
-   const ForgetPasswordScreenBody({super.key});
+  const ForgetPasswordScreenBody({super.key});
 
   @override
-  State<ForgetPasswordScreenBody> createState() => _ForgetPasswordScreenBodyState();
+  State<ForgetPasswordScreenBody> createState() =>
+      _ForgetPasswordScreenBodyState();
 }
 
 class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
@@ -36,11 +36,8 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
     emailController.dispose();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Form(
@@ -69,42 +66,46 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
               ),
             ),
             SizedBox(height: 32.h),
-
             CustomTextField(
                 hint: "Enter Your Email",
                 label: "Email",
-                controller: emailController
-            ),
-
+                controller: emailController),
             SizedBox(height: 48.h),
             CustomButton(
-              onPressed: ()async {
-                print("The email is !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ${emailController.text.trim()}");
-                if(_formKey.currentState!.validate()){
-                await context.read<ForgetPasswordViewModel>().forgetPassword(emailController.text.trim());
+              onPressed: () async {
+                print(
+                    "The email is !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ${emailController.text.trim()}");
+                if (_formKey.currentState!.validate()) {
+                  await context
+                      .read<ForgetPasswordViewModel>()
+                      .forgetPassword(emailController.text.trim());
                 }
               },
-              child: BlocConsumer<ForgetPasswordViewModel,ForgetPasswordState>(
-                listener:(context, state) {
-                  if(state is ForgetPasswordFailureState ){
-                    showErrorSnackBar(context,state.err);
+              child: BlocConsumer<ForgetPasswordViewModel, ForgetPasswordState>(
+                listener: (context, state) {
+                  if (state is ForgetPasswordFailureState) {
+                    showErrorSnackBar(context, state.err);
                   }
-                  if(state is ForgetPasswordSuccessState) {
-                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                      showSnackBar(context, state.res['message']);
-                      Navigator.pushNamed(context, EmailVerificationScreen.id);
-                    },
+                  if (state is ForgetPasswordSuccessState) {
+                    WidgetsBinding.instance.addPostFrameCallback(
+                      (timeStamp) {
+                        showSnackBar(context, state.res['message']);
+                        Navigator.pushNamed(
+                            context, EmailVerificationScreen.id);
+                      },
                     );
                   }
-                } ,
+                },
                 builder: (context, state) {
-                  if(state is ForgetPasswordLoadingState){
-                    return Center(child: CircularProgressIndicator(),);
+                  if (state is ForgetPasswordLoadingState) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
                   }
                   return Text(
                     'Continue',
-                    style: AppTextStyles.instance.textStyle16
-                        .copyWith(fontWeight: FontWeight.w500, color: Colors.white),
+                    style: AppTextStyles.instance.textStyle16.copyWith(
+                        fontWeight: FontWeight.w500, color: Colors.white),
                   );
                 },
               ),
