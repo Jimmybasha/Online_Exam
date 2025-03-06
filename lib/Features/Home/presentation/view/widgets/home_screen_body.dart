@@ -1,10 +1,8 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
-import 'package:online_exam/Features/Home/data/models/subjects_model/subjects_model.dart';
 
 import 'package:online_exam/Features/Home/presentation/view/widgets/search_field.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/subject_card.dart';

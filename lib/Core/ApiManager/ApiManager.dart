@@ -10,8 +10,10 @@ class ApiManager {
     headers: {'Content-Type': 'application/json'},
   ));
 
-  Future<Response> getData({required String endPoint}) async {
-    var response = dio.get(endPoint);
+  Future<Response> getData(
+      {required String endPoint, required String token}) async {
+    var response = dio.get(endPoint,
+        options: Options(headers: {'token': token}));
     return response;
   }
 

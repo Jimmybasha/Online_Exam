@@ -1,4 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
+import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
+import 'package:online_exam/generated/intl/messages_en.dart';
+import 'package:online_exam/main.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 abstract class Failure {
   final String errorMessage;
@@ -47,6 +52,19 @@ class ServerFailure extends Failure {
           return ServerFailure(
               errorMessage:
                   "Password must contain at least:\n - 8 characters\n - One uppercase letter\n - One lowercase letter\n - One number\n - One special character.");
+        } else if (jsonData["message"].contains("token not provided ") || jsonData["message"].contains("invalid token")) {
+          Navigator.pushNamed(
+                      navigatorKey.currentContext!,LoginScreen.id )
+                  .then((_) {
+                AwesomeDialog(
+                  context: navigatorKey.currentContext!,
+                  dialogType: DialogType.info,
+                  animType: AnimType.rightSlide,
+                  title: 'Login again',
+                  desc: ' with Remember me',
+                  dismissOnTouchOutside: false,
+                ).show();
+              });
         }
         return ServerFailure(errorMessage: jsonData["message"]);
       case 404:

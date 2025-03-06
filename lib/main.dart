@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:online_exam/Core/BlocObserver.dart';
 import 'package:online_exam/Core/di/di.dart';
 import 'package:online_exam/Core/utils/app_routes.dart';
-import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
+import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 
 void main() {
   configureDependencies();
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
               Locale('ar'),
             ],
             debugShowCheckedModeBanner: false,
-            initialRoute: MainScreen.id,
+            initialRoute: LoginScreen.id,
             onGenerateRoute: AppRoutes.generateRoute,
           );
         });
