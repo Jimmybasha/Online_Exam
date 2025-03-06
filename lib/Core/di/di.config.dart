@@ -35,7 +35,16 @@ import '../../Features/Auth/Sign_Up/domain/use_cases/SignUpUseCase.dart'
     as _i224;
 import '../../Features/Auth/Sign_Up/presentation/View_Model/cubits/SignUpViewModel.dart'
     as _i138;
+import '../../Features/Home/data/data_source/subjects_remote_data_source.dart'
+    as _i599;
+import '../../Features/Home/data/data_source/subjects_remote_data_source_imple.dart'
+    as _i433;
+import '../../Features/Home/data/repos/subject_repo_impl.dart' as _i1024;
+import '../../Features/Home/domain/repos/subjects_repo.dart' as _i1034;
+import '../../Features/Home/domain/use_cases/get_all_subjects_use_case.dart'
+    as _i259;
 import '../ApiManager/ApiManager.dart' as _i211;
+import '../utils/Services/secure_storage.dart' as _i323;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -49,14 +58,25 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.singleton<_i211.ApiManager>(() => _i211.ApiManager());
+    gh.singleton<_i323.SecureStorageService>(
+        () => _i323.SecureStorageService());
     gh.factory<_i504.AuthRemoteDataSource>(() =>
         _i920.AuthRemoteDataSourceImpl(apiManager: gh<_i211.ApiManager>()));
     gh.factory<_i235.ISignUpDataSource>(
         () => _i1072.AuthRemoteDataSourceImpl(gh<_i211.ApiManager>()));
+    gh.factory<_i599.SubjectsRemoteDataSource>(
+        () => _i433.SubjectsRemoteDataSourceImple(
+              gh<_i323.SecureStorageService>(),
+              apiManager: gh<_i211.ApiManager>(),
+            ));
+    gh.factory<_i1034.SubjectsRepo>(() => _i1024.SubjectRepoImpl(
+        subjectsRemoteDataSource: gh<_i599.SubjectsRemoteDataSource>()));
     gh.factory<_i347.AuthRepo>(() => _i475.AuthRepoImpl(
         authRemoteDataSource: gh<_i504.AuthRemoteDataSource>()));
     gh.factory<_i462.SignUpRepo>(
         () => _i737.SignUpRepoImpl(gh<_i235.ISignUpDataSource>()));
+    gh.factory<_i259.GetAllSubjectsUseCase>(() =>
+        _i259.GetAllSubjectsUseCase(subjectsRepo: gh<_i1034.SubjectsRepo>()));
     gh.factory<_i224.SignUpUseCase>(
         () => _i224.SignUpUseCase(gh<_i462.SignUpRepo>()));
     gh.factory<_i138.SignUpViewModel>(
