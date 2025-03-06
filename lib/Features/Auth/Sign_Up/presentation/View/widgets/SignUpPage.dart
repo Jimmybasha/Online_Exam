@@ -7,17 +7,12 @@ class SignUpPage extends StatelessWidget {
 
   static const String id = "SignUpPageRoute";
 
-
   @override
   Widget build(BuildContext context) {
-  return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Sign up",
-          style:AppStyles.pageTitle
-          ),
-      ),
-      body:  SignUpScreenBody()
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Sign up", style: AppStyles.pageTitle),
+        ),
+        body: SignUpScreenBody());
   }
 }

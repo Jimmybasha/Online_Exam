@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -12,30 +11,30 @@ import 'package:online_exam/main.dart';
 import '../../../../../../Core/Errors/Failure.dart';
 
 import '../states/SignUpStates.dart';
+
 @injectable
-class SignUpViewModel extends Cubit<SignUpState>{
+class SignUpViewModel extends Cubit<SignUpState> {
   SignUpUseCase signUpUseCase;
-  SignUpViewModel(this.signUpUseCase):super(SignUpInitState());
+  SignUpViewModel(this.signUpUseCase) : super(SignUpInitState());
 
   Future<void> signUpUser(
-      String username,
-      String firstName,
-      String lastName,
-      String email,
-      String password,
-      String phone,
-      String rePassword,
-      )async{
+    String username,
+    String firstName,
+    String lastName,
+    String email,
+    String password,
+    String phone,
+    String rePassword,
+  ) async {
     emit(SignUpLoadingState());
-    var apiResult = await signUpUseCase.call(username, firstName, lastName, email, password, phone, rePassword);
+    var apiResult = await signUpUseCase.call(
+        username, firstName, lastName, email, password, phone, rePassword);
     log("APi Result in the signUpLoadingState apiResult : $apiResult");
 
-    switch(apiResult){
+    switch (apiResult) {
       case SuccessApiResult():
-        log(" apiResult.Data in the SuccessApiResult :  ${apiResult.data?.user?.message??"Nothing appeared"}");
-        emit(
-          SignUpSuccessState(apiResult.data?.user?.message??"")
-        );
+        log(" apiResult.Data in the SuccessApiResult :  ${apiResult.data?.user?.message ?? "Nothing appeared"}");
+        emit(SignUpSuccessState(apiResult.data?.user?.message ?? ""));
 
       case ErrorApiResult():
         final error = apiResult.exception; // Extract error
@@ -49,18 +48,13 @@ class SignUpViewModel extends Cubit<SignUpState>{
         }
 
         log("Failure: $errorMessage");
-        emit(
-            SignUpFailureState(errorMessage)
-        );
+        emit(SignUpFailureState(errorMessage));
         break;
     }
-
   }
 
-  void navigateToLogin(){
+  void navigateToLogin() {
     log("Navigating to LoginScreen..."); // Debugging line
     navigatorKey.currentState?.pushNamed(LoginScreen.id);
   }
-
-
 }

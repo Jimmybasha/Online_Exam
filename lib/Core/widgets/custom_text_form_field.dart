@@ -5,19 +5,19 @@ import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({
-    super.key,
-    @required this.hintText,
-    this.onChanged,
-    this.textColor,
-    this.onSaved,
-    this.keyboardType,
-    this.suffixIcon,
-    this.obscureText,
-    this.label,
-    this.validator
-    //  this.contentPadding,
-  });
+  const CustomTextFormField(
+      {super.key,
+      @required this.hintText,
+      this.onChanged,
+      this.textColor,
+      this.onSaved,
+      this.keyboardType,
+      this.suffixIcon,
+      this.obscureText,
+      this.label,
+      this.validator
+      //  this.contentPadding,
+      });
   final String? hintText;
   final Function(String)? onChanged;
   final Color? textColor;
@@ -32,12 +32,13 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        validator: validator ?? (value) {
-          if (value == null || value.isEmpty) {
-            return 'This field is required';
-          }
-          return null;
-        },
+        validator: validator ??
+            (value) {
+              if (value == null || value.isEmpty) {
+                return 'This field is required';
+              }
+              return null;
+            },
         obscureText: obscureText ?? false,
         keyboardType: keyboardType,
         onSaved: onSaved,

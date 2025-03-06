@@ -13,67 +13,62 @@ class ResetPasswordPageBody extends StatefulWidget {
 }
 
 class _ResetPasswordPageBodyState extends State<ResetPasswordPageBody> {
-  late  TextEditingController _currentPasswordController ;
-  late  TextEditingController _newPasswordController ;
-  late  TextEditingController _newPasswordConfirmationController ;
+  late TextEditingController _currentPasswordController;
+  late TextEditingController _newPasswordController;
+  late TextEditingController _newPasswordConfirmationController;
   final _formKey = GlobalKey<FormState>();
 
-
   @override
-  initState(){
+  initState() {
     super.initState();
 
     _currentPasswordController = TextEditingController();
     _newPasswordController = TextEditingController();
     _newPasswordConfirmationController = TextEditingController();
-
   }
+
   @override
   void dispose() {
-
     _currentPasswordController.dispose();
     _newPasswordController.dispose();
     _newPasswordConfirmationController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Center(
-    child: Column(
-      children: [
-      CustomTextField(
+      child: Column(children: [
+        CustomTextField(
           label: "Current Password",
-          hint: "Current Password"
-          ,isPassword: true,
-          controller:_currentPasswordController, ),
+          hint: "Current Password",
+          isPassword: true,
+          controller: _currentPasswordController,
+        ),
         CustomTextField(
           label: "New Password",
-          hint: "New Password"
-          ,isPassword: true,
-          controller:_newPasswordController,),
+          hint: "New Password",
+          isPassword: true,
+          controller: _newPasswordController,
+        ),
         CustomTextField(
           label: "Confirm Password",
-          hint: "Confirm Password"
-          ,isPassword: true,
-          controller:_newPasswordController,
+          hint: "Confirm Password",
+          isPassword: true,
+          controller: _newPasswordController,
           validator: (value) => Validator.confirmPasswordValidation(
               value,
               _newPasswordController.text.trim(),
-              _newPasswordConfirmationController.text.trim()
-          ),
+              _newPasswordConfirmationController.text.trim()),
         ),
         ElevatedButton(
-          onPressed: (){},
+          onPressed: () {},
           style: AppStyles.buttonStyle,
-          child: Text(
-              "Update",
-              style:AppTextStyles.instance.textStyle16.copyWith(
-                  color: Colors.white
-              )
-          ),
+          child: Text("Update",
+              style: AppTextStyles.instance.textStyle16
+                  .copyWith(color: Colors.white)),
         ),
-      ]
-    ),
+      ]),
     );
   }
 }

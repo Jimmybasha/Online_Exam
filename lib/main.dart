@@ -10,6 +10,7 @@ import 'package:online_exam/Features/Auth/domain/UseCase/ForgetPasswordUseCase.d
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordViewModel.dart';
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 
+import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
 
 void main() {
   configureDependencies();
