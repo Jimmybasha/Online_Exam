@@ -3,6 +3,7 @@ import 'package:online_exam/Features/Auth/presentation/view/ForgetPasswordScreen
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 import 'package:online_exam/Features/Auth/presentation/view/EmailVerificationScreen.dart';
 import 'package:online_exam/Features/Auth/presentation/view/widgets/EmailVerificationScreen.dart';
+import 'package:online_exam/Features/Home/presentation/view/all_exams_by_subject_screen.dart';
 
 import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
 import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
@@ -30,6 +31,9 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case MainScreen.id:
         return MaterialPageRoute(builder: (_) => const MainScreen());
+      case AllExamsBySubjectScreen.id:
+        return MaterialPageRoute(
+            builder: (_) => const AllExamsBySubjectScreen());
       default:
         return _errorRoute();
     }
