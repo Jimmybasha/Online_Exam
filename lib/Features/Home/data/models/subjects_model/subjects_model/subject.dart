@@ -1,6 +1,4 @@
-
-
-class Subject  {
+class Subject {
   final String? id;
   final String? name;
   final String? icon;
@@ -23,6 +21,4 @@ class Subject  {
         'icon': icon,
         'createdAt': createdAt?.toIso8601String(),
       };
-
- 
 }

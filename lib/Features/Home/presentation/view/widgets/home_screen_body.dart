@@ -8,7 +8,6 @@ import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 
 import 'package:online_exam/Features/Home/presentation/view/widgets/all_subjects_survey.dart';
 
-
 import 'package:online_exam/Features/Home/presentation/view_model/cubit/get_all_subjects_cubit/get_all_subjects_cubit.dart';
 
 class HomeScreenBody extends StatelessWidget {
@@ -46,4 +45,3 @@ class HomeScreenBody extends StatelessWidget {
     );
   }
 }
-

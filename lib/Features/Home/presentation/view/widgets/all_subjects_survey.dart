@@ -34,8 +34,9 @@ class AllSubjectsSurvey extends StatelessWidget {
             itemCount: subjects.length,
             itemBuilder: (BuildContext context, int index) {
               return SubjectCard(
-                subjectsModel: subjects[index],
-                  image: subjects[index].icon!, name: subjects[index].name!);
+                  subjectsModel: subjects[index],
+                  image: subjects[index].icon!,
+                  name: subjects[index].name!);
             },
           ),
         ),
