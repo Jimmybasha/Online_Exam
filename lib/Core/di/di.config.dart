@@ -40,7 +40,10 @@ import '../../Features/Home/data/data_source/subjects_remote_data_source.dart'
 import '../../Features/Home/data/data_source/subjects_remote_data_source_imple.dart'
     as _i433;
 import '../../Features/Home/data/repos/subject_repo_impl.dart' as _i1024;
+import '../../Features/Home/domain/repos/exams_repo.dart' as _i714;
 import '../../Features/Home/domain/repos/subjects_repo.dart' as _i1034;
+import '../../Features/Home/domain/use_cases/get_all_exams_on_subjects_use_case.dart'
+    as _i733;
 import '../../Features/Home/domain/use_cases/get_all_subjects_use_case.dart'
     as _i259;
 import '../ApiManager/ApiManager.dart' as _i211;
@@ -71,6 +74,8 @@ extension GetItInjectableX on _i174.GetIt {
             ));
     gh.factory<_i1034.SubjectsRepo>(() => _i1024.SubjectRepoImpl(
         subjectsRemoteDataSource: gh<_i599.SubjectsRemoteDataSource>()));
+    gh.factory<_i733.GetAllExamsOnSubjectsUseCase>(() =>
+        _i733.GetAllExamsOnSubjectsUseCase(examsRepo: gh<_i714.ExamsRepo>()));
     gh.factory<_i347.AuthRepo>(() => _i475.AuthRepoImpl(
         authRemoteDataSource: gh<_i504.AuthRemoteDataSource>()));
     gh.factory<_i462.SignUpRepo>(

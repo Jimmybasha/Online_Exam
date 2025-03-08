@@ -7,7 +7,10 @@ import 'package:online_exam/Core/Constants/app_text_style.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget({
-    super.key, this.title, this.content, this.onPressed,
+    super.key,
+    this.title,
+    this.content,
+    this.onPressed,
   });
   final String? title;
   final String? content;
@@ -23,7 +26,7 @@ class CustomErrorWidget extends StatelessWidget {
             .copyWith(color: AppColors.kPrimaryColor),
       ),
       content: Text(
-        content??'',
+        content ?? '',
         style: AppTextStyles.instance.textStyle16
             .copyWith(color: AppColors.kPrimaryColor),
       ),

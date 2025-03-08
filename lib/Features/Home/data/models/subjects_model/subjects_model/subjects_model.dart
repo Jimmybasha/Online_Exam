@@ -1,9 +1,7 @@
-
-
 import 'metadata.dart';
 import 'subject.dart';
 
-class SubjectsModel  {
+class SubjectsModel {
   final String? message;
   final Metadata? metadata;
   final List<Subject>? subjects;
@@ -25,6 +23,4 @@ class SubjectsModel  {
         'metadata': metadata?.toJson(),
         'subjects': subjects?.map((e) => e.toJson()).toList(),
       };
-
- 
 }
