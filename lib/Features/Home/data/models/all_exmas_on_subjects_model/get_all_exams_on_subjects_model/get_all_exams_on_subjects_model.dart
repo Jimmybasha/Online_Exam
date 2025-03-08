@@ -1,15 +1,15 @@
 import 'exam.dart';
 import 'metadata.dart';
 
-class GetAllExamsOnSubjectsModel {
+class AllExamsOnSubjectsModel {
   String? message;
   Metadata? metadata;
   List<Exam>? exams;
 
-  GetAllExamsOnSubjectsModel({this.message, this.metadata, this.exams});
+  AllExamsOnSubjectsModel({this.message, this.metadata, this.exams});
 
-  factory GetAllExamsOnSubjectsModel.fromJson(Map<String, dynamic> json) {
-    return GetAllExamsOnSubjectsModel(
+  factory AllExamsOnSubjectsModel.fromJson(Map<String, dynamic> json) {
+    return AllExamsOnSubjectsModel(
       message: json['message'] as String?,
       metadata: json['metadata'] == null
           ? null
