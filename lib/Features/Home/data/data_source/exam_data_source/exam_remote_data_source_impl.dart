@@ -22,7 +22,6 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
         log('in ExamRemoteDataSourceImpl ${response.data}');
     AllExamsOnSubjectsModel allExamsOnSubjectsModel =
         AllExamsOnSubjectsModel.fromJson(response.data);
-        
         return allExamsOnSubjectsModel;
         
   }

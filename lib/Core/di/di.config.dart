@@ -43,6 +43,7 @@ import '../../Features/Home/data/data_source/subjects_data_source/subjects_remot
     as _i368;
 import '../../Features/Home/data/data_source/subjects_data_source/subjects_remote_data_source_imple.dart'
     as _i1036;
+import '../../Features/Home/data/repos/exams_repo_impl.dart' as _i310;
 import '../../Features/Home/data/repos/subject_repo_impl.dart' as _i1024;
 import '../../Features/Home/domain/repos/exams_repo.dart' as _i714;
 import '../../Features/Home/domain/repos/subjects_repo.dart' as _i1034;
@@ -80,6 +81,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1072.AuthRemoteDataSourceImpl(gh<_i211.ApiManager>()));
     gh.factory<_i1034.SubjectsRepo>(() => _i1024.SubjectRepoImpl(
         subjectsRemoteDataSource: gh<_i368.SubjectsRemoteDataSource>()));
+    gh.factory<_i714.ExamsRepo>(() => _i310.ExamsRepoImpl(
+        examRemoteDataSource: gh<_i789.ExamRemoteDataSource>()));
     gh.factory<_i733.GetAllExamsOnSubjectsUseCase>(() =>
         _i733.GetAllExamsOnSubjectsUseCase(examsRepo: gh<_i714.ExamsRepo>()));
     gh.factory<_i347.AuthRepo>(() => _i475.AuthRepoImpl(
