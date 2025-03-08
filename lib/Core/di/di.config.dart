@@ -35,10 +35,14 @@ import '../../Features/Auth/Sign_Up/domain/use_cases/SignUpUseCase.dart'
     as _i224;
 import '../../Features/Auth/Sign_Up/presentation/View_Model/cubits/SignUpViewModel.dart'
     as _i138;
-import '../../Features/Home/data/data_source/subjects_remote_data_source.dart'
-    as _i599;
-import '../../Features/Home/data/data_source/subjects_remote_data_source_imple.dart'
-    as _i433;
+import '../../Features/Home/data/data_source/exam_data_source/exam_remote_data_source.dart'
+    as _i789;
+import '../../Features/Home/data/data_source/exam_data_source/exam_remote_data_source_impl.dart'
+    as _i1035;
+import '../../Features/Home/data/data_source/subjects_data_source/subjects_remote_data_source.dart'
+    as _i368;
+import '../../Features/Home/data/data_source/subjects_data_source/subjects_remote_data_source_imple.dart'
+    as _i1036;
 import '../../Features/Home/data/repos/subject_repo_impl.dart' as _i1024;
 import '../../Features/Home/domain/repos/exams_repo.dart' as _i714;
 import '../../Features/Home/domain/repos/subjects_repo.dart' as _i1034;
@@ -63,17 +67,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i211.ApiManager>(() => _i211.ApiManager());
     gh.singleton<_i323.SecureStorageService>(
         () => _i323.SecureStorageService());
-    gh.factory<_i504.AuthRemoteDataSource>(() =>
-        _i920.AuthRemoteDataSourceImpl(apiManager: gh<_i211.ApiManager>()));
-    gh.factory<_i235.ISignUpDataSource>(
-        () => _i1072.AuthRemoteDataSourceImpl(gh<_i211.ApiManager>()));
-    gh.factory<_i599.SubjectsRemoteDataSource>(
-        () => _i433.SubjectsRemoteDataSourceImple(
+    gh.factory<_i368.SubjectsRemoteDataSource>(
+        () => _i1036.SubjectsRemoteDataSourceImple(
               gh<_i323.SecureStorageService>(),
               apiManager: gh<_i211.ApiManager>(),
             ));
+    gh.factory<_i504.AuthRemoteDataSource>(() =>
+        _i920.AuthRemoteDataSourceImpl(apiManager: gh<_i211.ApiManager>()));
+    gh.factory<_i789.ExamRemoteDataSource>(() =>
+        _i1035.ExamRemoteDataSourceImpl(apiManager: gh<_i211.ApiManager>()));
+    gh.factory<_i235.ISignUpDataSource>(
+        () => _i1072.AuthRemoteDataSourceImpl(gh<_i211.ApiManager>()));
     gh.factory<_i1034.SubjectsRepo>(() => _i1024.SubjectRepoImpl(
-        subjectsRemoteDataSource: gh<_i599.SubjectsRemoteDataSource>()));
+        subjectsRemoteDataSource: gh<_i368.SubjectsRemoteDataSource>()));
     gh.factory<_i733.GetAllExamsOnSubjectsUseCase>(() =>
         _i733.GetAllExamsOnSubjectsUseCase(examsRepo: gh<_i714.ExamsRepo>()));
     gh.factory<_i347.AuthRepo>(() => _i475.AuthRepoImpl(
