@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:injectable/injectable.dart';
 import 'package:online_exam/Core/ApiManager/ApiManager.dart';
 import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Core/utils/Services/secure_storage.dart';
 import 'package:online_exam/Features/Home/data/data_source/subjects_remote_data_source.dart';
-import 'package:online_exam/Features/Home/data/models/subjects_model/subjects_model.dart';
+
+import 'package:online_exam/Features/Home/data/models/subjects_model/subjects_model/subjects_model.dart';
 
 @Injectable(as: SubjectsRemoteDataSource)
 class SubjectsRemoteDataSourceImple implements SubjectsRemoteDataSource {
@@ -16,6 +19,7 @@ class SubjectsRemoteDataSourceImple implements SubjectsRemoteDataSource {
     String? token = await secureStorageService.readSecureData(kUserToken);
     var response =
         await apiManager.getData(endPoint: kAllSubjectsEndPoint, token: token!);
+    // log("in SubjectsRemoteDataSourceImple ${response.data}");
     SubjectsModel subjectsModel = SubjectsModel.fromJson(response.data);
     return subjectsModel;
   }

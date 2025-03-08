@@ -1,46 +1,49 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_exam/Core/Constants/app_text_style.dart';
 
-import 'package:online_exam/Features/Home/presentation/view/widgets/search_field.dart';
-import 'package:online_exam/Features/Home/presentation/view/widgets/subject_card.dart';
+import 'package:online_exam/Core/widgets/custom_error_widget.dart';
+import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
+
+import 'package:online_exam/Features/Home/presentation/view/widgets/all_subjects_survey.dart';
+
+
+import 'package:online_exam/Features/Home/presentation/view_model/cubit/get_all_subjects_cubit/get_all_subjects_cubit.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
   @override
   Widget build(BuildContext context) {
-    
-    
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 16.h),
-            SearchField(),
-            SizedBox(
-              height: 40.h,
-            ),
-            Text(
-              'Browse by subject',
-              style: AppTextStyles.instance.textStyle18
-                  .copyWith(fontWeight: FontWeight.w500),
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            // SubjectCard(
-            //     image:, name: ),
-            SubjectCard(image: 'assets/images/math_image.png', name: 'Math'),
-            SubjectCard(image: 'assets/images/art_image.png', name: 'Art'),
-            SubjectCard(
-                image: 'assets/images/science_image.png', name: 'Science'),
-          ],
-        ),
+      child: BlocBuilder<GetAllSubjectsCubit, GetAllSubjectsState>(
+        builder: (context, state) {
+          if (state is GetAllSubjectsFailure) {
+            return CustomErrorWidget(
+              onPressed: () {
+                if (state.errorMessage == "token not provided" ||
+                    state.errorMessage == "invalid token") {
+                  Navigator.pushNamed(context, LoginScreen.id);
+                } else {
+                  Navigator.pop(context);
+                }
+              },
+              title: state.errorMessage,
+              content: state.errorMessage == "token not provided" ||
+                      state.errorMessage == "invalid token"
+                  ? 'try to login again'
+                  : '',
+            );
+          } else if (state is GetAllSubjectsSuccess) {
+            return AllSubjectsSurvey(
+                subjects: state.subjectsModel.subjects ?? []);
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }
 }
+
