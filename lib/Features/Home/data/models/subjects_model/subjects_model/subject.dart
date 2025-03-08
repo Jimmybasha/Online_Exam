@@ -1,14 +1,14 @@
-import 'package:equatable/equatable.dart';
 
-class SubjectsModel extends Equatable {
+
+class Subject  {
   final String? id;
   final String? name;
   final String? icon;
   final DateTime? createdAt;
 
-  const SubjectsModel({this.id, this.name, this.icon, this.createdAt});
+  const Subject({this.id, this.name, this.icon, this.createdAt});
 
-  factory SubjectsModel.fromJson(Map<String, dynamic> json) => SubjectsModel(
+  factory Subject.fromJson(Map<String, dynamic> json) => Subject(
         id: json['_id'] as String?,
         name: json['name'] as String?,
         icon: json['icon'] as String?,
@@ -24,6 +24,5 @@ class SubjectsModel extends Equatable {
         'createdAt': createdAt?.toIso8601String(),
       };
 
-  @override
-  List<Object?> get props => [id, name, icon, createdAt];
+ 
 }

@@ -1,10 +1,7 @@
-import 'dart:developer';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
-import 'package:online_exam/Core/utils/Services/secure_storage.dart';
 
 class SubjectCard extends StatelessWidget {
   const SubjectCard({
@@ -18,9 +15,7 @@ class SubjectCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 16.r),
       child: GestureDetector(
-        onTap: () {
-          log(SecureStorageService().readSecureData(kUserToken).toString());
-        },
+        onTap: () {},
         child: Card(
           elevation: 4.r,
           child: Container(
@@ -33,7 +28,16 @@ class SubjectCard extends StatelessWidget {
               child: Row(
                 spacing: 8.w,
                 children: [
-                  Image.asset(image),
+                  SizedBox(
+                    height: 48.h,
+                    width: 48.w,
+                    child: CachedNetworkImage(
+                      imageUrl: image,
+                      placeholder: (context, url) {
+                        return const Center(child: CircularProgressIndicator());
+                      },
+                    ),
+                  ),
                   Text(
                     name,
                     style: AppTextStyles.instance.textStyle16,

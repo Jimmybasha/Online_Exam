@@ -12,8 +12,8 @@ class ApiManager {
 
   Future<Response> getData(
       {required String endPoint, required String token}) async {
-    var response = dio.get(endPoint,
-        options: Options(headers: {'token': token}));
+    var response =
+        dio.get(endPoint, options: Options(headers: {'token': token}));
     return response;
   }
 
