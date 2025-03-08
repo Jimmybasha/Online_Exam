@@ -33,7 +33,7 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const MainScreen());
       case AllExamsBySubjectScreen.id:
         return MaterialPageRoute(
-            builder: (_) => const AllExamsBySubjectScreen());
+            builder: (_) =>  AllExamsBySubjectScreen() , settings: settings);
       default:
         return _errorRoute();
     }
