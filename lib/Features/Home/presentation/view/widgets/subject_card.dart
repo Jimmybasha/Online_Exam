@@ -1,21 +1,29 @@
 import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
+import 'package:online_exam/Features/Home/data/models/subjects_model/subjects_model/subject.dart';
+import 'package:online_exam/Features/Home/presentation/view/all_exams_by_subject_screen.dart';
 
 class SubjectCard extends StatelessWidget {
   const SubjectCard({
     super.key,
     required this.image,
     required this.name,
+    required this.subjectsModel,
   });
   final String image, name;
+  final Subject subjectsModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: 16.r),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(context, AllExamsBySubjectScreen.id,
+              arguments: subjectsModel);
+        },
         child: Card(
           elevation: 4.r,
           child: Container(
