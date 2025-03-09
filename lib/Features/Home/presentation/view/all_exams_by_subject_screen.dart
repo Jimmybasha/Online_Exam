@@ -52,7 +52,7 @@ class AllExamsBySubjectScreen extends StatelessWidget {
                     Navigator.pop(context);
                   });
             } else {
-              // return AllExamsBySubjectScreenBody();
+              
               return const Center(child: CircularProgressIndicator());
             }
           },

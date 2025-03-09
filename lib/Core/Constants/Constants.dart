@@ -7,7 +7,6 @@ const String SIGNUP_MESSAGE = "Sign Up";
 const String SIGNUP_SUCCESS_MESSAGE = "Sign Up Successfully";
 const String kForgetPasswordEndPoint = "auth/forgotPassword";
 const String kAllSubjectsEndPoint = 'subjects';
-
 const String kResultInActive = "assets/images/result_inactive.png";
 const String kResultActive = "assets/images/result_active.png";
 const String kExploreActive = "assets/images/explore_active.png";

@@ -11,12 +11,14 @@ class CustomAppBar extends StatelessWidget {
   final String title;
   final bool leadingVisibility;
   final Color? color;
+ 
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Row(
         children: [
+          
           Visibility(
               maintainSize: true,
               maintainAnimation: true,
