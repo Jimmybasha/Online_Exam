@@ -7,6 +7,7 @@ import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
 
 
 import '../../Features/Auth/Sign_Up/presentation/View/widgets/SignUpPage.dart';
+import '../../Features/Auth/data/Models/user_model/user_model.dart';
 import '../../Features/Profile/Profile/presentation/View/widgets/ProfilePage.dart';
 import '../../Features/Profile/Profile/presentation/View/widgets/ResetPasswordPage.dart';
 
@@ -23,13 +24,19 @@ class AppRoutes {
       case LoginScreen.id:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case ProfilePage.id:
-        return MaterialPageRoute(builder: (_) => const ProfilePage());
+      // Extract the arguments (UserModel) from settings
+        final user = settings.arguments as UserModel?;
+        if (user == null) {
+          return _errorRoute(); // Handle missing arguments gracefully
+        }
+        return MaterialPageRoute(
+            builder: (_) => ProfilePage(user: user.user), settings: settings);
       case ResetPasswordPage.id:
         return MaterialPageRoute(builder: (_) => const ResetPasswordPage());
          case HomeScreen.id:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
          case MainScreen.id:
-        return MaterialPageRoute(builder: (_) => const MainScreen());
+        return MaterialPageRoute(builder: (_) => const MainScreen(),settings: settings);
       default:
         return _errorRoute();
     }

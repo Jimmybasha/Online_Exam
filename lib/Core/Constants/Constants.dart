@@ -1,5 +1,5 @@
 const kLoginUserEndPoint = 'auth/signin';
-const kUserToken = 'userToken';
+final kUserToken = 'userToken';
 
 const String BASE_URL = "https://exam.elevateegy.com/api/v1/";
 const String SIGNUP_URL = "auth/signup";
@@ -13,6 +13,8 @@ const String kExploreActive = "assets/images/explore_active.png";
 const String kExploreInActive = 'assets/images/explore_inactive.png';
 const String kProfileInActive = 'assets/images/profile_inactive.png';
 const String kProfileActive = 'assets/images/profile_active.png';
+const String kUpdateProfileEndPoint = "auth/editProfile";
+const String kChangePasswordEndPoint = "auth/changePassword";
 
 
 
