@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
-import 'package:online_exam/generated/intl/messages_en.dart';
 import 'package:online_exam/main.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 

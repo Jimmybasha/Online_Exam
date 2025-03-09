@@ -3,11 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Core/di/di.dart';
-import 'package:online_exam/Features/Home/domain/use_cases/get_all_exams_on_subjects_use_case.dart';
 import 'package:online_exam/Features/Home/domain/use_cases/get_all_subjects_use_case.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/home_screen_body.dart';
 import 'package:online_exam/Features/Home/presentation/view_model/cubit/get_all_subjects_cubit/get_all_subjects_cubit.dart';
-import '../view_model/cubit/get_all_exmas_on_subjects_cubit/cubit/get_all_exams_on_subject_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
