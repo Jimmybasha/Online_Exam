@@ -35,13 +35,13 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const MainScreen());
       case AllExamsBySubjectScreen.id:
         return MaterialPageRoute(
-            builder: (_) =>  AllExamsBySubjectScreen() , settings: settings);
-            case QuestionsScreen.id:
+            builder: (_) => AllExamsBySubjectScreen(), settings: settings);
+      case QuestionsScreen.id:
         return MaterialPageRoute(
-            builder: (_) =>  QuestionsScreen() , settings: settings);
-             case ExamDetailsView.id:
+            builder: (_) => QuestionsScreen(), settings: settings);
+      case ExamDetailsView.id:
         return MaterialPageRoute(
-            builder: (_) =>  ExamDetailsView() , settings: settings);
+            builder: (_) => ExamDetailsView(), settings: settings);
       default:
         return _errorRoute();
     }

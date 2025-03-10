@@ -4,5 +4,4 @@ import 'package:online_exam/Features/Home/data/models/subjects_model/subjects_mo
 
 abstract class SubjectsRepo {
   Future<Either<Failure, SubjectsModel>> getAllSubjects();
-  
 }

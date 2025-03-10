@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
@@ -6,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Features/Home/data/models/subjects_model/subjects_model/subject.dart';
 import 'package:online_exam/Features/Home/presentation/view/all_exams_by_subject_screen.dart';
-
 
 class SubjectCard extends StatelessWidget {
   const SubjectCard({
@@ -23,7 +21,6 @@ class SubjectCard extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 16.r),
       child: GestureDetector(
         onTap: () {
-          
           Navigator.pushNamed(context, AllExamsBySubjectScreen.id,
               arguments: subjectsModel);
         },

@@ -13,8 +13,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>  GetAllSubjectsCubit(getIt.get<GetAllSubjectsUseCase>())
-                ..getAllSubjects(),
+      create: (context) =>
+          GetAllSubjectsCubit(getIt.get<GetAllSubjectsUseCase>())
+            ..getAllSubjects(),
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
