@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/Constants.dart';
@@ -5,9 +7,30 @@ import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/questions_screen_body.dart';
 
-class QuestionsScreen extends StatelessWidget {
+class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
   static const String id = 'QuestionsScreen';
+
+  @override
+  State<QuestionsScreen> createState() => _QuestionsScreenState();
+}
+
+class _QuestionsScreenState extends State<QuestionsScreen> {
+  double examTime = 30.00;
+  @override
+  void initState() {
+    Timer.periodic(Duration(minutes: 1), (timer) {
+      if (examTime > 0) {
+        setState(() {
+          examTime--;
+        });
+      } else {
+        timer.cancel();
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +61,11 @@ class QuestionsScreen extends StatelessWidget {
                   children: [
                     Image.asset('assets/images/alarm_clock.png'),
                     Text(
-                      '30.00',
-                      style: AppTextStyles.instance.textStyle20
-                          .copyWith(color: AppColors.kNonCriticalTime),
+                      "${examTime.toStringAsFixed(2)} ",
+                      style: AppTextStyles.instance.textStyle20.copyWith(
+                          color: examTime > 15.00
+                              ? AppColors.kNonCriticalTime
+                              : Colors.red),
                     )
                   ],
                 )
