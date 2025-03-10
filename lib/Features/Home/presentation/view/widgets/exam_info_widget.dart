@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Features/Home/data/models/all_exmas_on_subjects_model/get_all_exams_on_subjects_model/exam.dart';
-import 'package:online_exam/Features/Home/presentation/view/questions_screen.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/exam_details_view.dart';
 
 class ExamInfoWidget extends StatelessWidget {
