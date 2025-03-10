@@ -15,7 +15,7 @@ class _AnswersListViewState extends State<AnswersListView> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      shrinkWrap: true,
+        shrinkWrap: true,
         itemCount: 3,
         itemBuilder: (context, index) {
           return Padding(

@@ -14,11 +14,11 @@ final class GetAllExamsOnSubjectLoading extends GetAllExamsOnSubjectState {}
 final class GetAllExamsOnSubjectSuccess extends GetAllExamsOnSubjectState {
   final AllExamsOnSubjectsModel allExamsOnSubjectsModel;
 
- const GetAllExamsOnSubjectSuccess({required this.allExamsOnSubjectsModel});
+  const GetAllExamsOnSubjectSuccess({required this.allExamsOnSubjectsModel});
 }
 
 final class GetAllExamsOnSubjectFailure extends GetAllExamsOnSubjectState {
   final String errorMessage;
 
- const GetAllExamsOnSubjectFailure({required this.errorMessage});
+  const GetAllExamsOnSubjectFailure({required this.errorMessage});
 }

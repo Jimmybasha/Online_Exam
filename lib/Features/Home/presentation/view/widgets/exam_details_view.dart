@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:online_exam/Features/Home/data/models/all_exmas_on_subjects_model/get_all_exams_on_subjects_model/exam.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/exam_details_view_body.dart';
+
 class ExamDetailsView extends StatelessWidget {
   const ExamDetailsView({super.key});
   static const String id = 'ExamDetailsView';
@@ -22,7 +23,3 @@ class ExamDetailsView extends StatelessWidget {
     );
   }
 }
-
-
-
-

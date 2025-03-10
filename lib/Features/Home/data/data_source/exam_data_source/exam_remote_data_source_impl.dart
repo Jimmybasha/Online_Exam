@@ -19,10 +19,9 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
     String? token = await SecureStorageService().readSecureData(kUserToken);
     var response = await apiManager.getData(
         endPoint: 'exams?subject=$subjId', token: token!);
-        log('in ExamRemoteDataSourceImpl ${response.data}');
+    log('in ExamRemoteDataSourceImpl ${response.data}');
     AllExamsOnSubjectsModel allExamsOnSubjectsModel =
         AllExamsOnSubjectsModel.fromJson(response.data);
-        return allExamsOnSubjectsModel;
-        
+    return allExamsOnSubjectsModel;
   }
 }

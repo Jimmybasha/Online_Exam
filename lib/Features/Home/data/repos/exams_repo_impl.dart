@@ -19,7 +19,7 @@ class ExamsRepoImpl implements ExamsRepo {
     try {
       var data =
           await examRemoteDataSource.getAllExamsOnSubjects(subjId: subjId);
-          log('in ExamsRepoImpl $data');
+      log('in ExamsRepoImpl $data');
       return right(data);
     } catch (e) {
       if (e is DioException) {
