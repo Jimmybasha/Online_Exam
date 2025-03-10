@@ -58,7 +58,7 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
                 children: [
                   CircleAvatar(
                     radius: 50.r,
-                    backgroundImage: AssetImage("lib/assets/image1.jpg"),
+                    backgroundImage: AssetImage("assets/images/image1.jpg"),
                   ),
                   Positioned(
                     bottom: 0,
