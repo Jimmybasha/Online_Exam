@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Core/widgets/show_snack_bar.dart';
+import 'package:online_exam/Features/Auth/presentation/view/ResetPassword.dart';
 import 'package:online_exam/Features/Auth/presentation/view/widgets/resend_code.dart';
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/EmailVerificationCubit/EmailVerificationViewModel.dart';
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/EmailVerificationCubit/EmailVerificationState.dart';
@@ -35,6 +36,11 @@ class _EmailVerificationScreenBodyState extends State<EmailVerificationScreenBod
       listener: (context, state) {
         if (state is EmailVerificationSuccessState) {
           showSnackBar(context, state.status);
+
+          //make the ResetPasswordScreen able to take settings
+
+          Navigator.pushNamed(context, ResetPasswordScreen.id,arguments: widget.email);
+          print("Email from the EmailVerificationScreenBody ${widget.email}");
         } else if (state is EmailVerificationFailureState) {
           showErrorSnackBar(context, state.error);
         }

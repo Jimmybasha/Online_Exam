@@ -7,6 +7,7 @@ import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
 
 
 import '../../Features/Auth/Sign_Up/presentation/View/widgets/SignUpPage.dart';
+import '../../Features/Auth/presentation/view/ResetPassword.dart';
 import '../../Features/Profile/Profile/presentation/View/widgets/ProfilePage.dart';
 import '../../Features/Profile/Profile/presentation/View/widgets/ResetPasswordPage.dart';
 
@@ -15,7 +16,7 @@ class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case ForgetPasswordScreen.id:
-        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen(),settings: settings);
       case EmailVerificationScreen.id:
         return MaterialPageRoute(builder: (_) => const EmailVerificationScreen(),settings: settings);
       case SignUpPage.id:
@@ -25,11 +26,13 @@ class AppRoutes {
       case ProfilePage.id:
         return MaterialPageRoute(builder: (_) => const ProfilePage());
       case ResetPasswordPage.id:
-        return MaterialPageRoute(builder: (_) => const ResetPasswordPage());
+        return MaterialPageRoute(builder: (_) => const ResetPasswordPage(),settings: settings);
          case HomeScreen.id:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
          case MainScreen.id:
         return MaterialPageRoute(builder: (_) => const MainScreen());
+         case ResetPasswordScreen.id:
+        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen(),settings: settings);
       default:
         return _errorRoute();
     }
