@@ -4,6 +4,7 @@ import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Core/widgets/custom_button.dart';
 import 'package:online_exam/Features/Home/data/models/all_exmas_on_subjects_model/get_all_exams_on_subjects_model/exam.dart';
+import 'package:online_exam/Features/Home/presentation/view/questions_screen.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/exam_instructions_widget.dart';
 
 class ExamDetailsViewBody extends StatelessWidget {
@@ -77,7 +78,10 @@ class ExamDetailsViewBody extends StatelessWidget {
             height: 48.h,
           ),
           CustomButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, QuestionsScreen.id,
+                    arguments: exam);
+              },
               child: Text(
                 'Start ',
                 style: AppTextStyles.instance.textStyle16

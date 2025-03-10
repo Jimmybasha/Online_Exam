@@ -4,7 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:online_exam/Core/BlocObserver.dart';
+import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Core/di/di.dart';
+import 'package:online_exam/Core/utils/Services/secure_storage.dart';
 import 'package:online_exam/Core/utils/app_routes.dart';
 import 'package:online_exam/Features/Auth/domain/UseCase/ForgetPasswordUseCase.dart';
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordViewModel.dart';
@@ -12,17 +14,19 @@ import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 
 import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
 
-void main() {
+void main() async {
   configureDependencies();
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
-  runApp(const MyApp());
+  String? token = await SecureStorageService().readSecureData(kUserToken);
+  runApp(MyApp(token: token));
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key, this.token});
+  String? token;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
