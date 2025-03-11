@@ -15,18 +15,16 @@ class ProfilePageBody extends StatefulWidget {
 }
 
 class _ProfilePageBodyState extends State<ProfilePageBody> {
-
-  late  TextEditingController _usernameController ;
-  late  TextEditingController _firstNameController ;
-  late  TextEditingController _lastNameController ;
-  late  TextEditingController _emailController ;
-  late  TextEditingController _passwordController ;
-  late  TextEditingController _phoneNumberController ;
+  late TextEditingController _usernameController;
+  late TextEditingController _firstNameController;
+  late TextEditingController _lastNameController;
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+  late TextEditingController _phoneNumberController;
   final _formKey = GlobalKey<FormState>();
 
-
   @override
-  initState(){
+  initState() {
     super.initState();
     _usernameController = TextEditingController();
     _firstNameController = TextEditingController();
@@ -34,8 +32,8 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _phoneNumberController = TextEditingController();
-
   }
+
   @override
   void dispose() {
     _usernameController.dispose();
@@ -46,6 +44,7 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
     _phoneNumberController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -59,7 +58,7 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
                 children: [
                   CircleAvatar(
                     radius: 50.r,
-                    backgroundImage: AssetImage("lib/assets/image1.jpg"),
+                    backgroundImage: AssetImage("assets/images/image1.jpg"),
                   ),
                   Positioned(
                     bottom: 0,
@@ -72,9 +71,7 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
                         borderRadius: BorderRadius.circular(10.r),
                       ),
                       child: IconButton(
-                        onPressed: () {
-
-                        },
+                        onPressed: () {},
                         icon: Icon(
                           Icons.camera_alt_outlined,
                           color: Colors.white,
@@ -85,33 +82,53 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
                   ),
                 ],
               ),
-              CustomTextField(hint: "James", label: "User Name", controller: _usernameController),
-                Row(
-                  children: [
-                    Expanded(child: CustomTextField(hint: "Ahmed", label: "First Name", controller: _firstNameController)),
-                    Expanded(child: CustomTextField(hint: "Gamal", label: "Last Name", controller: _firstNameController)),
-                  ],
-                ),
-              CustomTextField(hint: "James@gmail.com", label: "Email", controller: _emailController,validator:(value) =>  Validator.emailValidation(value),),
-              CustomTextField(hint: "Password", label: "Password", controller: _passwordController,isPassword: true,
-                  suffixIcon: TextButton(onPressed: (){
-                    Navigator.pushNamed(context, ResetPasswordPage.id);
-                  }, child: Text("Change",style: TextStyle(
-                color: AppColors.iconColor
+              CustomTextField(
+                  hint: "James",
+                  label: "User Name",
+                  controller: _usernameController),
+              Row(
+                children: [
+                  Expanded(
+                      child: CustomTextField(
+                          hint: "Ahmed",
+                          label: "First Name",
+                          controller: _firstNameController)),
+                  Expanded(
+                      child: CustomTextField(
+                          hint: "Gamal",
+                          label: "Last Name",
+                          controller: _firstNameController)),
+                ],
               ),
-              )
-              )
+              CustomTextField(
+                hint: "James@gmail.com",
+                label: "Email",
+                controller: _emailController,
+                validator: (value) => Validator.emailValidation(value),
               ),
-              CustomTextField(hint: "01234567890", label: "Phone Number", controller: _phoneNumberController),
+              CustomTextField(
+                  hint: "Password",
+                  label: "Password",
+                  controller: _passwordController,
+                  isPassword: true,
+                  suffixIcon: TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, ResetPasswordPage.id);
+                      },
+                      child: Text(
+                        "Change",
+                        style: TextStyle(color: AppColors.iconColor),
+                      ))),
+              CustomTextField(
+                  hint: "01234567890",
+                  label: "Phone Number",
+                  controller: _phoneNumberController),
               ElevatedButton(
-                  onPressed: (){},
+                onPressed: () {},
                 style: AppStyles.buttonStyle,
-                child: Text(
-                  "Update",
-                  style:AppTextStyles.instance.textStyle16.copyWith(
-                    color: Colors.white
-                  )
-                ),
+                child: Text("Update",
+                    style: AppTextStyles.instance.textStyle16
+                        .copyWith(color: Colors.white)),
               ),
             ],
           ),

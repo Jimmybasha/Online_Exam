@@ -10,19 +10,18 @@
 library;
 
 class User {
-  User({
-      this.username, 
-      this.firstName, 
-      this.lastName, 
-      this.email, 
-      this.phone, 
-      this.role, 
-      this.isVerified, 
-      this.id, 
+  User(
+      {this.username,
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.phone,
+      this.role,
+      this.isVerified,
+      this.id,
       this.createdAt,
       this.message,
-      this.token
-    });
+      this.token});
 
   User.fromJson(dynamic json) {
     username = json['username'];
@@ -60,9 +59,8 @@ class User {
     map['isVerified'] = isVerified;
     map['_id'] = id;
     map['createdAt'] = createdAt;
-    map['message']= message;
-    map['token']= token;
+    map['message'] = message;
+    map['token'] = token;
     return map;
   }
-
 }

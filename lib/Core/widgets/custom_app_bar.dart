@@ -5,7 +5,8 @@ class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
     required this.title,
-    required this.leadingVisibility, this.color,
+    required this.leadingVisibility,
+    this.color,
   });
   final String title;
   final bool leadingVisibility;
@@ -28,8 +29,8 @@ class CustomAppBar extends StatelessWidget {
                   icon: Icon(Icons.arrow_back_ios_new))),
           Text(
             title,
-            style: AppTextStyles.instance.textStyle20
-                .copyWith(fontWeight: FontWeight.w500 ,color: color ?? Colors.black ),
+            style: AppTextStyles.instance.textStyle20.copyWith(
+                fontWeight: FontWeight.w500, color: color ?? Colors.black),
           )
         ],
       ),

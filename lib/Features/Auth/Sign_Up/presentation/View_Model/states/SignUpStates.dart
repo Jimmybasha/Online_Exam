@@ -1,18 +1,15 @@
+sealed class SignUpState {}
 
+class SignUpLoadingState extends SignUpState {}
 
+class SignUpInitState extends SignUpState {}
 
-sealed class SignUpState{}
-
-class SignUpLoadingState extends SignUpState{}
-
-class SignUpInitState extends SignUpState{}
-
-class SignUpSuccessState extends SignUpState{
+class SignUpSuccessState extends SignUpState {
   String message;
   SignUpSuccessState(this.message);
 }
 
-class SignUpFailureState extends SignUpState{
-String err;
-SignUpFailureState(this.err);
+class SignUpFailureState extends SignUpState {
+  String err;
+  SignUpFailureState(this.err);
 }

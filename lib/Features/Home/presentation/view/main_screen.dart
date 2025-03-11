@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
+
 import 'package:online_exam/Features/Home/presentation/view/widgets/active_icon.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/inactive_icon.dart';
+import 'package:online_exam/Features/Profile/Profile/presentation/View/widgets/ProfilePage.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -18,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   static final List<Widget> screens = <Widget>[
     HomeScreen(),
     Placeholder(),
-    Placeholder(),
+    ProfilePage()
   ];
   @override
   Widget build(BuildContext context) {
