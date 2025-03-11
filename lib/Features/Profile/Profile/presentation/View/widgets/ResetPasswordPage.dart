@@ -5,7 +5,7 @@ import 'package:online_exam/Features/Profile/Profile/presentation/View/widgets/R
 import '../../../../../../Core/widgets/custom_app_bar.dart';
 
 class ResetPasswordPage extends StatelessWidget {
-  static const String id="resetPasswordPageView";
+  static const String id = "resetPasswordPageView";
   const ResetPasswordPage({super.key});
 
   @override

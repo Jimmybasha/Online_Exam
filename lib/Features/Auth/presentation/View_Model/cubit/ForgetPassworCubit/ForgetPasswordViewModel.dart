@@ -4,25 +4,24 @@ import 'package:online_exam/Features/Auth/domain/UseCase/ForgetPasswordUseCase.d
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordState.dart';
 
 @injectable
-class ForgetPasswordViewModel extends Cubit<ForgetPasswordState>{
-
+class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
   ForgetPasswordUseCase forgetPasswordUseCase;
 
-  ForgetPasswordViewModel(this.forgetPasswordUseCase):super(ForgetPasswordInitState());
+  ForgetPasswordViewModel(this.forgetPasswordUseCase)
+      : super(ForgetPasswordInitState());
 
-
-  Future<void> forgetPassword(String email)async {
+  Future<void> forgetPassword(String email) async {
     emit(ForgetPasswordLoadingState());
 
     var result = await forgetPasswordUseCase.call(email: email);
 
     result.fold(
-          (failure) {
+      (failure) {
         emit(ForgetPasswordFailureState(failure.errorMessage));
       },
-          (response) {
+      (response) {
         emit(ForgetPasswordSuccessState(response));
-      },);
+      },
+    );
   }
-
 }

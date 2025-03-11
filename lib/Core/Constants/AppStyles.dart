@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-class AppStyles{
 
-
+class AppStyles {
   static TextStyle? pageTitle = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.w500,
@@ -13,9 +12,5 @@ class AppStyles{
     fontSize: 12.sp,
   );
   static ButtonStyle? buttonStyle = ElevatedButton.styleFrom(
-    backgroundColor: Color(0xff02369C),
-    fixedSize:Size(343.w, 44.h)
-  );
-
-
+      backgroundColor: Color(0xff02369C), fixedSize: Size(343.w, 44.h));
 }
