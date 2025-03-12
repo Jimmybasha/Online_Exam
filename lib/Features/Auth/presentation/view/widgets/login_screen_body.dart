@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -142,11 +144,10 @@ class LoginButtonBlocConsumer extends StatelessWidget {
         }
         if (state is LoginSuccess) {
           showSnackBar(context, 'Login Successfully');
-          Navigator.pushNamed(context, MainScreen.id,arguments: state.userModel);
-          if (rememberMe) {
-            SecureStorageService()
-                .writeSecureData(kUserToken, state.userModel.token ?? '');
+          if (rememberMe == true) {
+            _saveUserToken(state);
           }
+          Navigator.pushNamed(context, MainScreen.id);
         }
       },
       builder: (context, state) {
@@ -161,5 +162,12 @@ class LoginButtonBlocConsumer extends StatelessWidget {
         }
       },
     );
+  }
+
+  Future<void> _saveUserToken(LoginSuccess state) async {
+    await SecureStorageService()
+        .writeSecureData(kUserToken, state.userModel.token!);
+    String? token = await SecureStorageService().readSecureData(kUserToken);
+    log(token!);
   }
 }

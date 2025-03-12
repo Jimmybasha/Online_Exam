@@ -1,11 +1,13 @@
 const kLoginUserEndPoint = 'auth/signin';
-final kUserToken = 'userToken';
+const kUserToken = 'userToken';
+const double kAppBarHight = 100;
 
 const String BASE_URL = "https://exam.elevateegy.com/api/v1/";
 const String SIGNUP_URL = "auth/signup";
 const String SIGNUP_MESSAGE = "Sign Up";
 const String SIGNUP_SUCCESS_MESSAGE = "Sign Up Successfully";
 const String kForgetPasswordEndPoint = "auth/forgotPassword";
+const String kAllSubjectsEndPoint = 'subjects';
 const String kVerifyCodeEndPoint = 'auth/verifyResetCode';
 const String kResetPasswordEndPoint = "auth/resetPassword";
 const String kResultInActive = "assets/images/result_inactive.png";

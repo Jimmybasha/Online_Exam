@@ -27,6 +27,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     var response = await apiManager
         .postData(endPoint: kForgetPasswordEndPoint, data: {"email": email});
     return response.data;
+   
   }
 
   @override

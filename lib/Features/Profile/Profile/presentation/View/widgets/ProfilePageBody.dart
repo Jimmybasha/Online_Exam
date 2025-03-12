@@ -22,18 +22,16 @@ class ProfilePageBody extends StatefulWidget {
 }
 
 class _ProfilePageBodyState extends State<ProfilePageBody> {
-
-  late  TextEditingController _usernameController ;
-  late  TextEditingController _firstNameController ;
-  late  TextEditingController _lastNameController ;
-  late  TextEditingController _emailController ;
-  late  TextEditingController _passwordController ;
-  late  TextEditingController _phoneNumberController ;
+  late TextEditingController _usernameController;
+  late TextEditingController _firstNameController;
+  late TextEditingController _lastNameController;
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+  late TextEditingController _phoneNumberController;
   final _formKey = GlobalKey<FormState>();
 
-
   @override
-  initState(){
+  initState() {
     super.initState();
     _usernameController = TextEditingController(text: widget.user?.username??"userName isn't available");
     _firstNameController = TextEditingController(text: widget.user?.firstName??"firstName isn't available");
@@ -43,6 +41,7 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
     _phoneNumberController = TextEditingController(text: widget.user?.phone??"Phone isn't available");
 
   }
+
   @override
   void dispose() {
     _usernameController.dispose();
@@ -53,6 +52,7 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
     _phoneNumberController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Form(

@@ -5,10 +5,8 @@ import '../Constants/Constants.dart';
 import '../utils/Services/secure_storage.dart';
 
 @singleton // Resolved to be singleton
-class ApiManager{
-
-  final Dio dio = Dio(
-    BaseOptions(
+class ApiManager {
+  final Dio dio = Dio(BaseOptions(
     baseUrl: BASE_URL,
       headers: {
       'Content-Type': 'application/json',
@@ -34,6 +32,7 @@ class ApiManager{
     var response = dio.post(endPoint,data: data );
     return response;
   }
+
   Future<Response> putRequest(
       String endpoint, Map<String, dynamic> data) async {
     await setToken();

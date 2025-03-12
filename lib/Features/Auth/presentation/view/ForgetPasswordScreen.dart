@@ -15,7 +15,8 @@ class ForgetPasswordScreen extends StatelessWidget {
     return BlocProvider(
       //create attribute it needs the viewModel to assign the viewModel Files and the usecase
       //Creates it from the getIt.get()
-      create:(context) => ForgetPasswordViewModel(getIt.get<ForgetPasswordUseCase>()) ,
+      create: (context) =>
+          ForgetPasswordViewModel(getIt.get<ForgetPasswordUseCase>()),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(100.h),

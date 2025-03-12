@@ -18,29 +18,28 @@ class ResetPasswordPageBody extends StatefulWidget {
 }
 
 class _ResetPasswordPageBodyState extends State<ResetPasswordPageBody> {
-  late  TextEditingController _currentPasswordController ;
-  late  TextEditingController _newPasswordController ;
-  late  TextEditingController _newPasswordConfirmationController ;
+  late TextEditingController _currentPasswordController;
+  late TextEditingController _newPasswordController;
+  late TextEditingController _newPasswordConfirmationController;
   final _formKey = GlobalKey<FormState>();
 
-
   @override
-  initState(){
+  initState() {
     super.initState();
 
     _currentPasswordController = TextEditingController();
     _newPasswordController = TextEditingController();
     _newPasswordConfirmationController = TextEditingController();
-
   }
+
   @override
   void dispose() {
-
     _currentPasswordController.dispose();
     _newPasswordController.dispose();
     _newPasswordConfirmationController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Center(

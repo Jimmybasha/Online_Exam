@@ -3,11 +3,10 @@ import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
 import '../../../Auth/data/Models/user_model/user_model.dart';
 import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
+
 import 'package:online_exam/Features/Home/presentation/view/widgets/active_icon.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/inactive_icon.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View/widgets/ProfilePage.dart';
-
-
 
 class MainScreen extends StatefulWidget {
   static const String id = 'MainScreen';

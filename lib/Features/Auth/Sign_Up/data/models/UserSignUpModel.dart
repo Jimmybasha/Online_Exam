@@ -4,7 +4,8 @@ import 'User.dart';
 
 class UserSignUpModel {
   UserSignUpModel({
-      this.user,});
+    this.user,
+  });
 
   UserSignUpModel.fromJson(dynamic json) {
     user = json['user'] != null ? User.fromJson(json['user']) : null;
@@ -18,5 +19,4 @@ class UserSignUpModel {
     }
     return map;
   }
-
 }
