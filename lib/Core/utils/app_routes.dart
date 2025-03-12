@@ -4,15 +4,12 @@ import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 import 'package:online_exam/Features/Auth/presentation/view/EmailVerificationScreen.dart';
 import 'package:online_exam/Features/Home/presentation/view/all_exams_by_subject_screen.dart';
 
-import 'package:online_exam/Features/Home/presentation/view/all_exams_by_subject_screen.dart';
 
 import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
 import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/exam_details_view.dart';
-import 'package:online_exam/Features/Home/presentation/view/widgets/exam_details_view.dart';
 
 import '../../Features/Auth/Sign_Up/presentation/View/widgets/SignUpPage.dart';
-import '../../Features/Home/presentation/view/questions_screen.dart';
 import '../../Features/Home/presentation/view/questions_screen.dart';
 import '../../Features/Profile/Profile/presentation/View/widgets/ProfilePage.dart';
 import '../../Features/Profile/Profile/presentation/View/widgets/ResetPasswordPage.dart';

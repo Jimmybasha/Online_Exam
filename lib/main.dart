@@ -23,8 +23,7 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
  
   runApp( const MyApp());
- 
-  runApp( const MyApp());
+
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -32,7 +31,7 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
  const MyApp({super.key, });
   
- const MyApp({super.key, });
+ 
   
   // This widget is the root of your application.
   @override

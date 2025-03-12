@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/di/di.dart';
 import 'package:online_exam/Core/widgets/custom_app_bar.dart';
-import 'package:online_exam/Features/Auth/domain/UseCase/ForgetPasswordUseCase.dart';
 import 'package:online_exam/Features/Auth/domain/UseCase/VerifyCodeUseCase.dart';
 import 'package:online_exam/Features/Auth/presentation/view/widgets/EmailVerificationScreenBody.dart';
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/EmailVerificationCubit/EmailVerificationViewModel.dart';
