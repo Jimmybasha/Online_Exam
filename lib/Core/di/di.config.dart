@@ -20,6 +20,7 @@ import '../../Features/Auth/data/repos/AuthRepoImpl.dart' as _i475;
 import '../../Features/Auth/domain/repos/AuthRepo.dart' as _i347;
 import '../../Features/Auth/domain/UseCase/ForgetPasswordUseCase.dart' as _i169;
 import '../../Features/Auth/domain/UseCase/LoginUseCase.dart' as _i238;
+import '../../Features/Auth/domain/UseCase/ResetPasswordUseCase.dart' as _i7;
 import '../../Features/Auth/domain/UseCase/VerifyCodeUseCase.dart' as _i250;
 import '../../Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordViewModel.dart'
     as _i1041;
@@ -35,22 +36,26 @@ import '../../Features/Auth/Sign_Up/domain/use_cases/SignUpUseCase.dart'
     as _i224;
 import '../../Features/Auth/Sign_Up/presentation/View_Model/cubits/SignUpViewModel.dart'
     as _i138;
-import '../../Features/Home/data/data_source/exam_data_source/exam_remote_data_source.dart'
-    as _i789;
-import '../../Features/Home/data/data_source/exam_data_source/exam_remote_data_source_impl.dart'
-    as _i1035;
-import '../../Features/Home/data/data_source/subjects_data_source/subjects_remote_data_source.dart'
-    as _i368;
-import '../../Features/Home/data/data_source/subjects_data_source/subjects_remote_data_source_imple.dart'
-    as _i1036;
-import '../../Features/Home/data/repos/exams_repo_impl.dart' as _i310;
-import '../../Features/Home/data/repos/subject_repo_impl.dart' as _i1024;
-import '../../Features/Home/domain/repos/exams_repo.dart' as _i714;
-import '../../Features/Home/domain/repos/subjects_repo.dart' as _i1034;
-import '../../Features/Home/domain/use_cases/get_all_exams_on_subjects_use_case.dart'
-    as _i733;
-import '../../Features/Home/domain/use_cases/get_all_subjects_use_case.dart'
-    as _i259;
+import '../../Features/Profile/Profile/data/data_sources/ProfileRemoteDataSource.dart'
+    as _i703;
+import '../../Features/Profile/Profile/data/data_sources/ProfileRemoteDataSourceImpl.dart'
+    as _i564;
+import '../../Features/Profile/Profile/data/data_sources/ResetPasswordDataSource/ResetPasswordRemoteDataSource.dart'
+    as _i669;
+import '../../Features/Profile/Profile/data/data_sources/ResetPasswordDataSource/ResetPasswordRemoteDataSourceImpl.dart'
+    as _i438;
+import '../../Features/Profile/Profile/data/repositories/ProfileRepoImpl.dart'
+    as _i1046;
+import '../../Features/Profile/Profile/data/repositories/ResetPasswordRepoImpl.dart'
+    as _i329;
+import '../../Features/Profile/Profile/domain/repositories/ProfileRepo.dart'
+    as _i805;
+import '../../Features/Profile/Profile/domain/repositories/ResetPasswordRepo.dart'
+    as _i251;
+import '../../Features/Profile/Profile/domain/use_cases/UpdatePasswordUseCase.dart'
+    as _i776;
+import '../../Features/Profile/Profile/domain/use_cases/UpdateProfileDataUseCase.dart'
+    as _i763;
 import '../ApiManager/ApiManager.dart' as _i211;
 import '../utils/Services/secure_storage.dart' as _i323;
 

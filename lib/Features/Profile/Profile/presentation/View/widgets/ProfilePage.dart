@@ -1,23 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam/Core/di/di.dart';
 import 'package:online_exam/Core/widgets/custom_app_bar.dart';
+import 'package:online_exam/Features/Auth/data/Models/user_model/user.dart';
+import 'package:online_exam/Features/Profile/Profile/domain/use_cases/UpdateProfileDataUseCase.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View/widgets/ProfilePageBody.dart';
+import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/Cubit/ProfilePageViewModel.dart';
+
 
 class ProfilePage extends StatelessWidget {
-  static const String id = "ProfilePageView";
-  const ProfilePage({super.key});
+
+  const ProfilePage({super.key,required this.user});
+   static const String id="ProfilePageView";
+   final User? user;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.h),
-        child: CustomAppBar(
-          title: 'Profile',
-          leadingVisibility: false,
+    return BlocProvider(
+      create: (context) => ProfilePageViewModel(getIt.get<UpdateProfileDataUseCase>()),
+      child: Scaffold(
+        appBar:PreferredSize(
+          preferredSize: Size.fromHeight(100.h),
+          child: CustomAppBar(
+            title: 'Profile',
+            leadingVisibility: false,
+          ),
+            ),
+        body:ProfilePageBody(user: user,),
         ),
-      ),
-      body: ProfilePageBody(),
     );
   }
 }

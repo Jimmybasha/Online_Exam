@@ -9,12 +9,15 @@ const String SIGNUP_SUCCESS_MESSAGE = "Sign Up Successfully";
 const String kForgetPasswordEndPoint = "auth/forgotPassword";
 const String kAllSubjectsEndPoint = 'subjects';
 const String kVerifyCodeEndPoint = 'auth/verifyResetCode';
+const String kResetPasswordEndPoint = "auth/resetPassword";
 const String kResultInActive = "assets/images/result_inactive.png";
 const String kResultActive = "assets/images/result_active.png";
 const String kExploreActive = "assets/images/explore_active.png";
 const String kExploreInActive = 'assets/images/explore_inactive.png';
 const String kProfileInActive = 'assets/images/profile_inactive.png';
 const String kProfileActive = 'assets/images/profile_active.png';
+const String kUpdateProfileEndPoint = "auth/editProfile";
+const String kChangePasswordEndPoint = "auth/changePassword";
 
 
 
