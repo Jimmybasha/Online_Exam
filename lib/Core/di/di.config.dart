@@ -36,6 +36,26 @@ import '../../Features/Auth/Sign_Up/domain/use_cases/SignUpUseCase.dart'
     as _i224;
 import '../../Features/Auth/Sign_Up/presentation/View_Model/cubits/SignUpViewModel.dart'
     as _i138;
+import '../../Features/Profile/Profile/data/data_sources/ProfileRemoteDataSource.dart'
+    as _i703;
+import '../../Features/Profile/Profile/data/data_sources/ProfileRemoteDataSourceImpl.dart'
+    as _i564;
+import '../../Features/Profile/Profile/data/data_sources/ResetPasswordDataSource/ResetPasswordRemoteDataSource.dart'
+    as _i669;
+import '../../Features/Profile/Profile/data/data_sources/ResetPasswordDataSource/ResetPasswordRemoteDataSourceImpl.dart'
+    as _i438;
+import '../../Features/Profile/Profile/data/repositories/ProfileRepoImpl.dart'
+    as _i1046;
+import '../../Features/Profile/Profile/data/repositories/ResetPasswordRepoImpl.dart'
+    as _i329;
+import '../../Features/Profile/Profile/domain/repositories/ProfileRepo.dart'
+    as _i805;
+import '../../Features/Profile/Profile/domain/repositories/ResetPasswordRepo.dart'
+    as _i251;
+import '../../Features/Profile/Profile/domain/use_cases/UpdatePasswordUseCase.dart'
+    as _i776;
+import '../../Features/Profile/Profile/domain/use_cases/UpdateProfileDataUseCase.dart'
+    as _i763;
 import '../ApiManager/ApiManager.dart' as _i211;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -49,29 +69,5 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.singleton<_i211.ApiManager>(() => _i211.ApiManager());
-    gh.factory<_i504.AuthRemoteDataSource>(() =>
-        _i920.AuthRemoteDataSourceImpl(apiManager: gh<_i211.ApiManager>()));
-    gh.factory<_i235.ISignUpDataSource>(
-        () => _i1072.AuthRemoteDataSourceImpl(gh<_i211.ApiManager>()));
-    gh.factory<_i347.AuthRepo>(() => _i475.AuthRepoImpl(
-        authRemoteDataSource: gh<_i504.AuthRemoteDataSource>()));
-    gh.factory<_i7.ResetPasswordUseCase>(
-        () => _i7.ResetPasswordUseCase(gh<_i347.AuthRepo>()));
-    gh.factory<_i462.SignUpRepo>(
-        () => _i737.SignUpRepoImpl(gh<_i235.ISignUpDataSource>()));
-    gh.factory<_i224.SignUpUseCase>(
-        () => _i224.SignUpUseCase(gh<_i462.SignUpRepo>()));
-    gh.factory<_i138.SignUpViewModel>(
-        () => _i138.SignUpViewModel(gh<_i224.SignUpUseCase>()));
-    gh.factory<_i169.ForgetPasswordUseCase>(
-        () => _i169.ForgetPasswordUseCase(authRepo: gh<_i347.AuthRepo>()));
-    gh.factory<_i238.LoginUseCase>(
-        () => _i238.LoginUseCase(authRepo: gh<_i347.AuthRepo>()));
-    gh.factory<_i250.VerifyCodeUseCase>(
-        () => _i250.VerifyCodeUseCase(authRepo: gh<_i347.AuthRepo>()));
-    gh.factory<_i1041.ForgetPasswordViewModel>(() =>
-        _i1041.ForgetPasswordViewModel(gh<_i169.ForgetPasswordUseCase>()));
-    return this;
   }
 }

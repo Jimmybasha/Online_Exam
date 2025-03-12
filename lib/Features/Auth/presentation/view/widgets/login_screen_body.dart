@@ -142,7 +142,7 @@ class LoginButtonBlocConsumer extends StatelessWidget {
         }
         if (state is LoginSuccess) {
           showSnackBar(context, 'Login Successfully');
-          Navigator.pushNamed(context, MainScreen.id);
+          Navigator.pushNamed(context, MainScreen.id,arguments: state.userModel);
           if (rememberMe) {
             SecureStorageService()
                 .writeSecureData(kUserToken, state.userModel.token ?? '');
