@@ -13,9 +13,8 @@ class QuestionsRemoteDataSourceImpl implements QuestionsRemoteDataSource {
   @override
   Future<AllQuestionsOnExamModel> getAllQuestionsOnExam(
       {required String examId}) async {
-    String? token = await SecureStorageService().readSecureData(kUserToken);
     var response = await apiManager.getData(
-        endPoint: 'questions?exam=$examId', token: token!);
+        endPoint: 'questions?exam=$examId');
     AllQuestionsOnExamModel allQuestionsOnExamModel =
         AllQuestionsOnExamModel.fromJson(response.data);
     return allQuestionsOnExamModel;

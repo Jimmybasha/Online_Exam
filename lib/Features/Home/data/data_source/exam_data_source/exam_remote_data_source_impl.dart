@@ -16,9 +16,9 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
   @override
   Future<AllExamsOnSubjectsModel> getAllExamsOnSubjects(
       {required String subjId}) async {
-    String? token = await SecureStorageService().readSecureData(kUserToken);
+  
     var response = await apiManager.getData(
-        endPoint: 'exams?subject=$subjId', token: token!);
+        endPoint: 'exams?subject=$subjId');
     log('in ExamRemoteDataSourceImpl ${response.data}');
     AllExamsOnSubjectsModel allExamsOnSubjectsModel =
         AllExamsOnSubjectsModel.fromJson(response.data);

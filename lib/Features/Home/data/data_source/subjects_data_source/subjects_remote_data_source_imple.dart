@@ -14,9 +14,8 @@ class SubjectsRemoteDataSourceImple implements SubjectsRemoteDataSource {
       {required this.apiManager});
   @override
   Future<SubjectsModel> getAllSubjects() async {
-    String? token = await secureStorageService.readSecureData(kUserToken);
     var response =
-        await apiManager.getData(endPoint: kAllSubjectsEndPoint, token: token!);
+        await apiManager.getData(endPoint: kAllSubjectsEndPoint, );
     // log("in SubjectsRemoteDataSourceImple ${response.data}");
     SubjectsModel subjectsModel = SubjectsModel.fromJson(response.data);
     return subjectsModel;
