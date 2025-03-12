@@ -1,4 +1,4 @@
-import 'package:online_exam/Features/Home/data/models/get_all_questions_on_exam/questions_model.dart';
+import 'package:online_exam/Features/Home/data/models/all_questions_on_exam/questions_model.dart';
 
 class AllQuestionsOnExamModel {
   final List<QuestionModel> questions;
