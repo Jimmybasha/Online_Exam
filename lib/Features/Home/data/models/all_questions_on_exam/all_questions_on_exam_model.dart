@@ -10,9 +10,11 @@ class AllQuestionsOnExamModel {
   factory AllQuestionsOnExamModel.fromJson(Map<String, dynamic> json) {
     return AllQuestionsOnExamModel(
       questions: List<QuestionModel>.from(
+      
         json['questions'].map((x) => QuestionModel.fromJson(x)),
       ),
     );
+    
   }
 
   Map<String, dynamic> toJson() {
