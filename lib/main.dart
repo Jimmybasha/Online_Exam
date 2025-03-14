@@ -14,6 +14,9 @@ import 'package:online_exam/Features/Auth/domain/UseCase/ForgetPasswordUseCase.d
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordViewModel.dart';
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 
+import 'Core/Constants/Constants.dart';
+import 'Core/utils/Services/secure_storage.dart';
+
 
 
 void main() async {
@@ -36,10 +39,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var screenHight = MediaQuery.of(context).size.height;
+
+    var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return ScreenUtilInit(
-        designSize: Size(screenWidth, screenHight),
+        designSize: Size(screenWidth, screenHeight),
         splitScreenMode: true,
         builder: (context, child) {
           ScreenUtil.init(context);
