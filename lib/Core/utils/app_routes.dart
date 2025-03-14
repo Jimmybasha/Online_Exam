@@ -12,6 +12,7 @@ import 'package:online_exam/Features/Home/presentation/view/widgets/exam_details
 import '../../Features/Auth/Sign_Up/presentation/View/widgets/SignUpPage.dart';
 import '../../Features/Auth/presentation/view/ResetPassword.dart';
 import '../../Features/Auth/data/Models/user_model/user_model.dart';
+import '../../Features/Home/presentation/view/ScorePage.dart';
 import '../../Features/Home/presentation/view/questions_screen.dart';
 import '../../Features/Profile/Profile/presentation/View/widgets/ProfilePage.dart';
 import '../../Features/Profile/Profile/presentation/View/widgets/ResetPasswordPage.dart';
@@ -42,7 +43,7 @@ class AppRoutes {
       case HomeScreen.id:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case MainScreen.id:
-        return MaterialPageRoute(builder: (_) => const MainScreen());
+        return MaterialPageRoute(builder: (_) => const MainScreen(),settings: settings);
          case ResetPasswordScreen.id:
         return MaterialPageRoute(builder: (_) => const ResetPasswordScreen(),settings: settings);
        
@@ -55,6 +56,9 @@ class AppRoutes {
       case ExamDetailsView.id:
         return MaterialPageRoute(
             builder: (_) => ExamDetailsView(), settings: settings);
+      case ScorePage.id:
+        return MaterialPageRoute(
+            builder: (_) => ScorePage(), settings: settings);
       default:
         return _errorRoute();
     }
