@@ -15,8 +15,10 @@ import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPa
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
 
+import 'Core/Constants/Constants.dart';
+import 'Core/utils/Services/secure_storage.dart';
 
-import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
+
 
 void main() async {
   configureDependencies();
@@ -38,10 +40,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var screenHight = MediaQuery.of(context).size.height;
+
+    var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return ScreenUtilInit(
-        designSize: Size(screenWidth, screenHight),
+        designSize: Size(screenWidth, screenHeight),
         splitScreenMode: true,
         builder: (context, child) {
           ScreenUtil.init(context);

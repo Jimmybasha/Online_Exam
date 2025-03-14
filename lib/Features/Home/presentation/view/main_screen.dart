@@ -28,7 +28,10 @@ class _MainScreenState extends State<MainScreen> {
 
     final args = ModalRoute.of(context)?.settings.arguments as UserModel;
     userModel=args;
+
+    print("$userModel");
   }
+
 
   @override
   Widget build(BuildContext context) {

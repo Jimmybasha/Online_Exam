@@ -22,9 +22,12 @@ class ApiManager {
     }
   }
 
-  Future<Response> getData({required String endPoint})async{
+  Future<Response> getData({required String endPoint,Map<String,dynamic>? params})async{
     await setToken();
-    var response = dio.get(endPoint);
+    var response = dio.get(
+        endPoint,
+      queryParameters: params
+    );
     return response;
   }
   Future<Response> postData({required String endPoint,required Map<String, dynamic> data})async{

@@ -7,7 +7,7 @@ import 'package:online_exam/Core/widgets/custom_app_bar.dart';
 import 'package:online_exam/Core/widgets/custom_error_widget.dart';
 import 'package:online_exam/Features/Home/data/models/subjects_model/subjects_model/subject.dart';
 import 'package:online_exam/Features/Home/domain/use_cases/get_all_exams_on_subjects_use_case.dart';
-import 'package:online_exam/Features/Home/presentation/view/widgets/all_exmas_by_subject_screen_body.dart';
+import 'package:online_exam/Features/Home/presentation/view/widgets/all_exams_by_subject_screen_body.dart';
 
 import '../view_model/cubit/get_all_exmas_on_subjects_cubit/cubit/get_all_exams_on_subject_cubit.dart';
 

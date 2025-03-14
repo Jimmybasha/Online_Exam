@@ -79,8 +79,10 @@ class ExamDetailsViewBody extends StatelessWidget {
           ),
           CustomButton(
               onPressed: () {
-                Navigator.pushNamed(context, QuestionsScreen.id,
-                    arguments: exam);
+                Navigator.pushNamed(
+                    context, QuestionsScreen.id,
+                    arguments: exam
+                );
               },
               child: Text(
                 'Start ',
