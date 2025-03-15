@@ -126,7 +126,7 @@ class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
                               // Check if an answer is selected for the current question
                               if (selectedAnswers.containsKey(questionNumber)) {
                                 if (pageNumber == state.questionExamModel.questions.length) {
-                                  Navigator.pushNamed(context, ScorePage.id);
+                                  Navigator.pushNamed(context, ScoreScreen.id);
                                 } else {
                                   setState(() {
                                     pageNumber = pageNumber + 1;

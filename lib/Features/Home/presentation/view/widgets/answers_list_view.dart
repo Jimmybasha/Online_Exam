@@ -1,9 +1,9 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:online_exam/Core/Constants/app_colors.dart';
-// import 'package:online_exam/Core/Constants/app_text_style.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam/Core/Constants/app_colors.dart';
+import 'package:online_exam/Core/Constants/app_text_style.dart';
 
-// import '../../../data/models/all_questions_on_exam/answer_model.dart';
+import '../../../data/models/all_questions_on_exam/answer_model.dart';
 
 class AnswersListView extends StatefulWidget {
   final List<AnswerModel>? answers;
@@ -17,9 +17,9 @@ class AnswersListView extends StatefulWidget {
     this.selectedAnswerIndex,
   });
 
-//   @override
-//   State<AnswersListView> createState() => _AnswersListViewState();
-// }
+  @override
+  State<AnswersListView> createState() => _AnswersListViewState();
+}
 
 class _AnswersListViewState extends State<AnswersListView> {
   int? selectedAnswer;
