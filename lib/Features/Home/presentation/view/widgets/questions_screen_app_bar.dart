@@ -30,7 +30,7 @@ class QuestionsScreenAppBar extends StatelessWidget {
                     },
                     icon: Icon(Icons.arrow_back_ios_new)),
                 Text(
-                  examModel?.title??"Exam",
+                  examModel?.title ?? "Exam",
                   style: AppTextStyles.instance.textStyle20
                       .copyWith(fontWeight: FontWeight.w500),
                 )
@@ -45,8 +45,7 @@ class QuestionsScreenAppBar extends StatelessWidget {
                   style: AppTextStyles.instance.textStyle20.copyWith(
                       color: examDuration! > 15.00
                           ? AppColors.kNonCriticalTime
-                          : Colors.red
-                  ),
+                          : Colors.red),
                 )
               ],
             )

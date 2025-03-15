@@ -8,11 +8,10 @@ import '../utils/Services/secure_storage.dart';
 class ApiManager {
   final Dio dio = Dio(BaseOptions(
     baseUrl: BASE_URL,
-      headers: {
+    headers: {
       'Content-Type': 'application/json',
-      },
-    )
-  );
+    },
+  ));
 
   /// Method to set token dynamically
   Future<void> setToken() async {
@@ -22,17 +21,17 @@ class ApiManager {
     }
   }
 
-  Future<Response> getData({required String endPoint,Map<String,dynamic>? params})async{
+  Future<Response> getData(
+      {required String endPoint, Map<String, dynamic>? params}) async {
     await setToken();
-    var response = dio.get(
-        endPoint,
-      queryParameters: params
-    );
+    var response = dio.get(endPoint, queryParameters: params);
     return response;
   }
-  Future<Response> postData({required String endPoint,required Map<String, dynamic> data})async{
+
+  Future<Response> postData(
+      {required String endPoint, required Map<String, dynamic> data}) async {
     await setToken();
-    var response = dio.post(endPoint,data: data );
+    var response = dio.post(endPoint, data: data);
     return response;
   }
 

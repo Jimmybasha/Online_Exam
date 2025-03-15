@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +9,6 @@ import 'package:online_exam/Features/Home/presentation/view/widgets/ResetPasswor
 import '../../../../Core/widgets/custom_app_bar.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
-
   static const String id = "ResetPasswordScreen";
   const ResetPasswordScreen({super.key});
 
@@ -19,14 +17,14 @@ class ResetPasswordScreen extends StatefulWidget {
 }
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
-
   String? email;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
     final args = ModalRoute.of(context)?.settings.arguments;
-    print("📥 Received arguments in didChangeDependencies in the ResetPassword Screen: $args");
+    print(
+        "📥 Received arguments in didChangeDependencies in the ResetPassword Screen: $args");
 
     if (args is String) {
       final receivedEmail = args;
@@ -43,8 +41,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
- return BlocProvider(
-      create: (context) =>ResetPasswordViewModel(getIt.get<ResetPasswordUseCase>()) ,
+    return BlocProvider(
+      create: (context) =>
+          ResetPasswordViewModel(getIt.get<ResetPasswordUseCase>()),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(100.h),

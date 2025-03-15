@@ -44,16 +44,24 @@ import '../../Features/Home/data/data_source/questions_data_source/questions_rem
     as _i794;
 import '../../Features/Home/data/data_source/questions_data_source/questions_remote_data_source_impl.dart'
     as _i375;
+import '../../Features/Home/data/data_source/score_data_source/check_answers_data_source_impl.dart'
+    as _i47;
+import '../../Features/Home/data/data_source/score_data_source/check_answers_remote_data_source.dart'
+    as _i553;
 import '../../Features/Home/data/data_source/subjects_data_source/subjects_remote_data_source.dart'
     as _i368;
 import '../../Features/Home/data/data_source/subjects_data_source/subjects_remote_data_source_imple.dart'
     as _i1036;
+import '../../Features/Home/data/repos/check_answers_repo_impl.dart' as _i274;
 import '../../Features/Home/data/repos/exams_repo_impl.dart' as _i310;
 import '../../Features/Home/data/repos/questions_repo_impl.dart' as _i354;
 import '../../Features/Home/data/repos/subject_repo_impl.dart' as _i1024;
+import '../../Features/Home/domain/repos/check_answers_repo.dart' as _i68;
 import '../../Features/Home/domain/repos/exams_repo.dart' as _i714;
 import '../../Features/Home/domain/repos/questions_repo.dart' as _i602;
 import '../../Features/Home/domain/repos/subjects_repo.dart' as _i1034;
+import '../../Features/Home/domain/use_cases/check_answers_use_case.dart'
+    as _i238;
 import '../../Features/Home/domain/use_cases/get_all_exams_on_subjects_use_case.dart'
     as _i733;
 import '../../Features/Home/domain/use_cases/get_all_questions_on_exam_use_case.dart'
@@ -112,6 +120,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i438.ResetPasswordRemoteDataSourceImpl(gh<_i211.ApiManager>()));
     gh.factory<_i789.ExamRemoteDataSource>(() =>
         _i1035.ExamRemoteDataSourceImpl(apiManager: gh<_i211.ApiManager>()));
+    gh.factory<_i553.CheckAnswersDataSource>(() =>
+        _i47.CheckAnswersDataSourceImpl(apiManager: gh<_i211.ApiManager>()));
     gh.factory<_i794.QuestionsRemoteDataSource>(() =>
         _i375.QuestionsRemoteDataSourceImpl(
             apiManager: gh<_i211.ApiManager>()));
@@ -139,6 +149,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i737.SignUpRepoImpl(gh<_i235.ISignUpDataSource>()));
     gh.factory<_i259.GetAllSubjectsUseCase>(() =>
         _i259.GetAllSubjectsUseCase(subjectsRepo: gh<_i1034.SubjectsRepo>()));
+    gh.factory<_i68.CheckAnswersRepo>(() => _i274.CheckAnswersRepoImpl(
+        checkAnswersDataSource: gh<_i553.CheckAnswersDataSource>()));
+    gh.factory<_i238.CheckAnswersUseCase>(() => _i238.CheckAnswersUseCase(
+        checkAnswersRepo: gh<_i68.CheckAnswersRepo>()));
     gh.factory<_i224.SignUpUseCase>(
         () => _i224.SignUpUseCase(gh<_i462.SignUpRepo>()));
     gh.factory<_i138.SignUpViewModel>(

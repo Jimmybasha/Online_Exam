@@ -8,6 +8,7 @@ const String SIGNUP_MESSAGE = "Sign Up";
 const String SIGNUP_SUCCESS_MESSAGE = "Sign Up Successfully";
 const String kForgetPasswordEndPoint = "auth/forgotPassword";
 const String kAllSubjectsEndPoint = 'subjects';
+const String kCheckAnswersEndPoint = 'questions/check';
 const String kVerifyCodeEndPoint = 'auth/verifyResetCode';
 const String kResetPasswordEndPoint = "auth/resetPassword";
 const String kResultInActive = "assets/images/result_inactive.png";
@@ -18,6 +19,3 @@ const String kProfileInActive = 'assets/images/profile_inactive.png';
 const String kProfileActive = 'assets/images/profile_active.png';
 const String kUpdateProfileEndPoint = "auth/editProfile";
 const String kChangePasswordEndPoint = "auth/changePassword";
-
-
-

@@ -11,21 +11,18 @@ import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ResetPas
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
 
 class ResetPasswordScreenBody extends StatefulWidget {
-   final String? email;
-  const ResetPasswordScreenBody({
-    super.key,
-    required this.email
-  });
+  final String? email;
+  const ResetPasswordScreenBody({super.key, required this.email});
 
   @override
-  State<ResetPasswordScreenBody> createState() => _ResetPasswordScreenBodyState();
+  State<ResetPasswordScreenBody> createState() =>
+      _ResetPasswordScreenBodyState();
 }
 
 class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
   late TextEditingController newPasswordController;
   late TextEditingController confirmPasswordController;
-  late GlobalKey<FormState> formKey ;
-
+  late GlobalKey<FormState> formKey;
 
   @override
   void initState() {
@@ -44,69 +41,71 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
     confirmPasswordController.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Form(
-        key:formKey ,
-        child: BlocConsumer<ResetPasswordViewModel,ResetPasswordState>(
+        key: formKey,
+        child: BlocConsumer<ResetPasswordViewModel, ResetPasswordState>(
           listener: (context, state) {
-            if(state is ResetPasswordFailureState){
+            if (state is ResetPasswordFailureState) {
               showErrorSnackBar(context, state.err);
             }
-            if(state is ResetPasswordSuccessState){
+            if (state is ResetPasswordSuccessState) {
               showSnackBar(context, state.data['message']);
               Navigator.pushNamed(context, LoginScreen.id);
             }
           },
-          builder:(context, state) =>  Column(
+          builder: (context, state) => Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Reset Password",style: AppTextStyles.instance.textStyle20,),
+              Text(
+                "Reset Password",
+                style: AppTextStyles.instance.textStyle20,
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 26, vertical: 38).r,
-                child: Text("Password must not be empty and must contain 6 characters with upper case letter and one number at least ",
+                child: Text(
+                  "Password must not be empty and must contain 6 characters with upper case letter and one number at least ",
                   textAlign: TextAlign.center,
                   style: AppTextStyles.instance.textStyle16,
                 ),
               ),
               CustomTextField(
-                  hint: "Enter your password",
-                  label: "New password",
-                  controller: newPasswordController,
-                validator: (value) => Validator.isEmptyValidation(value,"Password" ),
+                hint: "Enter your password",
+                label: "New password",
+                controller: newPasswordController,
+                validator: (value) =>
+                    Validator.isEmptyValidation(value, "Password"),
                 isPassword: true,
               ),
               CustomTextField(
                 hint: "Confirm your password",
                 label: "Confirm  password",
                 controller: confirmPasswordController,
-                validator: (value) => Validator.confirmPasswordValidation(value, newPasswordController.text.trim(), confirmPasswordController.text.trim()),
+                validator: (value) => Validator.confirmPasswordValidation(
+                    value,
+                    newPasswordController.text.trim(),
+                    confirmPasswordController.text.trim()),
                 isPassword: true,
               ),
-          
-          
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16).r,
                 child: CustomButton(
                     onPressed: () {
-                      if(formKey.currentState!.validate()){
-                      context.read<ResetPasswordViewModel>().resetPassword(
-                          newPasswordController.text.trim(),
-                        widget.email??"Email not found"
-                      );
+                      if (formKey.currentState!.validate()) {
+                        context.read<ResetPasswordViewModel>().resetPassword(
+                            newPasswordController.text.trim(),
+                            widget.email ?? "Email not found");
                       }
-                      print("Email in the ResetPasswordScreenBody ${widget.email}");
-                },
-                    child:
-                        state is ResetPasswordLoadingState?
-                    CircularProgressIndicator()
-                            :
-                    Text("Continue",
-                      style:AppTextStyles.instance.textStyle18.copyWith(color: Colors.white)
-                      )
-                ),
+                      print(
+                          "Email in the ResetPasswordScreenBody ${widget.email}");
+                    },
+                    child: state is ResetPasswordLoadingState
+                        ? CircularProgressIndicator()
+                        : Text("Continue",
+                            style: AppTextStyles.instance.textStyle18
+                                .copyWith(color: Colors.white))),
               ),
             ],
           ),
