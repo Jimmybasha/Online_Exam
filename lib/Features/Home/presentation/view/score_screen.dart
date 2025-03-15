@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_exam/Features/Home/data/models/all_exmas_on_subjects_model/get_all_exams_on_subjects_model/exam.dart';
+import 'package:online_exam/Features/Home/data/models/all_questions_on_exam/exam_model.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/score_screen_bloc_builder_.dart';
 
 import '../../../../Core/Constants/Constants.dart';
@@ -15,10 +19,15 @@ class ScoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> arguments = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final Map<String, dynamic> arg =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final ExamModel examModel = arg["examModel"] as ExamModel;
+
+    final Map<String, dynamic> arguments =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final List<Map<String, String>> answerList = arguments["answerList"];
 
-    print("the answerList from the scoreScreen is $answerList");
+    log("the answerList from the scoreScreen is $answerList");
 
     return BlocProvider(
       create: (context) => CheckAnswersCubit(getIt.get<CheckAnswersUseCase>())
@@ -30,7 +39,9 @@ class ScoreScreen extends StatelessWidget {
               title: 'Exam score',
               leadingVisibility: true,
             )),
-        body: ScoreScreenBlocBuilder(),
+        body: ScoreScreenBlocBuilder(
+          examModel: examModel,
+        ),
       ),
     );
   }

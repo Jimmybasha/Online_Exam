@@ -1,12 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
-import '../../../Auth/data/Models/user_model/user_model.dart';
+import 'package:online_exam/Features/Home/presentation/view/ResultScreen.dart';
 import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
-
 import 'package:online_exam/Features/Home/presentation/view/widgets/active_icon.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/inactive_icon.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View/widgets/ProfilePage.dart';
+
+import '../../../Auth/data/Models/user_model/user_model.dart';
 
 class MainScreen extends StatefulWidget {
   static const String id = 'MainScreen';
@@ -21,21 +24,26 @@ class _MainScreenState extends State<MainScreen> {
   UserModel? userModel; // Change to nullable
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  @override
+void didChangeDependencies() {
+  super.didChangeDependencies();
 
-    final args = ModalRoute.of(context)?.settings.arguments as UserModel;
+  final args = ModalRoute.of(context)?.settings.arguments;
+  
+  if (args is UserModel) {
     userModel = args;
-
-    print("$userModel");
+  } else {
+    log("Error: Expected UserModel but received $args");
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = <Widget>[
       HomeScreen(),
-      Placeholder(),
-      ProfilePage(user: userModel!.user),
+      ResultScreen(),
+       userModel != null ? ProfilePage(user: userModel!.user) : Center(child: CircularProgressIndicator()),
     ];
     List<BottomNavigationBarItem> bottomBarItems = [
       BottomNavigationBarItem(

@@ -102,7 +102,7 @@ class _ResetPasswordScreenBodyState extends State<ResetPasswordScreenBody> {
                           "Email in the ResetPasswordScreenBody ${widget.email}");
                     },
                     child: state is ResetPasswordLoadingState
-                        ? CircularProgressIndicator()
+                        ? Center(child: CircularProgressIndicator())
                         : Text("Continue",
                             style: AppTextStyles.instance.textStyle18
                                 .copyWith(color: Colors.white))),

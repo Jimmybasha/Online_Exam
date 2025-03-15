@@ -11,8 +11,6 @@ import 'package:online_exam/Features/Home/presentation/view/widgets/questions_sc
 import 'package:online_exam/Features/Home/presentation/view/widgets/questions_screen_body.dart';
 
 import '../../data/models/all_exmas_on_subjects_model/get_all_exams_on_subjects_model/exam.dart';
-import '../../domain/use_cases/check_answers_use_case.dart';
-import '../view_model/cubit/check_answers/check_answers_cubit.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
