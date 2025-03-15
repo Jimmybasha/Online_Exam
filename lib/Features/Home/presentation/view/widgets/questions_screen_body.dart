@@ -26,10 +26,32 @@ class QuestionsScreenBody extends StatefulWidget {
 
 class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
   int pageNumber = 1;
-  bool isSelected = false ;
+
+  // Map to store selected answers for each question
+  Map<int, int> selectedAnswers = {};
+
+  //value
+  void _handleAnswerSelected(int questionIndex, int answerIndex) {
+    setState(() {
+      selectedAnswers[questionIndex] = answerIndex;
+    });
+    //
+    print("A${(selectedAnswers[questionIndex])! + 1}");
+  }
+
+  void _showNoAnswerSelectedWarning() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Please select an answer before proceeding'),
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    int questionNumber = pageNumber-1;
+    int questionNumber = pageNumber - 1;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -53,7 +75,7 @@ class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
           },
           builder: (context, state) {
             if(state is GetAllQuestionsOnExamFailureState){
-             return  CustomErrorWidget(
+              return CustomErrorWidget(
                 title: state.error,
                 onPressed:() {
                   Navigator.of(context).pop();
@@ -61,73 +83,68 @@ class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
               );
             }
             if(state is GetAllQuestionsOnExamSuccessState){
-              return  Column(
+              return Column(
                   children:[
                     Padding(
                       padding: EdgeInsets.only(left: 16.w),
                       child: Text(
-                          state.questionExamModel.questions[questionNumber].question??"No Question Found",
+                        state.questionExamModel.questions[questionNumber].question ?? "No Question Found",
                         style: AppTextStyles.instance.textStyle18
                             .copyWith(fontWeight: FontWeight.w500),
                       ),
                     ),
                     SizedBox(height: 24.h),
                     AnswersListView(
-                      answers: state.questionExamModel
-                        .questions[questionNumber]
-                        .answers,
+                      answers: state.questionExamModel.questions[questionNumber].answers,
+                      selectedAnswerIndex: selectedAnswers[questionNumber],
+                      onAnswerSelected: (index) {
+                        _handleAnswerSelected(questionNumber, index);
+                      },
                     ),
                     SizedBox(height: 25.h),
                     Row(
-                      mainAxisAlignment:   pageNumber==1?MainAxisAlignment.center:MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: pageNumber == 1 ? MainAxisAlignment.center : MainAxisAlignment.spaceAround,
                       children: [
-                        pageNumber==1?SizedBox.shrink():
+                        pageNumber == 1 ? SizedBox.shrink() :
                         QuestionsScreenBodyActionButton(
                             backgroundColor: Colors.white,
                             text: 'Back',
                             onPressed: () {
-                                   pageNumber=pageNumber-1;
-                                 setState(() {
-                                 });
+                              setState(() {
+                                pageNumber = pageNumber - 1;
+                              });
                             },
-                            textColor: AppColors.kPrimaryColor),
+                            textColor: AppColors.kPrimaryColor
+                        ),
                         QuestionsScreenBodyActionButton(
                             backgroundColor: AppColors.kPrimaryColor,
-                            text: pageNumber==state.questionExamModel.questions.length?
-                            "Check Score"
-                            :"Next",
+                            text: pageNumber == state.questionExamModel.questions.length ?
+                            "Check Score" : "Next",
                             onPressed: () {
-                              if(isSelected==false){
-
-                                CustomErrorWidget(
-                                  title: "You must choose an answer",
-                                );
-
-                                if(pageNumber==state.questionExamModel.questions.length){
-                                  pageNumber=0;
+                              // Check if an answer is selected for the current question
+                              if (selectedAnswers.containsKey(questionNumber)) {
+                                if (pageNumber == state.questionExamModel.questions.length) {
                                   Navigator.pushNamed(context, ScorePage.id);
+                                } else {
+                                  setState(() {
+                                    pageNumber = pageNumber + 1;
+                                  });
                                 }
-                                print(pageNumber);
-                                pageNumber=pageNumber+1;
-                                setState(() {
-                                });
+                              } else {
+                                _showNoAnswerSelectedWarning();
                               }
                             },
-                            textColor: Colors.white),
+                            textColor: Colors.white
+                        ),
                       ],
                     ),
                   ]
               );
             }
-
             return Center(child: CircularProgressIndicator());
-
           },
         ),
-
       ],
     );
   }
 }
-
-
