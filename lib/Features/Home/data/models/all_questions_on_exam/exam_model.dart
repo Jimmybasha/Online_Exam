@@ -25,7 +25,8 @@ class ExamModel {
       subject: json['subject'] as String?,
       numberOfQuestions: json['numberOfQuestions'],
       active: json['active'],
-      createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
+      createdAt:
+          json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
     );
   }
 

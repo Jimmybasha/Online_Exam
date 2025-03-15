@@ -15,7 +15,8 @@ class ResetPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UpdatePasswordPageViewModel(getIt.get<UpdatePasswordUseCase>()),
+      create: (context) =>
+          UpdatePasswordPageViewModel(getIt.get<UpdatePasswordUseCase>()),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(100.h),

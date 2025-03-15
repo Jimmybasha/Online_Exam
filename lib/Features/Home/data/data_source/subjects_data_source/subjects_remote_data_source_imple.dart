@@ -14,8 +14,9 @@ class SubjectsRemoteDataSourceImple implements SubjectsRemoteDataSource {
       {required this.apiManager});
   @override
   Future<SubjectsModel> getAllSubjects() async {
-    var response =
-        await apiManager.getData(endPoint: kAllSubjectsEndPoint, );
+    var response = await apiManager.getData(
+      endPoint: kAllSubjectsEndPoint,
+    );
     // log("in SubjectsRemoteDataSourceImple ${response.data}");
     SubjectsModel subjectsModel = SubjectsModel.fromJson(response.data);
     return subjectsModel;

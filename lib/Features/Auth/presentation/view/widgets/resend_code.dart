@@ -7,16 +7,15 @@ import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPa
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordViewModel.dart';
 
 class ResendCode extends StatelessWidget {
-
   final String email;
-  const ResendCode({super.key , required this.email});
+  const ResendCode({super.key, required this.email});
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ForgetPasswordViewModel,ForgetPasswordState>(
-      listener:(context, state) {
-        if(state is ForgetPasswordSuccessState){
+    return BlocListener<ForgetPasswordViewModel, ForgetPasswordState>(
+      listener: (context, state) {
+        if (state is ForgetPasswordSuccessState) {
           showSnackBar(context, state.res['info']);
-        }else if(state is ForgetPasswordFailureState){
+        } else if (state is ForgetPasswordFailureState) {
           showErrorSnackBar(context, state.err);
         }
       },
@@ -25,12 +24,11 @@ class ResendCode extends StatelessWidget {
         children: [
           Text('Didn\'t receive code?',
               style: AppTextStyles.instance.textStyle16),
-
           GestureDetector(
             onTap: () {
               print("email from the ResendCode Widget $email");
               context.read<ForgetPasswordViewModel>().forgetPassword(email);
-              },
+            },
             child: Text(" Resend",
                 style: TextStyle(
                   color: AppColors.kPrimaryColor,

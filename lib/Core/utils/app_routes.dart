@@ -11,6 +11,7 @@ import 'package:online_exam/Features/Home/presentation/view/widgets/exam_details
 import '../../Features/Auth/Sign_Up/presentation/View/widgets/SignUpPage.dart';
 import '../../Features/Auth/presentation/view/ResetPassword.dart';
 import '../../Features/Auth/data/Models/user_model/user_model.dart';
+import '../../Features/Home/presentation/view/ResultScreen.dart';
 import '../../Features/Home/presentation/view/score_screen.dart';
 import '../../Features/Home/presentation/view/questions_screen.dart';
 import '../../Features/Profile/Profile/presentation/View/widgets/ProfilePage.dart';
@@ -50,7 +51,9 @@ class AppRoutes {
       case ResetPasswordScreen.id:
         return MaterialPageRoute(
             builder: (_) => const ResetPasswordScreen(), settings: settings);
-
+      case ResultScreen.id:
+        return MaterialPageRoute(
+            builder: (_) => const ResultScreen(), settings: settings);
       case AllExamsBySubjectScreen.id:
         return MaterialPageRoute(
             builder: (_) => AllExamsBySubjectScreen(), settings: settings);

@@ -9,17 +9,18 @@ import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/EmailVer
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/EmailVerificationCubit/EmailVerificationState.dart';
 
 class EmailVerificationScreenBody extends StatefulWidget {
-
   final String email;
-   const EmailVerificationScreenBody({super.key,required this.email});
+  const EmailVerificationScreenBody({super.key, required this.email});
 
   @override
-  State<EmailVerificationScreenBody> createState() => _EmailVerificationScreenBodyState();
+  State<EmailVerificationScreenBody> createState() =>
+      _EmailVerificationScreenBodyState();
 }
 
-class _EmailVerificationScreenBodyState extends State<EmailVerificationScreenBody> {
-
-  final List<TextEditingController> controllers = List.generate(6, (_) => TextEditingController());
+class _EmailVerificationScreenBodyState
+    extends State<EmailVerificationScreenBody> {
+  final List<TextEditingController> controllers =
+      List.generate(6, (_) => TextEditingController());
   final List<FocusNode> focusNodes = List.generate(6, (_) => FocusNode());
 
   String get otpCode => controllers.map((c) => c.text).join();
@@ -39,7 +40,8 @@ class _EmailVerificationScreenBodyState extends State<EmailVerificationScreenBod
 
           //make the ResetPasswordScreen able to take settings
 
-          Navigator.pushNamed(context, ResetPasswordScreen.id,arguments: widget.email);
+          Navigator.pushNamed(context, ResetPasswordScreen.id,
+              arguments: widget.email);
           print("Email from the EmailVerificationScreenBody ${widget.email}");
         } else if (state is EmailVerificationFailureState) {
           showErrorSnackBar(context, state.error);
@@ -57,7 +59,8 @@ class _EmailVerificationScreenBodyState extends State<EmailVerificationScreenBod
                 children: [
                   Text(
                     'Email verification',
-                    style: AppTextStyles.instance.textStyle18.copyWith(fontWeight: FontWeight.w500),
+                    style: AppTextStyles.instance.textStyle18
+                        .copyWith(fontWeight: FontWeight.w500),
                   ),
                   SizedBox(height: 16.h),
                   Text(
@@ -75,14 +78,15 @@ class _EmailVerificationScreenBodyState extends State<EmailVerificationScreenBod
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: List.generate(
                   6,
-                      (index) => SizedBox(
+                  (index) => SizedBox(
                     width: 45.w,
                     height: 70.h,
                     child: TextField(
                       controller: controllers[index],
                       focusNode: focusNodes[index],
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 22.sp, fontWeight: FontWeight.bold),
                       maxLength: 1,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
@@ -91,13 +95,16 @@ class _EmailVerificationScreenBodyState extends State<EmailVerificationScreenBod
                         fillColor: Color(0xffDFE7F7),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.r),
-                          borderSide: BorderSide(color: Colors.blueAccent, width: 1.5),
+                          borderSide:
+                              BorderSide(color: Colors.blueAccent, width: 1.5),
                         ),
                       ),
                       onChanged: (value) {
-                        print("from the EmailVerificationScreenBody ${widget.email}");
-                        return EmailVerificationViewModel.onOtpChange(value,index,context,otpCode,focusNodes);
-                      } ,
+                        print(
+                            "from the EmailVerificationScreenBody ${widget.email}");
+                        return EmailVerificationViewModel.onOtpChange(
+                            value, index, context, otpCode, focusNodes);
+                      },
                     ),
                   ),
                 ),
@@ -109,7 +116,7 @@ class _EmailVerificationScreenBodyState extends State<EmailVerificationScreenBod
                 child: Center(child: CircularProgressIndicator()),
               ),
             SizedBox(height: 24.h),
-             ResendCode(
+            ResendCode(
               email: widget.email,
             ),
           ],

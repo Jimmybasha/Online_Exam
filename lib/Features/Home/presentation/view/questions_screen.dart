@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -12,6 +11,8 @@ import 'package:online_exam/Features/Home/presentation/view/widgets/questions_sc
 import 'package:online_exam/Features/Home/presentation/view/widgets/questions_screen_body.dart';
 
 import '../../data/models/all_exmas_on_subjects_model/get_all_exams_on_subjects_model/exam.dart';
+import '../../domain/use_cases/check_answers_use_case.dart';
+import '../view_model/cubit/check_answers/check_answers_cubit.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -22,7 +23,6 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
-
   Exam? examModel;
   int? examDuration;
 
@@ -45,31 +45,33 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     Timer.periodic(Duration(minutes: 1), (timer) {
       if (examDuration! > 0) {
         setState(() {
-          examDuration = examDuration! -1;
+          examDuration = examDuration! - 1;
         });
       } else {
         timer.cancel();
+        super.dispose();
       }
     });
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-      return BlocProvider(
-      create: (context) =>GetAllQuestionsOnExamViewModelCubit(
-          getIt.get<GetAllQuestionsOnExamUseCase>(),
-
-      )..getAllQuestions(examId:examModel?.id??"No id found") ,
+    return BlocProvider(
+     create: (context) => GetAllQuestionsOnExamViewModelCubit(
+            getIt.get<GetAllQuestionsOnExamUseCase>(),
+          )..getAllQuestions(examId: examModel?.id ?? "No id found"),
+      
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(kAppBarHight.h),
-          child: QuestionsScreenAppBar(examModel: examModel, examDuration: examDuration),
+          child: QuestionsScreenAppBar(
+              examModel: examModel, examDuration: examDuration),
         ),
-        body: QuestionsScreenBody(examModel: examModel!,),
+        body: QuestionsScreenBody(
+          examModel: examModel!,
+        ),
       ),
     );
   }
 }
-

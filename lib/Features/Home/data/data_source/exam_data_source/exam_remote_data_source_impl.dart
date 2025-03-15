@@ -14,9 +14,7 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
   @override
   Future<AllExamsOnSubjectsModel> getAllExamsOnSubjects(
       {required String subjId}) async {
-  
-    var response = await apiManager.getData(
-        endPoint: 'exams?subject=$subjId');
+    var response = await apiManager.getData(endPoint: 'exams?subject=$subjId');
     log('in ExamRemoteDataSourceImpl ${response.data}');
     AllExamsOnSubjectsModel allExamsOnSubjectsModel =
         AllExamsOnSubjectsModel.fromJson(response.data);

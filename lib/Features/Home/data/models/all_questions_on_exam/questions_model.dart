@@ -6,7 +6,7 @@ class QuestionModel {
   final String? question;
   final String? type;
   final String? correct;
- 
+
   final ExamModel? exam;
   final DateTime? createdAt;
   final List<AnswerModel>? answers;
@@ -16,7 +16,6 @@ class QuestionModel {
     this.question,
     this.type,
     this.correct,
-   
     this.exam,
     this.createdAt,
     this.answers,
@@ -25,12 +24,12 @@ class QuestionModel {
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
     return QuestionModel(
       id: json['_id'] as String?,
-      question: json['question']  as String?,
-      type: json['type']  as String?,
-      correct: json['correct']  as String?,
-      
+      question: json['question'] as String?,
+      type: json['type'] as String?,
+      correct: json['correct'] as String?,
       exam: json['exam'] != null ? ExamModel.fromJson(json['exam']) : null,
-      createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
+      createdAt:
+          json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
       answers: json['answers'] != null
           ? List<AnswerModel>.from(
               json['answers'].map((x) => AnswerModel.fromJson(x)),
@@ -45,7 +44,6 @@ class QuestionModel {
       'question': question,
       'type': type,
       'correct': correct,
-
       'exam': exam?.toJson(),
       'createdAt': createdAt?.toIso8601String(),
       'answers': answers != null

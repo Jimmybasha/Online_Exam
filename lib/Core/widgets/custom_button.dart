@@ -25,6 +25,7 @@ class CustomButton extends StatelessWidget {
           style: ButtonStyle(
               shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
+                  side: const BorderSide(color: AppColors.kPrimaryColor),
                   borderRadius: BorderRadius.circular(35.r),
                 ),
               ),

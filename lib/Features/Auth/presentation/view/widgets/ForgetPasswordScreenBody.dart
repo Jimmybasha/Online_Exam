@@ -94,7 +94,8 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                             context, EmailVerificationScreen.id);
                       },
                     );
-                  print("🚀 Navigating to EmailVerificationScreen with email: ${emailController.text.trim()}");
+                    print(
+                        "🚀 Navigating to EmailVerificationScreen with email: ${emailController.text.trim()}");
                   }
                 },
                 builder: (context, state) {

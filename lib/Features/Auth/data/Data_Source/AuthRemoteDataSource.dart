@@ -4,12 +4,10 @@ abstract class AuthRemoteDataSource {
   Future<UserModel> loginUser(
       {required String email, required String password});
 
-  Future<Map<String,dynamic>> forgetPassword(
-      {required String email});
+  Future<Map<String, dynamic>> forgetPassword({required String email});
 
-Future<Map<String,dynamic>> verifyCode(
-      {required String resetCode});
+  Future<Map<String, dynamic>> verifyCode({required String resetCode});
 
-Future<Map<String,dynamic>> resetPassword({required String newPassword,required String email});
-
+  Future<Map<String, dynamic>> resetPassword(
+      {required String newPassword, required String email});
 }

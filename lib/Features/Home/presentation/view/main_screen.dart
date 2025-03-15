@@ -12,8 +12,6 @@ class MainScreen extends StatefulWidget {
   static const String id = 'MainScreen';
   const MainScreen({super.key});
 
-
-
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
@@ -27,19 +25,17 @@ class _MainScreenState extends State<MainScreen> {
     super.didChangeDependencies();
 
     final args = ModalRoute.of(context)?.settings.arguments as UserModel;
-    userModel=args;
+    userModel = args;
 
     print("$userModel");
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-     final List<Widget> screens = <Widget>[
+    final List<Widget> screens = <Widget>[
       HomeScreen(),
       Placeholder(),
-      ProfilePage(user:userModel!.user),
+      ProfilePage(user: userModel!.user),
     ];
     List<BottomNavigationBarItem> bottomBarItems = [
       BottomNavigationBarItem(
