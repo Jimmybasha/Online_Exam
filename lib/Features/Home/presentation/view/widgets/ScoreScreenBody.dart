@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Features/Home/data/models/all_questions_on_exam/exam_model.dart';
 import 'package:online_exam/Features/Home/data/models/check_answers_model/check_answer_model/check_answer_model.dart';
+import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
 
 import '../../../../../Core/Constants/app_text_style.dart';
 import '../../../../../Core/widgets/custom_button.dart';
@@ -68,7 +69,7 @@ class ScoreScreenBody extends StatelessWidget {
         ),
         CustomButton(
           onPressed: () {
-            Navigator.pushNamed(context, MainScreen.id);
+            Navigator.pushNamed(context, HomeScreen.id);
           },
           backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
           child: Text('Start again',

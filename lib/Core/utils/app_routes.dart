@@ -7,6 +7,7 @@ import 'package:online_exam/Features/Home/presentation/view/all_exams_by_subject
 import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
 import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/exam_details_view.dart';
+import 'package:online_exam/Features/splash/splash_screen.dart';
 
 import '../../Features/Auth/Sign_Up/presentation/View/widgets/SignUpPage.dart';
 import '../../Features/Auth/presentation/view/ResetPassword.dart';
@@ -66,6 +67,9 @@ class AppRoutes {
       case ScoreScreen.id:
         return MaterialPageRoute(
             builder: (_) => ScoreScreen(), settings: settings);
+            case SplashScreen.id:
+        return MaterialPageRoute(
+            builder: (_) => SplashScreen(), settings: settings);
       default:
         return _errorRoute();
     }

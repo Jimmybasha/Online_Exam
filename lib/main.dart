@@ -11,6 +11,7 @@ import 'package:online_exam/Core/utils/app_routes.dart';
 import 'package:online_exam/Features/Auth/domain/UseCase/ForgetPasswordUseCase.dart';
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordViewModel.dart';
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
+import 'package:online_exam/Features/splash/splash_screen.dart';
 
 void main() async {
   configureDependencies();
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
                 Locale('ar'),
               ],
               debugShowCheckedModeBanner: false,
-              initialRoute: LoginScreen.id,
+              initialRoute: SplashScreen.id,
               onGenerateRoute: AppRoutes.generateRoute,
             ),
           );
