@@ -7,13 +7,15 @@ class CustomCodeBoxTextFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 5.w), // Reduced spacing for better fit
+      padding: EdgeInsets.symmetric(
+          horizontal: 5.w), // Reduced spacing for better fit
       child: SizedBox(
         width: 70.w, // Ensuring a perfect square
         height: 70.w, // Height same as width for uniformity
         child: TextField(
           textAlign: TextAlign.center, // Centers the entered text
-          style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold), // Bigger text
+          style: TextStyle(
+              fontSize: 22.sp, fontWeight: FontWeight.bold), // Bigger text
           maxLength: 1, // Restrict input to 1 character (common for OTP fields)
           keyboardType: TextInputType.number, // Ensures numeric input
           decoration: InputDecoration(

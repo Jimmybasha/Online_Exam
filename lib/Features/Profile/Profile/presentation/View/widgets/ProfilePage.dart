@@ -8,27 +8,28 @@ import 'package:online_exam/Features/Profile/Profile/domain/use_cases/UpdateProf
 import 'package:online_exam/Features/Profile/Profile/presentation/View/widgets/ProfilePageBody.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/Cubit/ProfilePageViewModel.dart';
 
-
 class ProfilePage extends StatelessWidget {
-
-  const ProfilePage({super.key,required this.user});
-   static const String id="ProfilePageView";
-   final User? user;
+  const ProfilePage({super.key, required this.user});
+  static const String id = "ProfilePageView";
+  final User? user;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProfilePageViewModel(getIt.get<UpdateProfileDataUseCase>()),
+      create: (context) =>
+          ProfilePageViewModel(getIt.get<UpdateProfileDataUseCase>()),
       child: Scaffold(
-        appBar:PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size.fromHeight(100.h),
           child: CustomAppBar(
             title: 'Profile',
             leadingVisibility: false,
           ),
-            ),
-        body:ProfilePageBody(user: user,),
         ),
+        body: ProfilePageBody(
+          user: user,
+        ),
+      ),
     );
   }
 }

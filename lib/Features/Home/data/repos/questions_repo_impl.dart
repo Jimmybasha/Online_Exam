@@ -18,7 +18,8 @@ class QuestionsRepoImpl implements QuestionsRepo {
   Future<Either<Failure, AllQuestionsOnExamModel>> getAllQuestionsOnExam(
       {required String examId}) async {
     try {
-      var data =await questionsRemoteDataSource.getAllQuestionsOnExam(examId: examId);
+      var data =
+          await questionsRemoteDataSource.getAllQuestionsOnExam(examId: examId);
       log('in QuestionsRepoImpl $data');
       return right(data);
     } catch (e) {
@@ -29,6 +30,5 @@ class QuestionsRepoImpl implements QuestionsRepo {
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
-
   }
 }

@@ -27,25 +27,23 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     var response = await apiManager
         .postData(endPoint: kForgetPasswordEndPoint, data: {"email": email});
     return response.data;
-   
   }
 
   @override
-  Future<Map<String, dynamic>> verifyCode({required String resetCode})async {
-  var response = await  apiManager.postData(endPoint: kVerifyCodeEndPoint, data: {
-       "resetCode" : resetCode});
-        return response.data;
-
+  Future<Map<String, dynamic>> verifyCode({required String resetCode}) async {
+    var response = await apiManager.postData(
+        endPoint: kVerifyCodeEndPoint, data: {"resetCode": resetCode});
+    return response.data;
   }
 
   @override
-  Future<Map<String, dynamic>> resetPassword({required String newPassword,required String email})async {
+  Future<Map<String, dynamic>> resetPassword(
+      {required String newPassword, required String email}) async {
     // TODO: implement resetPassword
-  var resp = await   apiManager.putRequest(kResetPasswordEndPoint,{
-    "email":email,
-    "newPassword":newPassword,
-    }
-    );
-  return resp.data;
+    var resp = await apiManager.putRequest(kResetPasswordEndPoint, {
+      "email": email,
+      "newPassword": newPassword,
+    });
+    return resp.data;
   }
 }

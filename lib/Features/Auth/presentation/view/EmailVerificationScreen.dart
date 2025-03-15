@@ -11,9 +11,9 @@ class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
   static const String id = 'EmailVerificationView';
 
-
   @override
-  State<EmailVerificationScreen> createState() => _EmailVerificationScreenState();
+  State<EmailVerificationScreen> createState() =>
+      _EmailVerificationScreenState();
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
@@ -28,7 +28,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
     if (args is Map<String, dynamic>) {
       final receivedEmail = args['email'];
-      if (receivedEmail != null && receivedEmail is String && receivedEmail.isNotEmpty) {
+      if (receivedEmail != null &&
+          receivedEmail is String &&
+          receivedEmail.isNotEmpty) {
         setState(() {
           email = receivedEmail;
         });
@@ -41,16 +43,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-
-
-
-
     return BlocProvider(
-      create: (context) => EmailVerificationViewModel(getIt.get<VerifyCodeUseCase>()),
+      create: (context) =>
+          EmailVerificationViewModel(getIt.get<VerifyCodeUseCase>()),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(100.h),
@@ -59,7 +56,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             leadingVisibility: true,
           ),
         ),
-        body: EmailVerificationScreenBody(email: email??"not found",),
+        body: EmailVerificationScreenBody(
+          email: email ?? "not found",
+        ),
       ),
     );
   }

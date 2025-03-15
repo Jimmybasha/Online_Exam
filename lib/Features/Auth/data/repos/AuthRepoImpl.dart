@@ -70,12 +70,14 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, Map<String, dynamic>>> resetPassword({required String newPassword,required String email})async {
+  Future<Either<Failure, Map<String, dynamic>>> resetPassword(
+      {required String newPassword, required String email}) async {
     // TODO: implement resetPassword
-    try{
-    var data = await authRemoteDataSource.resetPassword(newPassword: newPassword,email: email);
-    return right(data);
-    }catch (e) {
+    try {
+      var data = await authRemoteDataSource.resetPassword(
+          newPassword: newPassword, email: email);
+      return right(data);
+    } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
