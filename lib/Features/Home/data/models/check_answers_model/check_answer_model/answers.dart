@@ -1,13 +1,13 @@
 class Answers {
-  Answers();
+  // Add any properties your Answer class needs
+  // For example, if it's just a map of data:
+  final Map<String, dynamic> data;
+
+  Answers({required this.data});
 
   factory Answers.fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError('Answers.fromJson($json) is not implemented');
-  }
-
-  Map<String, dynamic> toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
+    return Answers(
+      data: json,
+    );
   }
 }

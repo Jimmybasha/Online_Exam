@@ -28,6 +28,5 @@ class CorrectQuestion {
         'QID': qid,
         'Question': question,
         'correctAnswer': correctAnswer,
-        'answers': answers?.toJson(),
       };
 }

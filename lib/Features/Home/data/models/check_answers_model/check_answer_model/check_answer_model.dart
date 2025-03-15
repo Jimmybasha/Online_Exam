@@ -42,3 +42,28 @@ class CheckAnswerModel {
         'correctQuestions': correctQuestions?.map((e) => e.toJson()).toList(),
       };
 }
+class QuestionResult {
+  final String qid;
+  final String question;
+  final String correctAnswer;
+  final String? incorrectAnswer;
+  final Map<String, dynamic> answers;
+
+  QuestionResult({
+    required this.qid,
+    required this.question,
+    required this.correctAnswer,
+    this.incorrectAnswer,
+    required this.answers,
+  });
+
+  factory QuestionResult.fromJson(Map<String, dynamic> json) {
+    return QuestionResult(
+      qid: json['QID'] ?? '',
+      question: json['Question'] ?? '',
+      correctAnswer: json['correctAnswer'] ?? '',
+      incorrectAnswer: json['inCorrectAnswer'],
+      answers: json['answers'] is Map ? json['answers'] : {},
+    );
+  }
+}

@@ -6,16 +6,33 @@ import 'package:online_exam/Features/Home/domain/use_cases/check_answers_use_cas
 part 'check_answers_state.dart';
 
 class CheckAnswersCubit extends Cubit<CheckAnswersState> {
-  CheckAnswersCubit(this.checkAnswersUseCase) : super(CheckAnswersInitial());
-  final CheckAnswersUseCase checkAnswersUseCase;
+  final CheckAnswersUseCase _checkAnswersUseCase;
 
-  Future<void> checkAnswers({required Map<String, dynamic> data}) async {
+  CheckAnswersCubit(this._checkAnswersUseCase) : super(CheckAnswersInitial());
+
+  CheckAnswerModel? scoreModel;
+
+  Future<void> checkAnswers(List<Map<String, String>> answerList) async {
     emit(CheckAnswersLoading());
-    var result = await checkAnswersUseCase.call(data: data);
-    result.fold(
-        (failure) =>
-            emit(CheckAnswersFailure(errorMessage: failure.errorMessage)),
-        (result) => emit(CheckAnswersSuccess(checkAnswerModel: result)));
+
+    try {
+      final Map<String, dynamic> requestBody = {
+        "answers": answerList,
+      };
+
+      final result = await _checkAnswersUseCase.call(data: requestBody);
+
+      result.fold(
+              (failure) => emit(CheckAnswersFailure(errorMessage: failure.errorMessage)),
+              (scoreModel) {
+            this.scoreModel = scoreModel;
+            emit(CheckAnswersSuccess(checkAnswerModel: scoreModel));
+          }
+      );
+    } catch (e) {
+      emit(CheckAnswersFailure(errorMessage: e.toString()));
+    }
   }
-  
 }
+  
+

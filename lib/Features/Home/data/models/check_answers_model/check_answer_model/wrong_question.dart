@@ -30,6 +30,5 @@ class WrongQuestion {
         'Question': question,
         'inCorrectAnswer': inCorrectAnswer,
         'correctAnswer': correctAnswer,
-        'answers': answers?.toJson(),
       };
 }
