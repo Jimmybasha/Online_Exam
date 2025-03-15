@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,16 +11,14 @@ import 'package:online_exam/Features/Home/presentation/view/Cubit/get_all_questi
 import 'package:online_exam/Features/Home/presentation/view/widgets/answers_list_view.dart';
 
 import '../../../data/models/all_exmas_on_subjects_model/get_all_exams_on_subjects_model/exam.dart';
-import '../ScorePage.dart';
+import '../../../data/models/all_questions_on_exam/answer_model.dart';
+import '../score_screen.dart';
 import 'QuestionsScreenBodyActionButton.dart';
 
 class QuestionsScreenBody extends StatefulWidget {
   final Exam examModel;
 
-  const QuestionsScreenBody({
-    super.key,
-    required this.examModel
-  });
+  const QuestionsScreenBody({super.key, required this.examModel});
 
   @override
   State<QuestionsScreenBody> createState() => _QuestionsScreenBodyState();
@@ -26,15 +26,17 @@ class QuestionsScreenBody extends StatefulWidget {
 
 class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
   int pageNumber = 1;
-  bool isSelected = false ;
+
+  int? selectedAnswer;
   @override
   Widget build(BuildContext context) {
-    int questionNumber = pageNumber-1;
+    int questionNumber = pageNumber - 1;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(height: 11.h),
-        Text('Question ${questionNumber+1} of ${widget.examModel.numberOfQuestions}',
+        Text(
+            'Question ${questionNumber + 1} of ${widget.examModel.numberOfQuestions}',
             style: AppTextStyles.instance.textStyle14
                 .copyWith(color: AppColors.kNoOfQuestionsColor)),
         SizedBox(height: 3.h),
@@ -47,87 +49,118 @@ class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
           backgroundColor: Color(0xffCFCFCF),
         ),
         SizedBox(height: 28.h),
-        BlocConsumer<GetAllQuestionsOnExamViewModelCubit,GetAllQuestionsOnExamViewModelState>(
+        BlocConsumer<GetAllQuestionsOnExamViewModelCubit,
+            GetAllQuestionsOnExamViewModelState>(
           listener: (context, state) {
             // TODO: implement listener
           },
           builder: (context, state) {
-            if(state is GetAllQuestionsOnExamFailureState){
-             return  CustomErrorWidget(
+            if (state is GetAllQuestionsOnExamFailureState) {
+              return CustomErrorWidget(
                 title: state.error,
-                onPressed:() {
+                onPressed: () {
                   Navigator.of(context).pop();
                 },
               );
             }
-            if(state is GetAllQuestionsOnExamSuccessState){
-              return  Column(
-                  children:[
-                    Padding(
-                      padding: EdgeInsets.only(left: 16.w),
-                      child: Text(
-                          state.questionExamModel.questions[questionNumber].question??"No Question Found",
-                        style: AppTextStyles.instance.textStyle18
-                            .copyWith(fontWeight: FontWeight.w500),
-                      ),
+            if (state is GetAllQuestionsOnExamSuccessState) {
+              return SingleChildScrollView(
+                child: Column(children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.w),
+                    child: Text(
+                      state.questionExamModel.questions[questionNumber]
+                              .question ??
+                          "No Question Found",
+                      style: AppTextStyles.instance.textStyle18
+                          .copyWith(fontWeight: FontWeight.w500),
                     ),
-                    SizedBox(height: 24.h),
-                    AnswersListView(
-                      answers: state.questionExamModel
-                        .questions[questionNumber]
-                        .answers,
-                    ),
-                    SizedBox(height: 25.h),
-                    Row(
-                      mainAxisAlignment:   pageNumber==1?MainAxisAlignment.center:MainAxisAlignment.spaceAround,
-                      children: [
-                        pageNumber==1?SizedBox.shrink():
-                        QuestionsScreenBodyActionButton(
-                            backgroundColor: Colors.white,
-                            text: 'Back',
-                            onPressed: () {
-                                   pageNumber=pageNumber-1;
-                                 setState(() {
-                                 });
-                            },
-                            textColor: AppColors.kPrimaryColor),
-                        QuestionsScreenBodyActionButton(
-                            backgroundColor: AppColors.kPrimaryColor,
-                            text: pageNumber==state.questionExamModel.questions.length?
-                            "Check Score"
-                            :"Next",
-                            onPressed: () {
-                              if(isSelected==false){
-
-                                CustomErrorWidget(
-                                  title: "You must choose an answer",
-                                );
-
-                                if(pageNumber==state.questionExamModel.questions.length){
-                                  pageNumber=0;
-                                  Navigator.pushNamed(context, ScorePage.id);
-                                }
-                                print(pageNumber);
-                                pageNumber=pageNumber+1;
-                                setState(() {
-                                });
+                  ),
+                  SizedBox(height: 24.h),
+                  buildAnswersListView(
+                      answer: state
+                          .questionExamModel.questions[questionNumber].answers),
+                  SizedBox(height: 15.h),
+                  Row(
+                    mainAxisAlignment: pageNumber == 1
+                        ? MainAxisAlignment.center
+                        : MainAxisAlignment.spaceAround,
+                    children: [
+                      pageNumber == 1
+                          ? SizedBox.shrink()
+                          : QuestionsScreenBodyActionButton(
+                              backgroundColor: Colors.white,
+                              text: 'Back',
+                              onPressed: () {
+                                pageNumber = pageNumber - 1;
+                                setState(() {});
+                              },
+                              textColor: AppColors.kPrimaryColor),
+                      QuestionsScreenBodyActionButton(
+                          backgroundColor: AppColors.kPrimaryColor,
+                          text: pageNumber ==
+                                  state.questionExamModel.questions.length
+                              ? "Check Score"
+                              : "Next",
+                          onPressed: () {
+                            if (selectedAnswer == null) {
+                              CustomErrorWidget(
+                                title: "You must choose an answer",
+                              );
+                              setState(() {});
+                              if (pageNumber ==
+                                  state.questionExamModel.questions.length) {
+                                pageNumber = 0;
+                                Navigator.pushNamed(context, ScoreScreen.id);
                               }
-                            },
-                            textColor: Colors.white),
-                      ],
-                    ),
-                  ]
+
+                              pageNumber = pageNumber + 1;
+                              setState(() {});
+                            }
+                          },
+                          textColor: Colors.white),
+                    ],
+                  ),
+                ]),
               );
             }
 
             return Center(child: CircularProgressIndicator());
-
           },
         ),
-
       ],
     );
   }
+
+  ListView buildAnswersListView({List<AnswerModel>? answer}) {
+    return ListView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: answer!.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(bottom: 16.h, left: 16.w, right: 16.w),
+            child: RadioListTile(
+              contentPadding:
+                  EdgeInsets.only(left: 12.w, top: 17.5.h, bottom: 17.5.h),
+              activeColor: AppColors.kPrimaryColor,
+              tileColor: AppColors.kNavBarBackgroundColor,
+              selected: selectedAnswer == index,
+              selectedTileColor:
+                  selectedAnswer == index ? AppColors.kActiveIconColor : null,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+              title: Text(answer![index].answer,
+                  style: AppTextStyles.instance.textStyle14),
+              value: index,
+              groupValue: selectedAnswer,
+              onChanged: (value) {
+                selectedAnswer = value;
+                setState(() {});
+              },
+            ),
+          );
+        });
+  }
 }
-
-
