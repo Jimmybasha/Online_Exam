@@ -26,14 +26,12 @@ class QuestionsScreenBody extends StatefulWidget {
 
 class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
   int pageNumber = 1;
-  List<int> questionIndexList = [];
 
   // Map to store selected answers for each question
   Map<int, int> selectedAnswers = {};
   List<Map<String, String>> answerList = [];
   void addAnswerToList(String answerKey, String questionId, int questionIndex) {
     answerList.add({"questionId": questionId, "correct": answerKey});
-    questionIndexList.add(questionIndex);
   }
 
   //value
@@ -147,7 +145,9 @@ class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
                             if (pageNumber ==
                                 state.questionExamModel.questions.length) {
                               Navigator.pushNamed(context, ScoreScreen.id,
-                                  arguments: {"answerList": answerList , "questionIndexList": questionIndexList});
+                                  arguments: {
+                                "answerList": answerList ,
+                                  });
                             } else {
                               setState(() {
                                 pageNumber = pageNumber + 1;
