@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,16 +11,14 @@ import 'package:online_exam/Features/Home/presentation/view/Cubit/get_all_questi
 import 'package:online_exam/Features/Home/presentation/view/widgets/answers_list_view.dart';
 
 import '../../../data/models/all_exmas_on_subjects_model/get_all_exams_on_subjects_model/exam.dart';
-import '../ScorePage.dart';
+import '../../../data/models/all_questions_on_exam/answer_model.dart';
+import '../score_screen.dart';
 import 'QuestionsScreenBodyActionButton.dart';
 
 class QuestionsScreenBody extends StatefulWidget {
   final Exam examModel;
 
-  const QuestionsScreenBody({
-    super.key,
-    required this.examModel
-  });
+  const QuestionsScreenBody({super.key, required this.examModel});
 
   @override
   State<QuestionsScreenBody> createState() => _QuestionsScreenBodyState();
@@ -56,7 +56,8 @@ class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(height: 11.h),
-        Text('Question ${questionNumber+1} of ${widget.examModel.numberOfQuestions}',
+        Text(
+            'Question ${questionNumber + 1} of ${widget.examModel.numberOfQuestions}',
             style: AppTextStyles.instance.textStyle14
                 .copyWith(color: AppColors.kNoOfQuestionsColor)),
         SizedBox(height: 3.h),
@@ -69,7 +70,8 @@ class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
           backgroundColor: Color(0xffCFCFCF),
         ),
         SizedBox(height: 28.h),
-        BlocConsumer<GetAllQuestionsOnExamViewModelCubit,GetAllQuestionsOnExamViewModelState>(
+        BlocConsumer<GetAllQuestionsOnExamViewModelCubit,
+            GetAllQuestionsOnExamViewModelState>(
           listener: (context, state) {
             // TODO: implement listener
           },
@@ -77,7 +79,7 @@ class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
             if(state is GetAllQuestionsOnExamFailureState){
               return CustomErrorWidget(
                 title: state.error,
-                onPressed:() {
+                onPressed: () {
                   Navigator.of(context).pop();
                 },
               );
@@ -124,7 +126,7 @@ class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
                               // Check if an answer is selected for the current question
                               if (selectedAnswers.containsKey(questionNumber)) {
                                 if (pageNumber == state.questionExamModel.questions.length) {
-                                  Navigator.pushNamed(context, ScorePage.id);
+                                  Navigator.pushNamed(context, ScoreScreen.id);
                                 } else {
                                   setState(() {
                                     pageNumber = pageNumber + 1;
