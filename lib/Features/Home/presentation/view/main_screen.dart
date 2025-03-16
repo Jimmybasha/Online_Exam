@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
-import 'package:online_exam/Features/Home/presentation/view/ResultScreen.dart';
+import 'package:online_exam/Features/Profile/Profile/data/models/user_info_model/user_info_model/user_info_model.dart';
 import '../../../Auth/data/Models/user_model/user_model.dart';
 import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
 
@@ -21,29 +21,24 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int selectedItem = 0;
-  UserModel? userModel; // Change to nullable
+  UserInfoModel? userInfoModel; // Change to nullable
 
   @override
-  @override
-void didChangeDependencies() {
-  super.didChangeDependencies();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
-  final args = ModalRoute.of(context)?.settings.arguments;
-  
-  if (args is UserModel) {
-    userModel = args;
-  } else {
-    log("Error: Expected UserModel but received $args");
+    final args = ModalRoute.of(context)?.settings.arguments as UserInfoModel;
+    userInfoModel = args;
+
+    log("$userInfoModel");
   }
-}
-
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = <Widget>[
       HomeScreen(),
-      ResultScreen(),
-       userModel != null ? ProfilePage(user: userModel!.user) : Center(child: CircularProgressIndicator()),
+      Placeholder(),
+      ProfilePage(userInfoModel: userInfoModel),
     ];
     List<BottomNavigationBarItem> bottomBarItems = [
       BottomNavigationBarItem(

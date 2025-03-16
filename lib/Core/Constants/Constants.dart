@@ -9,6 +9,7 @@ const String SIGNUP_SUCCESS_MESSAGE = "Sign Up Successfully";
 const String kForgetPasswordEndPoint = "auth/forgotPassword";
 const String kAllSubjectsEndPoint = 'subjects';
 const String kCheckAnswersEndPoint = 'questions/check';
+const String kUserDataEndPoint = 'auth/profileData';
 const String kVerifyCodeEndPoint = 'auth/verifyResetCode';
 const String kResetPasswordEndPoint = "auth/resetPassword";
 const String kResultInActive = "assets/images/result_inactive.png";

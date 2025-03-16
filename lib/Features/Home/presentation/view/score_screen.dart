@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_exam/Features/Home/data/models/all_exmas_on_subjects_model/get_all_exams_on_subjects_model/exam.dart';
 import 'package:online_exam/Features/Home/data/models/all_questions_on_exam/exam_model.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/score_screen_bloc_builder_.dart';
 
@@ -31,7 +30,7 @@ class ScoreScreen extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => CheckAnswersCubit(getIt.get<CheckAnswersUseCase>())
-        ..checkAnswers(answerList), // Call checkAnswers when the screen loads
+        ..checkAnswers(answerList),
       child: Scaffold(
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(kAppBarHight.h),

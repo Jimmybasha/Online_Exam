@@ -7,7 +7,6 @@ import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
 import '../../../../../Core/Constants/app_text_style.dart';
 import '../../../../../Core/widgets/custom_button.dart';
 import '../ResultScreen.dart';
-import '../main_screen.dart';
 import 'CircularPercentIndiactorWidget.dart';
 import 'CorrectInfoWidget.dart';
 import 'IncorrectInfoWidget.dart';
@@ -17,7 +16,8 @@ class ScoreScreenBody extends StatelessWidget {
   final ExamModel examModel;
   const ScoreScreenBody({
     super.key,
-    required this.scoreModel, required this.examModel,
+    required this.scoreModel,
+    required this.examModel,
   });
 
   @override
@@ -56,7 +56,8 @@ class ScoreScreenBody extends StatelessWidget {
         ),
         CustomButton(
           onPressed: () {
-            Navigator.pushNamed(context, ResultScreen.id , arguments: {"scoreModel":scoreModel,"examModel":examModel} );
+            Navigator.pushNamed(context, ResultScreen.id,
+                arguments: {"scoreModel": scoreModel, "examModel": examModel});
           },
           child: Text(
             'Show results',

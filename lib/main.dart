@@ -10,7 +10,8 @@ import 'package:online_exam/Core/di/di.dart';
 import 'package:online_exam/Core/utils/app_routes.dart';
 import 'package:online_exam/Features/Auth/domain/UseCase/ForgetPasswordUseCase.dart';
 import 'package:online_exam/Features/Auth/presentation/View_Model/cubit/ForgetPassworCubit/ForgetPasswordViewModel.dart';
-import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
+import 'package:online_exam/Features/Profile/Profile/domain/use_cases/user_info_use_case.dart';
+import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/Cubit/user_info_cubit/user_info_cubit.dart';
 import 'package:online_exam/Features/splash/splash_screen.dart';
 
 void main() async {
@@ -39,9 +40,18 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           ScreenUtil.init(context);
-          return BlocProvider(
-            create: (context) =>
-                ForgetPasswordViewModel(getIt.get<ForgetPasswordUseCase>()),
+          return MultiBlocProvider(
+            
+            providers: [
+              BlocProvider(
+                create: (context) =>
+                    ForgetPasswordViewModel(getIt.get<ForgetPasswordUseCase>()),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    UserInfoCubit(getIt.get<UserInfoUseCase>()),
+              ),
+            ],
             child: MaterialApp(
               navigatorKey: navigatorKey,
               theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:online_exam/Core/Constants/Constants.dart';
-import 'package:online_exam/Core/utils/Services/secure_storage.dart';
+
 import 'package:online_exam/Features/Auth/presentation/view/LoginScreen.dart';
+
 import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
+import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/Cubit/user_info_cubit/user_info_cubit.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
   static const String id = "SplashScreen";
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -16,17 +18,22 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(
-      Duration(seconds: 5),
-      () async {
-        String? token = await SecureStorageService().readSecureData(kUserToken);
-        if (token != null) {
+    super.initState();
+    context.read<UserInfoCubit>().getUserData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<UserInfoCubit, UserInfoState>(
+      listener: (context, state) {
+        if (state is UserInfoSuccess) {
           Navigator.pushNamedAndRemoveUntil(
             context,
             MainScreen.id,
             (route) => false,
+            arguments: state.userInfoModel,
           );
-        } else {
+        } else if (state is UserInfoFailure) {
           Navigator.pushNamedAndRemoveUntil(
             context,
             LoginScreen.id,
@@ -34,15 +41,11 @@ class _SplashScreenState extends State<SplashScreen> {
           );
         }
       },
-    );
-
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body:Center(child: Lottie.asset("assets/images/splash_image.json")),
+      child: Scaffold(
+        body: Center(
+          child: Lottie.asset("assets/images/splash_image.json"),
+        ),
+      ),
     );
   }
 }

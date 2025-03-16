@@ -42,6 +42,7 @@ class CheckAnswerModel {
         'correctQuestions': correctQuestions?.map((e) => e.toJson()).toList(),
       };
 }
+
 class QuestionResult {
   final String qid;
   final String question;

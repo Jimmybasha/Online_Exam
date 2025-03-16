@@ -42,7 +42,6 @@ class ExamModel {
     };
   }
 
-
   String examCategory(String examTitle) {
     final lowerTitle = examTitle.toLowerCase();
 

@@ -14,7 +14,8 @@ class CheckAnswersDataSourceImpl implements CheckAnswersDataSource {
   @override
   Future<CheckAnswerModel> checkAnswers(
       {required Map<String, dynamic> data}) async {
-  var response = await apiManager.postData(endPoint: kCheckAnswersEndPoint, data: data);
-  return CheckAnswerModel.fromJson(response.data);
+    var response =
+        await apiManager.postData(endPoint: kCheckAnswersEndPoint, data: data);
+    return CheckAnswerModel.fromJson(response.data);
   }
 }

@@ -11,6 +11,6 @@ class CheckAnswersUseCase {
   CheckAnswersUseCase({required this.checkAnswersRepo});
   Future<Either<Failure, CheckAnswerModel>> call(
       {required Map<String, dynamic> data}) async {
- return await  checkAnswersRepo.checkAnswers(data: data);
+    return await checkAnswersRepo.checkAnswers(data: data);
   }
 }

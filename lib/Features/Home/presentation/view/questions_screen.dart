@@ -56,10 +56,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-     create: (context) => GetAllQuestionsOnExamViewModelCubit(
-            getIt.get<GetAllQuestionsOnExamUseCase>(),
-          )..getAllQuestions(examId: examModel?.id ?? "No id found"),
-      
+      create: (context) => GetAllQuestionsOnExamViewModelCubit(
+        getIt.get<GetAllQuestionsOnExamUseCase>(),
+      )..getAllQuestions(examId: examModel?.id ?? "No id found"),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(kAppBarHight.h),

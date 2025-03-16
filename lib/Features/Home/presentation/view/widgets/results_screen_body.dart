@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
-import 'package:online_exam/Features/Home/data/models/all_exmas_on_subjects_model/get_all_exams_on_subjects_model/exam.dart';
 import 'package:online_exam/Features/Home/data/models/all_questions_on_exam/exam_model.dart';
 import 'package:online_exam/Features/Home/data/models/check_answers_model/check_answer_model/check_answer_model.dart';
+import 'package:online_exam/Features/Home/presentation/view/widgets/answers_screen.dart';
 
 class ResultsScreenBody extends StatelessWidget {
-  const ResultsScreenBody({super.key, required this.examModel, required this.scoreModel});
+  const ResultsScreenBody(
+      {super.key, required this.examModel, required this.scoreModel});
   final ExamModel examModel;
   final CheckAnswerModel scoreModel;
   @override
@@ -26,7 +26,9 @@ class ResultsScreenBody extends StatelessWidget {
           ),
           SizedBox(height: 24.h),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, AnswersScreen.id);
+            },
             child: Container(
               height: 103.h,
               decoration: BoxDecoration(

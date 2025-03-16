@@ -23,16 +23,14 @@ class CheckAnswersCubit extends Cubit<CheckAnswersState> {
       final result = await _checkAnswersUseCase.call(data: requestBody);
 
       result.fold(
-              (failure) => emit(CheckAnswersFailure(errorMessage: failure.errorMessage)),
-              (scoreModel) {
-            this.scoreModel = scoreModel;
-            emit(CheckAnswersSuccess(checkAnswerModel: scoreModel));
-          }
-      );
+          (failure) =>
+              emit(CheckAnswersFailure(errorMessage: failure.errorMessage)),
+          (scoreModel) {
+        this.scoreModel = scoreModel;
+        emit(CheckAnswersSuccess(checkAnswerModel: scoreModel));
+      });
     } catch (e) {
       emit(CheckAnswersFailure(errorMessage: e.toString()));
     }
   }
 }
-  
-
