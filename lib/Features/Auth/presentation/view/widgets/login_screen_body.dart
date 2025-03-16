@@ -147,8 +147,10 @@ class LoginButtonBlocConsumer extends StatelessWidget {
           if (rememberMe == true) {
             _saveUserToken(state);
           }
-          Navigator.pushNamed(context, MainScreen.id,
-              arguments: state.userModel);
+          Navigator.pushNamed(
+              context, MainScreen.id,
+              arguments: state.userModel
+          );
         }
       },
       builder: (context, state) {

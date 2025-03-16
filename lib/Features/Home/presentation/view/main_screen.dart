@@ -24,18 +24,21 @@ class _MainScreenState extends State<MainScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final args = ModalRoute.of(context)?.settings.arguments as UserModel;
-    userModel = args;
-
-    print("$userModel");
+    final args = ModalRoute.of(context)?.settings.arguments;
+    if (args is UserModel) {
+      userModel = args;
+    } else {
+      print("Warning: No valid UserModel found in arguments.");
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = <Widget>[
       HomeScreen(),
       Placeholder(),
-      ProfilePage(user: userModel!.user),
+      ProfilePage(user: userModel),
     ];
     List<BottomNavigationBarItem> bottomBarItems = [
       BottomNavigationBarItem(

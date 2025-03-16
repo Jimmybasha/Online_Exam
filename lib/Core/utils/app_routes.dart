@@ -38,7 +38,7 @@ class AppRoutes {
           return _errorRoute(); // Handle missing arguments gracefully
         }
         return MaterialPageRoute(
-            builder: (_) => ProfilePage(user: user.user), settings: settings);
+            builder: (_) => ProfilePage(user: user), settings: settings);
       case ResetPasswordPage.id:
         return MaterialPageRoute(
             builder: (_) => const ResetPasswordPage(), settings: settings);

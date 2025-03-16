@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:online_exam/Core/ApiManager/ApiManager.dart';
+import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Core/Constants/Validator.dart';
 import 'package:online_exam/Core/widgets/show_snack_bar.dart';
+import 'package:online_exam/Features/Auth/data/Models/user_model/user_model.dart';
 import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/Cubit/UpdatePasswordPageViewModel.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/States/UpdatePasswordState.dart';
@@ -9,9 +13,15 @@ import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/Sta
 import '../../../../../../Core/Constants/AppStyles.dart';
 import '../../../../../../Core/Constants/app_text_style.dart';
 import '../../../../../../Core/Reusable_Widgets/CustomTextField.dart';
+import '../../../../../../Core/utils/Services/secure_storage.dart';
 
 class ResetPasswordPageBody extends StatefulWidget {
-  const ResetPasswordPageBody({super.key});
+
+  final UserModel? userModel;
+  const ResetPasswordPageBody({
+    super.key,
+    this.userModel
+  });
 
   @override
   State<ResetPasswordPageBody> createState() => _ResetPasswordPageBodyState();
@@ -44,13 +54,32 @@ class _ResetPasswordPageBodyState extends State<ResetPasswordPageBody> {
   Widget build(BuildContext context) {
     return Center(
       child: BlocConsumer<UpdatePasswordPageViewModel, UpdatePasswordState>(
-        listener: (context, state) {
+        listener: (context, state) async{
           if (state is UpdatePasswordFailureState) {
             showErrorSnackBar(context, state.error);
           }
-          if (state is UpdatePasswordSuccessState) {
+          if (state is UpdatePasswordSuccessState){
             showSnackBar(context, state.data['message']);
-            Navigator.of(context).pushNamed(MainScreen.id);
+
+            String? newToken = state.data['token'];
+            if (newToken != null) {
+              await SecureStorageService().writeSecureData(kUserToken, newToken);
+
+              // Reset ApiManager to force dependency reinitialization
+              GetIt.I.resetLazySingleton<ApiManager>();
+              await GetIt.I<ApiManager>().setToken();
+
+              print("Token updated, ApiManager reset, navigating to MainScreen...");
+            }
+
+            // Delay navigation to ensure ApiManager is updated
+            Future.delayed(Duration(milliseconds: 500), () {
+              Navigator.of(context).pushReplacementNamed(
+                MainScreen.id,
+                arguments: widget.userModel,
+              );
+            });
+
           }
         },
         builder: (context, state) => Form(

@@ -7,6 +7,7 @@ import 'package:online_exam/Features/Profile/Profile/presentation/View/widgets/R
 import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/Cubit/UpdatePasswordPageViewModel.dart';
 
 import '../../../../../../Core/widgets/custom_app_bar.dart';
+import '../../../../../Auth/data/Models/user_model/user_model.dart';
 
 class ResetPasswordPage extends StatelessWidget {
   static const String id = "resetPasswordPageView";
@@ -14,6 +15,11 @@ class ResetPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+      final args = ModalRoute.of(context)?.settings.arguments as UserModel;
+       UserModel? userModel = args;
+
     return BlocProvider(
       create: (context) =>
           UpdatePasswordPageViewModel(getIt.get<UpdatePasswordUseCase>()),
@@ -25,7 +31,7 @@ class ResetPasswordPage extends StatelessWidget {
             leadingVisibility: true,
           ),
         ),
-        body: ResetPasswordPageBody(),
+        body: ResetPasswordPageBody(userModel: userModel,),
       ),
     );
   }
