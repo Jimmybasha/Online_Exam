@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../Constants/Constants.dart';
 import '../utils/Services/secure_storage.dart';
 
-@singleton // Resolved to be singleton
+@lazySingleton// Resolved to be singleton
 class ApiManager {
   final Dio dio = Dio(BaseOptions(
     baseUrl: BASE_URL,
@@ -13,6 +13,12 @@ class ApiManager {
     },
   ));
 
+  void _initialize() async {
+    String? token = await SecureStorageService().readSecureData(kUserToken);
+    if (token != null && token.isNotEmpty) {
+      dio.options.headers['token'] = token;
+    }
+  }
   /// Method to set token dynamically
   Future<void> setToken() async {
     String? token = await SecureStorageService().readSecureData(kUserToken);
@@ -20,6 +26,7 @@ class ApiManager {
       dio.options.headers['token'] = token; // Update headers
     }
   }
+
 
   Future<Response> getData(
       {required String endPoint, Map<String, dynamic>? params}) async {
