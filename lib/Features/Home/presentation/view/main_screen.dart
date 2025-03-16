@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
+import 'package:online_exam/Features/Home/presentation/view/ResultScreen.dart';
 import 'package:online_exam/Features/Profile/Profile/data/models/user_info_model/user_info_model/user_info_model.dart';
 import '../../../Auth/data/Models/user_model/user_model.dart';
 import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
@@ -37,7 +38,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final List<Widget> screens = <Widget>[
       HomeScreen(),
-      Placeholder(),
+      ResultScreen(),
       ProfilePage(userInfoModel: userInfoModel),
     ];
     List<BottomNavigationBarItem> bottomBarItems = [
