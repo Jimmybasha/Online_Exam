@@ -35,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
     final List<Widget> screens = <Widget>[
       HomeScreen(),
       Placeholder(),
-      ProfilePage(user: userModel!.user),
+      ProfilePage(user: userModel),
     ];
     List<BottomNavigationBarItem> bottomBarItems = [
       BottomNavigationBarItem(

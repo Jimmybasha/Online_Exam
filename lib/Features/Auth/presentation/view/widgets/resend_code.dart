@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
@@ -26,7 +28,7 @@ class ResendCode extends StatelessWidget {
               style: AppTextStyles.instance.textStyle16),
           GestureDetector(
             onTap: () {
-              print("email from the ResendCode Widget $email");
+              log("email from the ResendCode Widget $email");
               context.read<ForgetPasswordViewModel>().forgetPassword(email);
             },
             child: Text(" Resend",

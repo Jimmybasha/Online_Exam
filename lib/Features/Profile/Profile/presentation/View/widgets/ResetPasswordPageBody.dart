@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam/Core/Constants/Validator.dart';
 import 'package:online_exam/Core/widgets/show_snack_bar.dart';
+import 'package:online_exam/Features/Auth/data/Models/user_model/user_model.dart';
 import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/Cubit/UpdatePasswordPageViewModel.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/States/UpdatePasswordState.dart';
@@ -11,8 +12,8 @@ import '../../../../../../Core/Constants/app_text_style.dart';
 import '../../../../../../Core/Reusable_Widgets/CustomTextField.dart';
 
 class ResetPasswordPageBody extends StatefulWidget {
-  const ResetPasswordPageBody({super.key});
-
+  const ResetPasswordPageBody({super.key, required this.userModel});
+  final UserModel userModel;
   @override
   State<ResetPasswordPageBody> createState() => _ResetPasswordPageBodyState();
 }
@@ -50,7 +51,7 @@ class _ResetPasswordPageBodyState extends State<ResetPasswordPageBody> {
           }
           if (state is UpdatePasswordSuccessState) {
             showSnackBar(context, state.data['message']);
-            Navigator.of(context).pushNamed(MainScreen.id);
+            Navigator.of(context).pushNamed(MainScreen.id , arguments: widget.userModel);
           }
         },
         builder: (context, state) => Form(

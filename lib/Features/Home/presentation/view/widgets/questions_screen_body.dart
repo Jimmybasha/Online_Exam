@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +9,6 @@ import 'package:online_exam/Features/Home/presentation/view/Cubit/get_all_questi
 import 'package:online_exam/Features/Home/presentation/view/widgets/answers_list_view.dart';
 
 import '../../../data/models/all_exmas_on_subjects_model/get_all_exams_on_subjects_model/exam.dart';
-import '../../../data/models/all_questions_on_exam/answer_model.dart';
 import '../score_screen.dart';
 import 'QuestionsScreenBodyActionButton.dart';
 
@@ -146,7 +143,9 @@ class _QuestionsScreenBodyState extends State<QuestionsScreenBody> {
                                 state.questionExamModel.questions.length) {
                               Navigator.pushNamed(context, ScoreScreen.id,
                                   arguments: {
-                                "answerList": answerList ,
+                                    "answerList": answerList,
+                                    "examModel": state.questionExamModel
+                                        .questions[questionNumber].exam
                                   });
                             } else {
                               setState(() {

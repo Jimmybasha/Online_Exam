@@ -41,4 +41,20 @@ class ExamModel {
       'createdAt': createdAt?.toIso8601String(),
     };
   }
+
+  String examCategory(String examTitle) {
+    final lowerTitle = examTitle.toLowerCase();
+
+    if (lowerTitle.contains('html') ||
+        lowerTitle.contains('c++') ||
+        lowerTitle.contains('flutter') ||
+        lowerTitle.contains('java') ||
+        lowerTitle.contains('python') ||
+        lowerTitle.contains('javascript') ||
+        lowerTitle.contains('dart')) {
+      return 'Programming';
+    } else {
+      return 'Unknown';
+    }
+  }
 }

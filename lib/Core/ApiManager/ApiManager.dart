@@ -8,8 +8,10 @@ import '../utils/Services/secure_storage.dart';
 class ApiManager {
   final Dio dio = Dio(BaseOptions(
     baseUrl: BASE_URL,
+  
     headers: {
       'Content-Type': 'application/json',
+      
     },
   ));
 

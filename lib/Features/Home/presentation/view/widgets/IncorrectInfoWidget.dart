@@ -1,5 +1,3 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -35,7 +33,7 @@ class InCorrectInfoWidget extends StatelessWidget {
             '$incorrectCount',
             textAlign: TextAlign.center,
             style:
-            AppTextStyles.instance.textStyle13.copyWith(color: Colors.red),
+                AppTextStyles.instance.textStyle13.copyWith(color: Colors.red),
           ),
         ),
       ],

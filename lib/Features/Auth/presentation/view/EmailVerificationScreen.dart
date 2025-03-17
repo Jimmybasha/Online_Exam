@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +26,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     super.didChangeDependencies();
 
     final args = ModalRoute.of(context)?.settings.arguments;
-    print("📥 Received arguments in didChangeDependencies: $args");
+    log("📥 Received arguments in didChangeDependencies: $args");
 
     if (args is Map<String, dynamic>) {
       final receivedEmail = args['email'];

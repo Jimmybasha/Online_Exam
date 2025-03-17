@@ -33,7 +33,7 @@ class CustomErrorWidget extends StatelessWidget {
             onPressed: onPressed,
             child: Text(
               'Ok',
-              style: AppTextStyles.instance.textStyle12
+              style: AppTextStyles.instance.textStyle14
                   .copyWith(color: AppColors.kPrimaryColor),
             ))
       ],

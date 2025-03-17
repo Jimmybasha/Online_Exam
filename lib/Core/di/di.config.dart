@@ -76,18 +76,28 @@ import '../../Features/Profile/Profile/data/data_sources/ResetPasswordDataSource
     as _i669;
 import '../../Features/Profile/Profile/data/data_sources/ResetPasswordDataSource/ResetPasswordRemoteDataSourceImpl.dart'
     as _i438;
+import '../../Features/Profile/Profile/data/data_sources/user_info_data_source/user_info_data_source_impl.dart'
+    as _i977;
+import '../../Features/Profile/Profile/data/data_sources/user_info_data_source/user_info_remote_data_source.dart'
+    as _i132;
 import '../../Features/Profile/Profile/data/repositories/ProfileRepoImpl.dart'
     as _i1046;
 import '../../Features/Profile/Profile/data/repositories/ResetPasswordRepoImpl.dart'
     as _i329;
+import '../../Features/Profile/Profile/data/repositories/user_info_repo_impl.dart'
+    as _i135;
 import '../../Features/Profile/Profile/domain/repositories/ProfileRepo.dart'
     as _i805;
 import '../../Features/Profile/Profile/domain/repositories/ResetPasswordRepo.dart'
     as _i251;
+import '../../Features/Profile/Profile/domain/repositories/user_info_repo.dart'
+    as _i699;
 import '../../Features/Profile/Profile/domain/use_cases/UpdatePasswordUseCase.dart'
     as _i776;
 import '../../Features/Profile/Profile/domain/use_cases/UpdateProfileDataUseCase.dart'
     as _i763;
+import '../../Features/Profile/Profile/domain/use_cases/user_info_use_case.dart'
+    as _i588;
 import '../ApiManager/ApiManager.dart' as _i211;
 import '../utils/Services/secure_storage.dart' as _i323;
 
@@ -107,6 +117,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i323.SecureStorageService());
     gh.factory<_i703.ProfileRemoteDataSource>(
         () => _i564.ProfileRemoteDataSourceImpl(gh<_i211.ApiManager>()));
+    gh.factory<_i132.UserInfoRemoteDataSource>(() =>
+        _i977.UserInfoRemoteDataSourceImpl(apiManager: gh<_i211.ApiManager>()));
     gh.factory<_i805.ProfileRepo>(
         () => _i1046.ProfileRepoImpl(gh<_i703.ProfileRemoteDataSource>()));
     gh.factory<_i368.SubjectsRemoteDataSource>(
@@ -141,6 +153,8 @@ extension GetItInjectableX on _i174.GetIt {
         questionsRemoteDataSource: gh<_i794.QuestionsRemoteDataSource>()));
     gh.factory<_i347.AuthRepo>(() => _i475.AuthRepoImpl(
         authRemoteDataSource: gh<_i504.AuthRemoteDataSource>()));
+    gh.factory<_i699.UserInfoRepo>(() => _i135.UserInfoRepoImpl(
+        userInfoRemoteDataSource: gh<_i132.UserInfoRemoteDataSource>()));
     gh.factory<_i776.UpdatePasswordUseCase>(
         () => _i776.UpdatePasswordUseCase(gh<_i251.ResetPasswordRepo>()));
     gh.factory<_i7.ResetPasswordUseCase>(
@@ -149,6 +163,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i737.SignUpRepoImpl(gh<_i235.ISignUpDataSource>()));
     gh.factory<_i259.GetAllSubjectsUseCase>(() =>
         _i259.GetAllSubjectsUseCase(subjectsRepo: gh<_i1034.SubjectsRepo>()));
+    gh.factory<_i588.UserInfoUseCase>(
+        () => _i588.UserInfoUseCase(userInfoRepo: gh<_i699.UserInfoRepo>()));
     gh.factory<_i68.CheckAnswersRepo>(() => _i274.CheckAnswersRepoImpl(
         checkAnswersDataSource: gh<_i553.CheckAnswersDataSource>()));
     gh.factory<_i238.CheckAnswersUseCase>(() => _i238.CheckAnswersUseCase(

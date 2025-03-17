@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam/Core/di/di.dart';
 import 'package:online_exam/Core/widgets/custom_app_bar.dart';
-import 'package:online_exam/Features/Auth/data/Models/user_model/user.dart';
+import 'package:online_exam/Features/Auth/data/Models/user_model/user_model.dart';
 import 'package:online_exam/Features/Profile/Profile/domain/use_cases/UpdateProfileDataUseCase.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View/widgets/ProfilePageBody.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/Cubit/ProfilePageViewModel.dart';
@@ -11,7 +11,7 @@ import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/Cub
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key, required this.user});
   static const String id = "ProfilePageView";
-  final User? user;
+  final UserModel? user;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
         body: ProfilePageBody(
-          user: user,
+          userModel: user,
         ),
       ),
     );

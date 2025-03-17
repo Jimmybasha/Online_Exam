@@ -11,8 +11,6 @@ import 'package:online_exam/Features/Home/presentation/view/widgets/questions_sc
 import 'package:online_exam/Features/Home/presentation/view/widgets/questions_screen_body.dart';
 
 import '../../data/models/all_exmas_on_subjects_model/get_all_exams_on_subjects_model/exam.dart';
-import '../../domain/use_cases/check_answers_use_case.dart';
-import '../view_model/cubit/check_answers/check_answers_cubit.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -25,6 +23,7 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   Exam? examModel;
   int? examDuration;
+  Timer? timer;
 
   @override
   void didChangeDependencies() {
@@ -33,7 +32,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     if (args is Exam) {
       setState(() {
         examModel = args;
-        examDuration = examModel!.duration;
+        examDuration = examModel!.duration! * 10;
       });
     } else {
       debugPrint("Error: Exam model not found in arguments");
@@ -42,26 +41,34 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
   @override
   void initState() {
-    Timer.periodic(Duration(minutes: 1), (timer) {
+    super.initState();
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
       if (examDuration! > 0) {
         setState(() {
           examDuration = examDuration! - 1;
         });
       } else {
         timer.cancel();
-        super.dispose();
       }
     });
-    super.initState();
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel(); // Cancel the timer to prevent memory leaks
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-     create: (context) => GetAllQuestionsOnExamViewModelCubit(
-            getIt.get<GetAllQuestionsOnExamUseCase>(),
-          )..getAllQuestions(examId: examModel?.id ?? "No id found"),
-      
+      create: (context) => GetAllQuestionsOnExamViewModelCubit(
+        getIt.get<GetAllQuestionsOnExamUseCase>(),
+      )..getAllQuestions(examId: examModel?.id ?? "No id found"),
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(kAppBarHight.h),
