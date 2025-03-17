@@ -26,7 +26,7 @@ class ScoreScreen extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final List<Map<String, String>> answerList = arguments["answerList"];
 
-    log("the answerList from the scoreScreen is $answerList");
+    log("the answerList in the scoreScreen is $answerList");
 
     return BlocProvider(
       create: (context) => CheckAnswersCubit(getIt.get<CheckAnswersUseCase>())

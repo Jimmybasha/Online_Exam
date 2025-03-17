@@ -7,14 +7,15 @@ import 'package:online_exam/Core/Constants/app_colors.dart';
 import 'package:online_exam/Core/Constants/app_text_style.dart';
 import 'package:online_exam/Core/Reusable_Widgets/CustomTextField.dart';
 import 'package:online_exam/Core/widgets/show_snack_bar.dart';
-import 'package:online_exam/Features/Profile/Profile/data/models/user_info_model/user_info_model/user_info_model.dart';
+import 'package:online_exam/Features/Auth/data/Models/user_model/user_model.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View/widgets/ResetPasswordPage.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/Cubit/ProfilePageViewModel.dart';
 import 'package:online_exam/Features/Profile/Profile/presentation/View_Model/States/ProfilePageStates.dart';
 
+
 class ProfilePageBody extends StatefulWidget {
-  final UserInfoModel? userInfoModel;
-  const ProfilePageBody({super.key,  this.userInfoModel});
+  final UserModel? userModel;
+  const ProfilePageBody({super.key, required this.userModel});
 
   @override
   State<ProfilePageBody> createState() => _ProfilePageBodyState();
@@ -33,16 +34,16 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
   initState() {
     super.initState();
     _usernameController = TextEditingController(
-        text: widget.userInfoModel?.user?.username ?? "userName isn't available");
+        text: widget.userModel?.user?.username ?? "userName isn't available");
     _firstNameController = TextEditingController(
-        text: widget.userInfoModel?.user?.firstName ?? "firstName isn't available");
+        text: widget.userModel?.user?.firstName ?? "firstName isn't available");
     _lastNameController = TextEditingController(
-        text: widget.userInfoModel?.user?.lastName ?? "lastName isn't available ");
+        text: widget.userModel?.user?.lastName ?? "lastName isn't available ");
     _emailController = TextEditingController(
-        text: widget.userInfoModel?.user?.email ?? "Email isn't available");
+        text: widget.userModel?.user?.email ?? "Email isn't available");
     _passwordController = TextEditingController();
     _phoneNumberController = TextEditingController(
-        text: widget.userInfoModel?.user?.phone ?? "Phone isn't available");
+        text: widget.userModel?.user?.phone ?? "Phone isn't available");
   }
 
   @override
@@ -133,7 +134,7 @@ class _ProfilePageBodyState extends State<ProfilePageBody> {
                     isPassword: true,
                     suffixIcon: TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, ResetPasswordPage.id);
+                          Navigator.pushNamed(context, ResetPasswordPage.id ,arguments: widget.userModel);
                         },
                         child: Text(
                           "Change",

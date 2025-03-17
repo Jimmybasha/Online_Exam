@@ -35,8 +35,8 @@ class AllExamsBySubjectScreen extends StatelessWidget {
             if (state is GetAllExamsOnSubjectSuccess) {
               if (state.allExamsOnSubjectsModel.exams!.isEmpty) {
                 return CustomErrorWidget(
-                    title: 'Ooops',
-                    content: 'There Is No Exams',
+                    title: 'There Is No Exams Now',
+                    content: 'Try to check later',
                     onPressed: () {
                       Navigator.pop(context);
                     });

@@ -24,12 +24,7 @@ class _EmailVerificationScreenBodyState
   final List<FocusNode> focusNodes = List.generate(6, (_) => FocusNode());
 
   String get otpCode => controllers.map((c) => c.text).join();
-  //1
-  //2
-  //3
 
-  // 1 2 3
-  //123
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +113,7 @@ class _EmailVerificationScreenBodyState
             SizedBox(height: 24.h),
             ResendCode(
               email: widget.email,
+              
             ),
           ],
         );

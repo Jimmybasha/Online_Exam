@@ -91,7 +91,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                       (timeStamp) {
                         showSnackBar(context, state.res['message']);
                         Navigator.pushNamed(
-                            context, EmailVerificationScreen.id);
+                            context, EmailVerificationScreen.id , arguments: {'email': emailController.text.trim()});
                       },
                     );
                     print(

@@ -1,10 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:online_exam/Core/Constants/Constants.dart';
 import 'package:online_exam/Core/Constants/app_colors.dart';
-import 'package:online_exam/Features/Home/presentation/view/ResultScreen.dart';
-import 'package:online_exam/Features/Profile/Profile/data/models/user_info_model/user_info_model/user_info_model.dart';
 import '../../../Auth/data/Models/user_model/user_model.dart';
 import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
 
@@ -22,24 +18,24 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int selectedItem = 0;
-  UserInfoModel? userInfoModel; // Change to nullable
+  UserModel? userModel; // Change to nullable
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final args = ModalRoute.of(context)?.settings.arguments as UserInfoModel;
-    userInfoModel = args;
+    final args = ModalRoute.of(context)?.settings.arguments as UserModel;
+    userModel = args;
 
-    log("$userInfoModel");
+    print("$userModel");
   }
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = <Widget>[
       HomeScreen(),
-      ResultScreen(),
-      ProfilePage(userInfoModel: userInfoModel),
+      Placeholder(),
+      ProfilePage(user: userModel),
     ];
     List<BottomNavigationBarItem> bottomBarItems = [
       BottomNavigationBarItem(

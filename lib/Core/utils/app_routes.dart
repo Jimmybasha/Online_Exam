@@ -8,8 +8,6 @@ import 'package:online_exam/Features/Home/presentation/view/home_screen.dart';
 import 'package:online_exam/Features/Home/presentation/view/main_screen.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/answers_screen.dart';
 import 'package:online_exam/Features/Home/presentation/view/widgets/exam_details_view.dart';
-import 'package:online_exam/Features/Profile/Profile/data/models/user_info_model/user_info_model/user_info_model.dart';
-import 'package:online_exam/Features/splash/splash_screen.dart';
 
 import '../../Features/Auth/Sign_Up/presentation/View/widgets/SignUpPage.dart';
 import '../../Features/Auth/presentation/view/ResetPassword.dart';
@@ -36,12 +34,12 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case ProfilePage.id:
         // Extract the arguments (UserModel) from settings
-        final user = settings.arguments as UserInfoModel?;
+        final user = settings.arguments as UserModel?;
         if (user == null) {
           return _errorRoute(); // Handle missing arguments gracefully
         }
         return MaterialPageRoute(
-            builder: (_) => ProfilePage(userInfoModel: user), settings: settings);
+            builder: (_) => ProfilePage(user: user), settings: settings);
       case ResetPasswordPage.id:
         return MaterialPageRoute(
             builder: (_) => const ResetPasswordPage(), settings: settings);
@@ -69,9 +67,9 @@ class AppRoutes {
       case ScoreScreen.id:
         return MaterialPageRoute(
             builder: (_) => ScoreScreen(), settings: settings);
-      case SplashScreen.id:
-        return MaterialPageRoute(
-            builder: (_) => SplashScreen(), settings: settings);
+      // case SplashScreen.id:
+      //   return MaterialPageRoute(
+      //       builder: (_) => SplashScreen(), settings: settings);
       case AnswersScreen.id:
         return MaterialPageRoute(
             builder: (_) => AnswersScreen(), settings: settings);
